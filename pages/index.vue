@@ -1,6 +1,19 @@
 <template>
   <div id="index-page">
     <header id="home-header">
+      <div id="bit">
+        <TresCanvas preset="realistic">
+          <!-- [0, 20, 100] -->
+          <TresPerspectiveCamera :position="[0, 10, 100]" />
+          <!-- <OrbitControls :enable-pan="false" :enableZoom="false" /> -->
+          <MouseParallax :factor="5" :ease="3" />
+          <Suspense>
+            <ModelBit />
+          </Suspense>
+          <Stars :radius="30" />
+          <TresAmbientLight :intensity="1" />
+        </TresCanvas>
+      </div>
       <Grid>
         <Navigation></Navigation>
 
@@ -40,36 +53,6 @@ useHead({
       content: bio,
     },
   ],
-});
-
-import type { ProjectSummary } from "~/server/types";
-const worksPage = ref("media");
-const reel = ref("post-production");
-const workSection = ref<HTMLElement | null>(null);
-const indexIntroContainer = ref<HTMLElement | null>(null);
-
-const { data, pending } = await useFetch(`/api/work`, {
-  params: {
-    category: worksPage,
-  },
-  cache: "reload",
-});
-const actualData = ref<ProjectSummary[]>(
-  JSON.parse(JSON.stringify(data))._rawValue
-);
-
-watch(data, async () => {
-  actualData.value = JSON.parse(JSON.stringify(data))._rawValue;
-  workSection.value?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-});
-
-const mounted = ref(false);
-
-onMounted(() => {
-  mounted.value = true;
 });
 </script>
 
@@ -174,6 +157,23 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use "sass:map";
+
+#bit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  pointer-events: none;
+  width: 100%;
+  height: 100dvh;
+  mix-blend-mode: luminosity;
+  opacity: 0.75;
+
+  * {
+    pointer-events: none !important;
+  }
+}
+
 section {
   &#intro {
     padding: 2em;

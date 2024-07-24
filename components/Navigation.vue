@@ -29,23 +29,23 @@
 
           <NavigationLink
             :activeSection="activeSection"
-            sectionName="works"
-            to="/#works"
-            >Work</NavigationLink
-          >
-
-          <NavigationLink
-            :activeSection="activeSection"
             sectionName="about-page"
             to="/about"
-            >About me</NavigationLink
+            >About Us</NavigationLink
           >
 
           <NavigationLink
             :activeSection="activeSection"
-            sectionName="contact"
-            to="/contact"
-            >Contact</NavigationLink
+            sectionName="events"
+            to="/#events"
+            >What’s on</NavigationLink
+          >
+
+          <NavigationLink
+            :activeSection="activeSection"
+            sectionName="sponsor-us"
+            to="/sponsor-us"
+            >Sponsor us</NavigationLink
           >
         </nav>
       </div>
