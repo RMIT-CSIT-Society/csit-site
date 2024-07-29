@@ -1,5 +1,5 @@
 <template>
-  <div id="index-page">
+  <div id="index-page" :class="{ 'loaded-home': loaded }">
     <header id="home-header">
       <div id="bit">
         <TresCanvas preset="realistic">
@@ -30,7 +30,7 @@
           <div v-for="n in 9 * 9" class="null"></div>
         </div>
 
-        <div v-for="n in 9" :class="'logo-part-' + n"></div>
+        <div v-for="n in 9" :class="['logo-part-' + n, 'logo-part']"></div>
         <div v-for="n in 27" :class="'null null-part-' + (n - 1)"></div>
       </Grid>
     </header>
@@ -53,6 +53,11 @@ useHead({
       content: bio,
     },
   ],
+});
+
+const loaded = ref(false);
+onMounted(() => {
+  loaded.value = true;
 });
 </script>
 
@@ -159,7 +164,7 @@ useHead({
 @use "sass:map";
 
 #bit {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 9;
@@ -249,10 +254,57 @@ header {
       }
     }
 
+    .logo-part {
+      position: relative;
+      overflow: clip;
+
+      &::before {
+        content: "";
+        background: rgba(178, 34, 34, 0);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        .loaded-home & {
+          background: firebrick;
+        }
+      }
+
+      &::after {
+        outline-color: firebrick;
+        outline-offset: -3dvh;
+        outline-width: 0dvh;
+        outline-style: solid;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        .loaded-home & {
+          outline-offset: -12dvh;
+          outline-width: 12dvh;
+        }
+      }
+    }
+
     @for $i from 0 through 9 {
       > .logo-part-#{$i} {
         grid-area: c#{$i};
-        background: firebrick;
+
+        &::before {
+          transition: 0.15s cubic-bezier(0.48, 0.02, 0.06, 1) background;
+          transition-delay: 100ms * $i + 800ms;
+        }
+
+        &::after {
+          transition: 0.75s cubic-bezier(0.48, 0.02, 0.06, 1) outline-width,
+            0.45s cubic-bezier(0.48, 0.02, 0.06, 1) outline-offset;
+          transition-delay: 100ms * $i + 100ms;
+        }
       }
     }
 
