@@ -2,11 +2,13 @@
   <div id="index-page" :class="{ 'loaded-home': loaded }">
     <header id="home-header">
       <div id="bit">
-        <TresCanvas preset="realistic">
+        <TresCanvas preset="realistic" window-size>
           <!-- [0, 20, 100] -->
           <TresPerspectiveCamera :position="[0, 10, 100]" />
           <!-- <OrbitControls :enable-pan="false" :enableZoom="false" /> -->
           <MouseParallax :factor="5" :ease="3" />
+          <!-- <TresGridHelper :args="[100, 100]" /> -->
+          <ScrollControls v-model="progress" :distance="45" htmlScroll />
           <Suspense>
             <ModelBit />
           </Suspense>
@@ -36,7 +38,37 @@
     </header>
     <section id="intro">
       <Container>
-        <h2>Test</h2>
+        <Grid>
+          <Cell class="large-3" id="top-left"> </Cell>
+          <Cell class="large-6" id="intro-text">
+            <h2 class="h5">
+              A student-run club at RMIT University committed to engaging
+              students with academic and social events that further their
+              professional development.
+            </h2>
+
+            <div id="key-notes">
+              <div id="key-note">
+                <p>
+                  🤵‍♀️ Expert panel discussions that delve into the realities of
+                  working in the tech industry.
+                </p>
+              </div>
+              <div id="key-note">
+                <p>
+                  🎓 Networking and celebratory social events to make new
+                  friends and meet future employers.
+                </p>
+              </div>
+              <div id="key-note">
+                <p>
+                  🤖 Hands-on workshops with emerging software and hardware such
+                  as VR and robotics.
+                </p>
+              </div>
+            </div>
+          </Cell>
+        </Grid>
       </Container>
     </section>
   </div>
@@ -59,6 +91,8 @@ const loaded = ref(false);
 onMounted(() => {
   loaded.value = true;
 });
+
+const progress = ref(0);
 </script>
 
 <style lang="scss">
@@ -68,7 +102,7 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-#works {
+/* #works {
   display: flex;
   padding-bottom: 10em;
 
@@ -85,7 +119,7 @@ onMounted(() => {
       filter: blur(400px);
     }
   }
-}
+} */
 
 .button-row-works-wrapper {
   display: flex;
@@ -164,7 +198,7 @@ onMounted(() => {
 @use "sass:map";
 
 #bit {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   z-index: 9;
@@ -180,8 +214,12 @@ onMounted(() => {
 }
 
 section {
+  z-index: 10;
+  position: relative;
+
   &#intro {
     padding: 2em;
+    margin-top: 2em;
 
     > div {
       background: firebrick;
@@ -190,6 +228,40 @@ section {
 
   .grid-container {
     max-width: 2048px;
+
+    > .grid {
+      gap: 0;
+      grid-template-columns: repeat(9, 1fr);
+    }
+  }
+}
+
+#intro {
+  color: #fff;
+
+  #top-left {
+    background: url("~/assets/img/about-us-top-left.jpg");
+    min-height: 90lvh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #intro-text {
+    padding: 3.5em;
+
+    h2 {
+      margin-right: 2em;
+    }
+  }
+
+  #key-notes {
+    display: flex;
+    gap: 2em;
+
+    p {
+      font-size: 0.9em;
+    }
   }
 }
 
