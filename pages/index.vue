@@ -49,27 +49,72 @@
 
             <div id="key-notes">
               <div id="key-note">
+                <h6>🤵‍♀️ Industry Panels</h6>
                 <p>
-                  🤵‍♀️ Expert panel discussions that delve into the realities of
+                  Expert panel discussions that delve into the realities of
                   working in the tech industry.
                 </p>
               </div>
               <div id="key-note">
+                <h6>🎓 Network</h6>
                 <p>
-                  🎓 Networking and celebratory social events to make new
+                  Networking and celebratory social events to make new
                   friends and meet future employers.
                 </p>
               </div>
               <div id="key-note">
+                <h6>🤖 Workshops</h6>
                 <p>
-                  🤖 Hands-on workshops with emerging software and hardware such
+                  Hands-on workshops with emerging software and hardware such
                   as VR and robotics.
                 </p>
               </div>
             </div>
+
+            <NuxtLink class="button" to="#">More about us</NuxtLink>
+          </Cell>
+          <Cell class="large-12" id="bottom-sprites">
+            <div id="lights"></div>
+            <div id="shapes"></div>
+            <div id="games-night"></div>
+            <div id="blur"></div>
           </Cell>
         </Grid>
       </Container>
+    </section>
+    <section id="events-section">
+      <Container>
+        <Grid>
+          <Cell class="large-4" id="events-section-heading"> 
+            <h2 class="h1">What's <br>going on</h2>
+
+            <p class="h6">Check out what events we have coming up!</p>
+          </Cell>
+          <Cell class="large-5" id="events-section-heading-bit"> 
+            <NuxtImg src="/img/pixelated-bit.png"/>
+          </Cell>
+        </Grid>
+      </Container>
+
+      <div id="grid-bg">
+        <Grid>
+          <div class="extra-negative-space hoz top">
+            <div v-for="n in 9" :class="'null'"></div>
+          </div>
+          <div class="extra-negative-space vert left">
+            <div v-for="n in 5 * 5" :class="'null'"></div>
+          </div>
+          <div class="extra-negative-space vert right">
+            <div v-for="n in 5 * 5" :class="'null'"></div>
+          </div>
+          <div class="extra-negative-space hoz bottom">
+            <div v-for="n in 9 * 9" class="null"></div>
+          </div>
+
+          <div v-for="n in 9 * 6" :class="'null'"></div>
+
+        </Grid>
+      </div>
     </section>
   </div>
 </template>
@@ -172,24 +217,15 @@ const progress = ref(0);
 .button,
 .pill-toggle {
   padding: 0.75em 1em;
-  border-radius: 15px;
   border: 0;
-  background: #edc3c7;
-  color: #48546a;
+  background: #D99090;
+  color: #B22222;
   cursor: pointer;
   text-decoration: none;
+  font-weight: bold;
 
   &:hover {
-    background: rgba(237, 195, 199, 0.5);
-  }
-
-  &.active {
-    background: #ff5565;
-    color: #fff;
-  }
-  &.invert {
-    background: #48546a;
-    color: #fff;
+    background: #f1b5b5;
   }
 }
 </style>
@@ -238,10 +274,12 @@ section {
 
 #intro {
   color: #fff;
+  position: relative;
+  z-index: 13;
 
   #top-left {
     background: url("~/assets/img/about-us-top-left.jpg");
-    min-height: 90lvh;
+    min-height: 80lvh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -249,6 +287,10 @@ section {
 
   #intro-text {
     padding: 3.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 
     h2 {
       margin-right: 2em;
@@ -268,6 +310,85 @@ section {
 #index-page {
   position: relative;
   width: 100%;
+}
+
+#bottom-sprites {
+  gap: 0;
+  grid-template-areas:
+  "c1 c1 c2 c2 c2 c3 c3 c3 c3"
+  "c1 c1 c4 c4 c4 c3 c3 c3 c3"
+  "c5 c5 c4 c4 c4 c3 c3 c3 c3";
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(9, 1fr);
+  aspect-ratio: 9 / 3;
+  width: 100%;
+  display: grid;
+
+  > * {
+    background-size: cover !important;
+  }
+
+  #lights {
+    grid-area: c1;
+    background: url("~/assets/img/lights.png");
+  }
+  #shapes {
+    grid-area: c2;
+    background: url("~/assets/img/intro-geo.svg");
+  }
+  #games-night {
+    grid-area: c3;
+    background: url("~/assets/img/csit-switch-hackathon.jpg");
+    background-position: center;
+  }
+  #blur {
+    grid-area: c4;
+    background: url("~/assets/img/blur_lol.jpg");
+    background-position: center;
+  }
+}
+
+.null {
+  z-index: 2;
+  border: 1px solid #ffeaea;
+  transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+  outline: #ffeaea 0px solid;
+  outline-offset: 0;
+
+  &:hover {
+    //background: rgba(178, 34, 34, 0.136);
+    outline-width: 3em;
+    outline-offset: -2em;
+    outline-offset: #ffeaea;
+  }
+}
+
+#events-section {
+  background: #191925;
+  min-height: 120lvh;
+  outline: 10em #191925 solid;
+  position: relative;
+  z-index: 11;
+  overflow: clip;
+  padding: 20vh 2em;
+  color: #fff;
+}
+
+#events-section-heading {
+  h2 {
+    line-height: 100%;
+  }
+}
+
+#events-section-heading-bit {
+  display: flex;
+  justify-content: flex-end;
+  
+  img {
+    height: 17em;
+      scale: 2;
+      translate: -75% 0;
+  }
 }
 
 header {
@@ -310,22 +431,7 @@ header {
     /* @media (min-aspect-ratio: 2150/1342) {
       margin: auto;
     } */
-
-    .null {
-      z-index: 2;
-      border: 1px solid #ffeaea;
-      transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
-      outline: #ffeaea 0px solid;
-      outline-offset: 0;
-
-      &:hover {
-        //background: rgba(178, 34, 34, 0.136);
-        outline-width: 3em;
-        outline-offset: -2em;
-        outline-offset: #ffeaea;
-      }
-    }
-
+     
     .logo-part {
       position: relative;
       overflow: clip;
@@ -446,6 +552,112 @@ header {
             opacity: 0;
           }
         }
+      }
+      &.left {
+        left: 0;
+        translate: -100% 0;
+      }
+      &.right {
+        right: 0;
+        translate: 100% 0;
+      }
+    }
+
+    .logo-part-5,
+    .logo-part-6 {
+      opacity: 0.5;
+    }
+  }
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    ///
+  }
+
+  @media screen and (min-width: map.get($breakpoint, "large")) {
+    //padding-left: 0 2.25em;
+  }
+}
+
+#grid-bg {
+  min-height: 110vh;
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  top: 7em;
+  z-index: -1;
+
+  @media (max-aspect-ratio: 2040/1342) {
+    display: flex;
+    max-height: calc(100dvh);
+    min-height: 100dvh;
+  }
+
+  .grid {
+    gap: 0;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    aspect-ratio: 9 / 6;
+    max-height: calc(105vh - 2.5em);
+    margin: auto;
+    position: relative;
+
+    @media (max-aspect-ratio: 2040/1342) {
+      height: 100%;
+      flex-grow: 1;
+      grid-template-rows: repeat(5, 1fr);
+      aspect-ratio: 9 / 5;
+    }
+
+    .extra-negative-space {
+      z-index: 2;
+      position: absolute;
+      display: grid;
+
+      &.vert {
+        height: 100%;
+        top: 0;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        aspect-ratio: 5 / 6;
+
+        @media (max-aspect-ratio: 2040/1342) {
+          flex-grow: 1;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          aspect-ratio: 5 / 5;
+        }
+      }
+
+      &.hoz {
+        width: 100%;
+        left: 0;
+
+        grid-template-rows: repeat(9, 1fr);
+        grid-template-columns: repeat(9, 1fr);
+        aspect-ratio: 9 / 9;
+      }
+
+      &.top {
+        top: 0;
+        translate: 0 -100%;
+        height: 5em;
+        aspect-ratio: 9 / 1;
+        grid-template-rows: repeat(1, 1fr);
+
+        .null:nth-child(n + 10) {
+          display: none;
+        }
+
+        .null:nth-child(2n) {
+          opacity: 0;
+        }
+      }
+      &.bottom {
+        bottom: 0;
+        translate: 0 100%;
+
       }
       &.left {
         left: 0;
