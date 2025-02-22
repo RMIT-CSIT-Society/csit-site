@@ -58,15 +58,15 @@
               <div id="key-note">
                 <h6>🎓 Network</h6>
                 <p>
-                  Networking and celebratory social events to make new
-                  friends and meet future employers.
+                  Networking and celebratory social events to make new friends
+                  and meet future employers.
                 </p>
               </div>
               <div id="key-note">
                 <h6>🤖 Workshops</h6>
                 <p>
-                  Hands-on workshops with emerging software and hardware such
-                  as VR and robotics.
+                  Hands-on workshops with emerging software and hardware such as
+                  VR and robotics.
                 </p>
               </div>
             </div>
@@ -85,15 +85,19 @@
     <section id="events-section">
       <Container>
         <Grid>
-          <Cell class="large-4" id="events-section-heading"> 
-            <h2 class="h1">What's <br>going on</h2>
+          <Cell class="large-4" id="events-section-heading">
+            <h2 class="h1">What's <br />going on</h2>
 
             <p class="h6">Check out what events we have coming up!</p>
           </Cell>
-          <Cell class="large-5" id="events-section-heading-bit"> 
-            <NuxtImg src="/img/pixelated-bit.png"/>
+          <Cell class="large-5" id="events-section-heading-bit">
+            <NuxtImg src="/img/pixelated-bit.png" />
           </Cell>
         </Grid>
+      </Container>
+
+      <Container>
+        <Grid> </Grid>
       </Container>
 
       <div id="grid-bg">
@@ -112,7 +116,6 @@
           </div>
 
           <div v-for="n in 9 * 6" :class="'null'"></div>
-
         </Grid>
       </div>
     </section>
@@ -218,8 +221,8 @@ const progress = ref(0);
 .pill-toggle {
   padding: 0.75em 1em;
   border: 0;
-  background: #D99090;
-  color: #B22222;
+  background: #d99090;
+  color: #b22222;
   cursor: pointer;
   text-decoration: none;
   font-weight: bold;
@@ -315,9 +318,9 @@ section {
 #bottom-sprites {
   gap: 0;
   grid-template-areas:
-  "c1 c1 c2 c2 c2 c3 c3 c3 c3"
-  "c1 c1 c4 c4 c4 c3 c3 c3 c3"
-  "c5 c5 c4 c4 c4 c3 c3 c3 c3";
+    "c1 c1 c2 c2 c2 c3 c3 c3 c3"
+    "c1 c1 c4 c4 c4 c3 c3 c3 c3"
+    "c5 c5 c4 c4 c4 c3 c3 c3 c3";
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(9, 1fr);
   aspect-ratio: 9 / 3;
@@ -383,11 +386,11 @@ section {
 #events-section-heading-bit {
   display: flex;
   justify-content: flex-end;
-  
+
   img {
     height: 17em;
-      scale: 2;
-      translate: -75% 0;
+    scale: 2;
+    translate: -75% 0;
   }
 }
 
@@ -431,7 +434,7 @@ header {
     /* @media (min-aspect-ratio: 2150/1342) {
       margin: auto;
     } */
-     
+
     .logo-part {
       position: relative;
       overflow: clip;
@@ -657,7 +660,6 @@ header {
       &.bottom {
         bottom: 0;
         translate: 0 100%;
-
       }
       &.left {
         left: 0;
