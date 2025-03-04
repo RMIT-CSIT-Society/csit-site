@@ -257,6 +257,7 @@ nav {
     height: 100vh;
     font-size: 2.369rem;
     align-items: center;
+    top: 0;
 
     #logo-link {
       display: none;

@@ -86,7 +86,7 @@
       <Container>
         <Grid>
           <Cell class="large-4" id="events-section-heading">
-            <h2 class="h1">What's <br />going on</h2>
+            <h2 class="h1">What's <br />going on <span class="text-cursor">.</span></h2>
 
             <p class="h6">Check out what events we have coming up!</p>
           </Cell>
@@ -96,8 +96,10 @@
         </Grid>
       </Container>
 
-      <Container>
-        <Grid> </Grid>
+      <Container id="events">
+        <Grid>
+          <CardEvent v-for="clubEvent in clubEvents" :clubEvent="clubEvent"></CardEvent>
+        </Grid>
       </Container>
 
       <div id="grid-bg">
@@ -141,6 +143,8 @@ onMounted(() => {
 });
 
 const progress = ref(0);
+
+const { data: clubEvents } = await useFetch("/api/events")
 </script>
 
 <style lang="scss">
@@ -178,6 +182,7 @@ const progress = ref(0);
   z-index: 9999;
   transition: all 0.15s cubic-bezier(0.64, 0.01, 0.16, 0.99);
 }
+
 .button-row-works {
   display: flex;
   gap: 0.45em;
@@ -186,6 +191,7 @@ const progress = ref(0);
   padding: 0.5em;
   border-radius: 1.2em;
 }
+
 .button-row {
   display: flex;
   gap: 0.45em;
@@ -260,7 +266,11 @@ section {
     padding: 2em;
     margin-top: 2em;
 
-    > div {
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      padding: 1em;
+    }
+
+    >div {
       background: firebrick;
     }
   }
@@ -268,11 +278,35 @@ section {
   .grid-container {
     max-width: 2048px;
 
-    > .grid {
+    >.grid {
       gap: 0;
       grid-template-columns: repeat(9, 1fr);
     }
   }
+}
+
+@keyframes blinking-cursor {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.text-cursor {
+  background: #d9d9d9;
+  color: #d9d9d9;
+  width: 0.6em;
+  display: inline-block;
+  border-radius: 0.08em;
+  animation: blinking-cursor 1.25s infinite;
+  animation-timing-function: cubic-bezier(0.31, 0.02, 0, 0.98);
 }
 
 #intro {
@@ -286,6 +320,10 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      min-height: 50lvh;
+    }
   }
 
   #intro-text {
@@ -296,13 +334,30 @@ section {
     justify-content: center;
 
     h2 {
+      margin-top: 0;
+      max-width: 960px;
       margin-right: 2em;
+    }
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      padding: 2em;
+      padding-bottom: 10vh;
+
+      h2 {
+        margin-right: 0.5em;
+      }
     }
   }
 
   #key-notes {
     display: flex;
-    gap: 2em;
+    gap: 3em;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      flex-direction: column;
+      gap: 1em;
+    }
 
     p {
       font-size: 0.9em;
@@ -327,7 +382,7 @@ section {
   width: 100%;
   display: grid;
 
-  > * {
+  >* {
     background-size: cover !important;
   }
 
@@ -335,15 +390,18 @@ section {
     grid-area: c1;
     background: url("~/assets/img/lights.png");
   }
+
   #shapes {
     grid-area: c2;
     background: url("~/assets/img/intro-geo.svg");
   }
+
   #games-night {
     grid-area: c3;
     background: url("~/assets/img/csit-switch-hackathon.jpg");
     background-position: center;
   }
+
   #blur {
     grid-area: c4;
     background: url("~/assets/img/blur_lol.jpg");
@@ -375,9 +433,20 @@ section {
   overflow: clip;
   padding: 20vh 2em;
   color: #fff;
+
+  .grid-container {
+    pointer-events: none;
+  }
 }
 
+#events {
+  margin-top: 5em;
+}
+
+
 #events-section-heading {
+  padding-left: 1em;
+
   h2 {
     line-height: 100%;
   }
@@ -391,6 +460,11 @@ section {
     height: 17em;
     scale: 2;
     translate: -75% 0;
+    
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      translate: 30% 40%;
+      scale: 1.8
+    }
   }
 }
 
@@ -431,6 +505,7 @@ header {
       grid-template-rows: repeat(5, 1fr);
       aspect-ratio: 9 / 5;
     }
+
     /* @media (min-aspect-ratio: 2150/1342) {
       margin: auto;
     } */
@@ -473,7 +548,7 @@ header {
     }
 
     @for $i from 0 through 9 {
-      > .logo-part-#{$i} {
+      >.logo-part-#{$i} {
         grid-area: c#{$i};
 
         &::before {
@@ -491,14 +566,14 @@ header {
 
     // i of the CSIT
     @for $i from 0 through 27 {
-      > .null-part-#{$i} {
+      >.null-part-#{$i} {
         grid-area: n#{$i};
       }
     }
 
     @media (max-aspect-ratio: 2040/1342) {
       @for $i from 18 through 27 {
-        > .null-part-#{$i} {
+        >.null-part-#{$i} {
           display: none;
         }
       }
@@ -537,6 +612,7 @@ header {
         top: 0;
         translate: 0 -100%;
       }
+
       &.bottom {
         bottom: 0;
         translate: 0 100%;
@@ -556,10 +632,12 @@ header {
           }
         }
       }
+
       &.left {
         left: 0;
         translate: -100% 0;
       }
+
       &.right {
         right: 0;
         translate: 100% 0;
@@ -587,8 +665,9 @@ header {
   padding: 0;
   width: 100%;
   opacity: 0.5;
-  mix-blend-mode: overlay;
+  mix-blend-mode: soft-light;
   top: 7em;
+  left: 0;
   z-index: -1;
 
   @media (max-aspect-ratio: 2040/1342) {
@@ -603,7 +682,7 @@ header {
     grid-template-columns: repeat(9, 1fr);
     aspect-ratio: 9 / 6;
     max-height: calc(105vh - 2.5em);
-    margin: auto;
+    margin: 0 auto;
     position: relative;
 
     @media (max-aspect-ratio: 2040/1342) {
@@ -657,14 +736,17 @@ header {
           opacity: 0;
         }
       }
+
       &.bottom {
         bottom: 0;
         translate: 0 100%;
       }
+
       &.left {
         left: 0;
         translate: -100% 0;
       }
+
       &.right {
         right: 0;
         translate: 100% 0;

@@ -1,10 +1,11 @@
 <template>
-  <Cell class="large-4" id="events-card">
-    <a :href="url">
-      <img :src="featureImage.url" alt="" />
-      <h3>{{ name }}</h3>
-      <p>{{ startDate }}</p>
-      <p>{{ endDate }}</p>
+  <Cell class="large-3" id="events-card">
+    <a :href="clubEvent.url">
+      <div>
+        <img :src="clubEvent.featureImage.url" alt="" />
+        <h3 class="h5">{{ clubEvent.name }}</h3>
+        <p>{{ clubEvent.startDate }} - {{ clubEvent.endDate }}</p>
+      </div>
 
       <NuxtLink class="button" to="#">View Event</NuxtLink>
     </a>
@@ -12,141 +13,77 @@
 </template>
 
 <script setup lang="ts">
-interface HumantixEvent {
-  _id: string;
-  userId: string;
-  organiserId: string;
-  currency: string;
-  name: string;
-  description: string;
-  slug: string;
-  url: string;
-  tagIds: string[];
-  category: string;
-  classification: {
-    type: string;
-    category: string;
-    subcategory: string;
-  };
-  artists: {
-    origin: string;
-    name: string;
-    externalId: string;
-  }[];
-  public: boolean;
-  published: boolean;
-  suspendSales: boolean;
-  markedAsSoldOut: boolean;
-  startDate: string;
-  endDate: string;
-  timezone: string;
-  totalCapacity: number;
-  ticketTypes: {
-    _id: string;
-    name: string;
-    price: number;
-    priceRange: {
-      enabled: boolean;
-      min: number;
-      max: number;
-    };
-    priceOptions: {
-      enabled: boolean;
-      options: { value: string }[];
-    };
-    quantity: number;
-    description: string;
-    disabled: boolean;
-    deleted: boolean;
-    isDonation: boolean;
-  }[];
-  pricing: {
-    minimumPrice: number;
-    maximumPrice: number;
-  };
-  paymentOptions: {
-    refundSettings: {
-      refundPolicy: string;
-      customRefundPolicy: string;
-    };
-  };
-  publishedAt: string;
-  additionalQuestions: {
-    _id: string;
-    inputType: string;
-    question: string;
-    required: boolean;
-    description: string;
-    perOrder: boolean;
-    disabled: boolean;
-    createdAt: string;
-    updatedAt: string;
-  }[];
-  bannerImage: { url: string };
-  featureImage: { url: string };
-  socialImage: { url: string };
-  eventLocation: {
-    type: string;
-    venueName: string;
-    address: string;
-    latLng: [number, number];
-    instructions: string;
-    placeId: string;
-    onlineUrl: string;
-    mapUrl: string;
-    city: string;
-    region: string;
-    country: string;
-  };
-  dates: {
-    _id: string;
-    startDate: string;
-    endDate: string;
-    scheduleId: string;
-    disabled: boolean;
-    deleted: boolean;
-  }[];
-  packagedTickets: {
-    _id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    description: string;
-    disabled: boolean;
-    deleted: boolean;
-    tickets: { ticketTypeId: string; quantity: number }[];
-  }[];
-  accessibility: {
-    contactName: string;
-    contactNumber: string;
-    travelInstructions: string;
-    entryInstructions: string;
-    afterEntryInstructions: string;
-    hazards: string;
-    toiletLocation: string;
-    disabledParking: string;
-    features: {
-      access: boolean;
-      wheelchairAccessibility: boolean;
-      audioDescription: boolean;
-      telephoneTypewriter: boolean;
-      volumeControlTelephone: boolean;
-      assistiveListeningSystems: boolean;
-      signLanguageInterpretation: boolean;
-      accessiblePrint: boolean;
-      closedCaptioning: boolean;
-      openedCaptioning: boolean;
-      brailleSymbol: boolean;
-    };
-  };
-  affiliateCode: { code: string };
-  keywords: string[];
-  location: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-const props = defineProps<HumantixEvent>();
+const props = defineProps<{
+  clubEvent: ClubEvent
+}>();
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use "sass:map";
+
+#events-card {
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: invert(0) blur(12px);
+  margin: 1.5em;
+  outline-color: rgba(255, 255, 255, 0);
+  outline-width: 0;
+  outline-style: solid;
+  outline-offset: -10px;
+  transition: 0.25s cubic-bezier(0.93, 0.02, 0.69, 0.99) all;
+  scale: 1;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: auto;
+
+  &:hover {
+    outline-width: 5px;
+    outline-offset: 10px;
+    transition: 0.45s cubic-bezier(0, 0.58, 0.03, 0.99) all;
+    outline-color: rgba(255, 255, 255, 0.50);
+    scale: 1.05;
+    backdrop-filter: invert(1) blur(0px);
+
+    >a {
+      color: #191925;
+      transition: 0.4s cubic-bezier(0, 0.58, 0.03, 0.99) all;
+
+    }
+  }
+
+
+  >a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1.25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.25em;
+    transition: 0.3s cubic-bezier(0.93, 0.02, 0.69, 0.99) all;
+
+  }
+
+  img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  h3 {
+    line-height: 125%;
+    margin: 0;
+    margin-top: 0.5em;
+  }
+
+  p {
+    opacity: 0.6;
+  }
+}
+
+// mobile
+@media screen and (max-width: map.get($breakpoint, "medium")) {
+  #events-card {
+    margin: 0.5em;
+  }
+}
+</style>
