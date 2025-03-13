@@ -86,7 +86,9 @@
       <Container>
         <Grid>
           <Cell class="large-4" id="events-section-heading">
-            <h2 class="h1">What's <br />going on <span class="text-cursor">.</span></h2>
+            <h2 class="h1">
+              What's <br />going on <span class="text-cursor">.</span>
+            </h2>
 
             <p class="h6">Check out what events we have coming up!</p>
           </Cell>
@@ -98,7 +100,10 @@
 
       <Container id="events">
         <Grid>
-          <CardEvent v-for="clubEvent in clubEvents" :clubEvent="clubEvent"></CardEvent>
+          <CardEvent
+            v-for="clubEvent in clubEvents"
+            :clubEvent="clubEvent"
+          ></CardEvent>
         </Grid>
       </Container>
 
@@ -144,7 +149,7 @@ onMounted(() => {
 
 const progress = ref(0);
 
-const { data: clubEvents } = await useFetch("/api/events")
+const { data: clubEvents } = await useFetch("/api/events");
 </script>
 
 <style lang="scss">
@@ -270,7 +275,7 @@ section {
       padding: 1em;
     }
 
-    >div {
+    > div {
       background: firebrick;
     }
   }
@@ -278,7 +283,7 @@ section {
   .grid-container {
     max-width: 2048px;
 
-    >.grid {
+    > .grid {
       gap: 0;
       grid-template-columns: repeat(9, 1fr);
     }
@@ -286,17 +291,26 @@ section {
 }
 
 @keyframes blinking-cursor {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    50% {
-        opacity: 0;
-    }
+  50% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes image-parallax {
+  from {
+    background-position: 50% 50%;
+  }
+  to {
+    background-position: 50% calc(50% + 20vh);
+  }
 }
 
 .text-cursor {
@@ -318,8 +332,14 @@ section {
     background: url("~/assets/img/about-us-top-left.jpg");
     min-height: 80lvh;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto calc(100% + 20vh);
     background-position: center;
+
+    animation-name: image-parallax;
+    animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
+    animation-duration: 1ms;
+    animation-timeline: --scrollTimeline;
+    animation-range: contain 0% contain 100%;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       min-height: 50lvh;
@@ -382,7 +402,7 @@ section {
   width: 100%;
   display: grid;
 
-  >* {
+  > * {
     background-size: cover !important;
   }
 
@@ -400,6 +420,11 @@ section {
     grid-area: c3;
     background: url("~/assets/img/csit-switch-hackathon.jpg");
     background-position: center;
+    animation-name: image-parallax;
+    animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
+    animation-duration: 1ms;
+    animation-timeline: --scrollTimeline;
+    animation-range: contain 0% contain 100%;
   }
 
   #blur {
@@ -443,7 +468,6 @@ section {
   margin-top: 5em;
 }
 
-
 #events-section-heading {
   padding-left: 1em;
 
@@ -460,10 +484,10 @@ section {
     height: 17em;
     scale: 2;
     translate: -75% 0;
-    
+
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       translate: 30% 40%;
-      scale: 1.8
+      scale: 1.8;
     }
   }
 }
@@ -548,7 +572,7 @@ header {
     }
 
     @for $i from 0 through 9 {
-      >.logo-part-#{$i} {
+      > .logo-part-#{$i} {
         grid-area: c#{$i};
 
         &::before {
@@ -566,14 +590,14 @@ header {
 
     // i of the CSIT
     @for $i from 0 through 27 {
-      >.null-part-#{$i} {
+      > .null-part-#{$i} {
         grid-area: n#{$i};
       }
     }
 
     @media (max-aspect-ratio: 2040/1342) {
       @for $i from 18 through 27 {
-        >.null-part-#{$i} {
+        > .null-part-#{$i} {
           display: none;
         }
       }
