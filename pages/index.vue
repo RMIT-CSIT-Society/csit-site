@@ -313,6 +313,17 @@ section {
   }
 }
 
+@keyframes floating-bit-guy {
+  from {
+    translate: -20% calc(-50% - 50vh);
+    rotate: 30deg;
+  }
+  to {
+    translate: 0 0;
+    rotate: 0;
+  }
+}
+
 .text-cursor {
   background: #d9d9d9;
   color: #d9d9d9;
@@ -479,6 +490,13 @@ section {
 #events-section-heading-bit {
   display: flex;
   justify-content: flex-end;
+  translate: 0 0;
+
+  animation-name: floating-bit-guy;
+  animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
+  animation-duration: 1ms;
+  animation-timeline: --scrollTimeline;
+  animation-range: contain 0% contain 100%;
 
   img {
     height: 17em;
