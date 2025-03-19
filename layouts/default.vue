@@ -3,7 +3,7 @@
     <main class="default">
       <slot />
 
-      <!-- <Footer /> -->
+      <Footer />
     </main>
   </div>
 </template>

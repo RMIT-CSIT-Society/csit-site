@@ -3,20 +3,28 @@
     <Container class="fluid" v-show="hideCallToAction == false">
       <Row>
         <Cell id="cta" class="large-12">
-          <h2>Do you like what you see?<br />Get in touch below!</h2>
+          <h2>Join us</h2>
           <p>
-            You can hit me up on any social media, you can also hit me up via my
-            email or using the form below.
+            It's free to become a member. As a 2024 RMIT CSIT Member, you’ll be
+            invited to attend our events.
           </p>
-          <NuxtLink class="button" to="/contact">Get in Touch</NuxtLink>
+
+          <div class="button-row">
+            <NuxtLink class="button" to="https://join.csitsociety.club/"
+              >Become a member</NuxtLink
+            >
+            <NuxtLink class="button" to="/contact">Join our committee</NuxtLink>
+          </div>
         </Cell>
       </Row>
     </Container>
     <div class="footer-bottom">
-      <Container class="narrow">
+      <Container class="fluid">
         <Row>
           <Cell class="large-8">
             <div id="socials-row">
+              <NuxtImg src="/img/white-logo.svg" id="footer-logo" />
+
               <div id="socials">
                 <template v-for="platform in socials">
                   <a :href="platform.url">
@@ -26,12 +34,17 @@
               </div>
             </div>
           </Cell>
-          <Cell class="large-4" style="text-align: right">
-            <p>Kanny Esterkin © 2024</p>
+          <Cell class="large-4" id="copyright-shit">
+            <small
+              >RMIT Computer Science and Information Technology Society</small
+            >
+            <small>ABN: 62 597 445 914</small>
           </Cell>
         </Row>
       </Container>
     </div>
+
+    <div class="footer-bg-grid"></div>
   </footer>
 </template>
 
@@ -42,24 +55,16 @@ defineProps<{
 
 const socials = ref([
   {
-    name: "youtube",
-    url: "https://www.youtube.com/c/kanny",
-  },
-  {
     name: "instagram",
-    url: "https://www.instagram.com/kannyesterkin/",
-  },
-  {
-    name: "x-twitter",
-    url: "https://twitter.com/kannyesterkin",
+    url: "https://www.instagram.com/rmitcsitsociety/",
   },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/in/kanny-esterkin-9535911a3/",
+    url: "https://www.linkedin.com/company/rmit-csit-society/",
   },
   {
-    name: "behance",
-    url: "https://www.behance.net/kannyesterkin2",
+    name: "discord",
+    url: "https://discord.csitsociety.club/",
   },
 ]);
 </script>
@@ -67,20 +72,52 @@ const socials = ref([
 <style lang="scss" scoped>
 @use "sass:map";
 
+#footer-logo {
+  height: 66px;
+}
+
+#copyright-shit {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.4);
+}
+
 footer {
-  background: #ff7683;
+  background: firebrick;
   position: relative;
-  padding: 8em 2em 2em;
-  text-align: center;
-  margin-top: -8em;
+  padding: 8em 2em 3em;
   z-index: 99999;
 
+  .footer-bg-grid {
+    background: url("/img/footer-grid-bg.svg");
+    height: 100%;
+    width: 40%;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-size: 150%;
+    animation-name: footer-grid;
+    animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
+    animation-fill-mode: both;
+    animation-duration: 1ms;
+    view-timeline-name: --footer-bg-grid;
+    animation-timeline: --footer-bg-grid;
+    animation-range: contain 0% contain 100%;
+  }
+
   #cta {
+    max-width: 800px;
+
+    p,
+    h2 {
+      color: #fff;
+    }
+
     p {
-      margin: 0 auto;
       margin-block-start: 2em;
       margin-block-end: 3.5em;
-      max-width: 600px;
     }
   }
 }
@@ -91,6 +128,7 @@ footer {
 
 #socials-row {
   display: flex;
+  gap: 1em;
 }
 
 #socials {
@@ -114,7 +152,7 @@ footer {
   }
 
   a {
-    color: #edc3c7;
+    color: #e0a7a7;
     position: relative;
     transition: 0.3s cubic-bezier(0.39, 0, 0, 1.26) all;
 

@@ -107,6 +107,24 @@
         </Grid>
       </Container>
 
+      <Container id="events">
+        <Grid>
+          <Cell class="large-4"></Cell>
+          <Cell class="large-5" id="join-discord">
+            <h3 class="h5">
+              <i class="fa-brands fa-discord"></i>
+              Join our Discord
+            </h3>
+            <NuxtLink
+              class="button-outline"
+              to="https://discord.csitsociety.club/"
+              >Join
+              <span class="material-symbols-outlined">arrow_outward</span>
+            </NuxtLink>
+          </Cell>
+        </Grid>
+      </Container>
+
       <div id="grid-bg">
         <Grid>
           <div class="extra-negative-space hoz top">
@@ -199,10 +217,7 @@ const { data: clubEvents } = await useFetch("/api/events");
 
 .button-row {
   display: flex;
-  gap: 0.45em;
-  position: absolute;
-  top: 0.75em;
-  left: 0.75em;
+  gap: 10px;
 }
 
 .button-outline {
@@ -212,10 +227,9 @@ const { data: clubEvents } = await useFetch("/api/events");
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-  color: #6985b3;
-  border: solid 4px;
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
+  color: #d99090;
+  border: solid 2px;
+  padding: 0.75em 1em;
 
   span {
     display: flex;
@@ -263,6 +277,34 @@ const { data: clubEvents } = await useFetch("/api/events");
   }
 }
 
+#join-discord {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: invert(0) blur(12px);
+  margin: 10vh 1.5em 0;
+  transition: 0.25s cubic-bezier(0.93, 0.02, 0.69, 0.99) all;
+  scale: 1;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: auto;
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  translate: 0 100%;
+
+  animation-name: join-discord;
+  animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  view-timeline-name: --join-discord;
+  animation-timeline: --join-discord;
+  animation-range: cover 0% contain 50%;
+
+  .fa-discord {
+    margin-right: 0.5em;
+  }
+}
+
 section {
   z-index: 10;
   position: relative;
@@ -270,6 +312,7 @@ section {
   &#intro {
     padding: 2em;
     margin-top: 2em;
+    padding-bottom: 0;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       padding: 1em;
@@ -321,6 +364,26 @@ section {
   to {
     translate: 0 0;
     rotate: 0;
+  }
+}
+
+@keyframes join-discord {
+  from {
+    translate: 0 100%;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes footer-grid {
+  from {
+    translate: 0 100%;
+    background-size: 200%;
+  }
+  to {
+    background-size: 150%;
+    translate: 0 0;
   }
 }
 
@@ -467,11 +530,15 @@ section {
   position: relative;
   z-index: 11;
   overflow: clip;
-  padding: 20vh 2em;
+  padding: 20vh 2em 0;
   color: #fff;
 
   .grid-container {
     pointer-events: none;
+  }
+
+  #grid-bg {
+    padding-top: 2em;
   }
 }
 
@@ -496,7 +563,7 @@ section {
   animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
   animation-duration: 1ms;
   animation-timeline: --scrollTimeline;
-  animation-range: contain 0% contain 100%;
+  animation-range: contain 0% contain 75%;
 
   img {
     height: 17em;
