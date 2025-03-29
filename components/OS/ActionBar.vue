@@ -134,6 +134,7 @@ const actions = ref([
   font-size: 0.8em;
   transition: 0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) height 1s, 0.6s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale;
   scale: 1;
+  z-index: 9999;
 
   @starting-style {
     height: calc(100vh - 18px * 2);
@@ -172,6 +173,4 @@ const actions = ref([
     scale: 10
   }
 }
-
-.action-bar-content {}
 </style>
