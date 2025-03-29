@@ -7,6 +7,16 @@ declare global {
     featureImage: { url: string };
     location: string;
   }
+
+  interface OSChildAction {
+    label: string;
+    onPress: () => void;
+  }
+
+  interface OSAction {
+    label: string;
+    childActions: OSChildAction[];
+  }
 }
 
 export { ClubEvent };

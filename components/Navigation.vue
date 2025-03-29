@@ -36,6 +36,13 @@
 
           <NavigationLink
             :activeSection="activeSection"
+            sectionName="team"
+            to="/team"
+            >The Team</NavigationLink
+          >
+
+          <NavigationLink
+            :activeSection="activeSection"
             sectionName="events"
             to="/#events"
             >What’s on</NavigationLink
