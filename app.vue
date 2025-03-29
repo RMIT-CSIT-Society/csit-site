@@ -1,10 +1,6 @@
 <template>
   <div>
-    <div
-      id="index-loader"
-      ref="indexIntroContainer"
-      v-if="!completedLoaded"
-    ></div>
+    <div id="index-loader" ref="indexIntroContainer" v-if="!completedLoaded"></div>
 
     <NuxtLayout>
       <NuxtPage />
@@ -81,6 +77,10 @@ html {
   scroll-timeline: --scrollTimeline vertical;
 }
 
+:root {
+  interpolate-size: allow-keywords;
+}
+
 #index-loader {
   width: 100%;
   height: auto;
@@ -105,6 +105,7 @@ html {
     opacity: 1;
     transform: translateY(-10px);
   }
+
   /* #foreground-wrapper .video-wrapper {
         //transform: scale(1.5) !important;
     } */
@@ -120,6 +121,7 @@ html {
     transition-delay: 0.5s;
   }
 }
+
 .os-enter,
 .os-leave-to {
   .action-bar {
