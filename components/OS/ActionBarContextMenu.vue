@@ -57,7 +57,7 @@ function hideMenu() {
   user-select: none;
 
   &:hover {
-    background: #3f3f61;
+    background: #413849;
   }
 }
 </style>

@@ -1,22 +1,10 @@
 <template>
-  <div class="window-area" @dragover="dragging">
+  <div class="window-area">
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-
-const draggingCoords = defineModel<{ x: number, y: number }>('draggingCoords', { required: true })
-
-function dragging(event: DragEvent) {
-  console.log("shit")
-  draggingCoords.value = {
-    x: event.pageX,
-    y: event.pageY
-  }
-
-  event.preventDefault();
-}
 </script>
 
 <style scoped>

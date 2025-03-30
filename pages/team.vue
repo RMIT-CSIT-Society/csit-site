@@ -3,7 +3,15 @@
     <OSActionBar />
     <OSWindowArea v-model:draggingCoords="draggingCoords">
       <OSWindow title="The Team" :tabs="theTeamTabs" v-model:current-tab="theTeamCurrentTab" id="team-terminal"
-        :dragging-coords="draggingCoords">
+        v-model:activeWindow="activeWindow" :initial-coords="{
+          x: '4vw',
+          y: '10vh'
+        }" style="
+          min-width: 900px;
+          min-height: 600px;
+          width: 55vw;
+          height: 60vh;
+        ">
         <template v-if="theTeamCurrentTab === 0">
           <pre>
             {{ theTeamHeading }}
@@ -13,8 +21,26 @@
           </p>
         </template>
       </OSWindow>
+
+      <OSWindow v-show="showTeamMemberWindow" title="Team member:" v-model:current-tab="theTeamCurrentTab"
+        id="team-terminal" v-model:activeWindow="activeWindow" :initial-coords="{
+          x: '52vw',
+          y: '25vh'
+        }" style="
+          min-width: 600px;
+          min-height: 600px;
+          width: 44vw;
+          height: 70vh;
+
+        ">
+        <template v-if="theTeamCurrentTab === 0">
+          <p>
+            (Use your arrow keys or mouse)
+          </p>
+        </template>
+      </OSWindow>
     </OSWindowArea>
-    <div class="os-bg"></div>
+    <div class="os-bg" @click="activeWindow = ''"></div>
   </div>
 </template>
 
@@ -36,12 +62,21 @@ const theTeamHeading = `
    ██║   ██║  ██║███████╗       ██║   ███████╗██║  ██║██║ ╚═╝ ██║
    ╚═╝   ╚═╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
 `
+const activeWindow = ref("The Team")
 const draggingCoords = ref({
   x: 0,
   y: 0
 })
 const theTeamCurrentTab = ref(0)
 const theTeamTabs = ref(["2025", "2024", "2023", "2022", "2021", "2020"])
+
+const showTeamMemberWindow = ref(false)
+
+onMounted(() => {
+  setTimeout(() => {
+    showTeamMemberWindow.value = true
+  }, 300);
+})
 </script>
 
 <style scoped>
@@ -59,18 +94,6 @@ const theTeamTabs = ref(["2025", "2024", "2023", "2022", "2021", "2020"])
   }
 }
 
-#team-terminal {
-  transition: 0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) filter 1.2s, 0.6s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale 1.2s, 0.1s cubic-bezier(0.61, 0.01, 0.03, 0.99) transform-origin 2s;
-  scale: 1;
-  transform-origin: 0 0;
-
-  @starting-style {
-    filter: blur(50px);
-    scale: 0.8;
-    transform-origin: 50% 50%;
-  }
-}
-
 .os-bg {
   height: 100vh;
   width: 100%;
@@ -82,7 +105,7 @@ const theTeamTabs = ref(["2025", "2024", "2023", "2022", "2021", "2020"])
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
 
   @starting-style {
     background-size: 200% 200%;
