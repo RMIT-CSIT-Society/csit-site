@@ -7,8 +7,8 @@
         {{ title }}
       </p>
       <div v-if="tabs" class="window-tabs">
-        <template v-for="(tab, index) in tabs" :key="tab">
-          <div @click="currentTab = index" class="tab" :class="{ 'active-tab': currentTab == index }" @mousedown.stop>
+        <template v-for="(tab) in tabs" :key="tab">
+          <div @click="currentTab = tab" class="tab" :class="{ 'active-tab': currentTab == tab }" @mousedown.stop>
             {{ tab }}
           </div>
         </template>
@@ -18,9 +18,15 @@
         <div>X</div>
       </div>
     </div>
-    <div class="content">
+
+    <template v-if="customContentWrapper">
       <slot />
-    </div>
+    </template>
+    <template v-else>
+      <div class="os-window-content">
+        <slot />
+      </div>
+    </template>
   </div>
 </template>
 
@@ -32,9 +38,10 @@ const props = defineProps<{
     x: string,
     y: string
   }
+  customContentWrapper?: boolean;
 }>();
 
-const currentTab = defineModel<number>('currentTab', { required: true })
+const currentTab = defineModel<string>('currentTab', { required: true })
 const activeWindow = defineModel<string>('activeWindow', { required: true })
 
 // Window offsets
@@ -53,6 +60,7 @@ const finalCoords = ref(
 
 const mouseDown = (event: MouseEvent) => {
   isDragging.value = true;
+  activeWindow.value = props.title;
 
   if (windowRef.value != null) {
     console.log()
@@ -85,7 +93,24 @@ function onMouseUp() {
 
 <style>
 .os-window {
-  .content {
+  .os-window-content {
+    flex: 1;
+    font-family: "Source Code Pro", monospace;
+    line-height: 100%;
+    padding: 40px 30px;
+    background: rgba(25, 25, 37, 0.5);
+    border-radius: 0 0 5px 5px;
+    overflow: scroll;
+
+    &:not(.active-window) {
+      background: rgba(25, 25, 37, 0.2);
+      z-index: 1;
+
+      .os-window-content,
+      .title-bar {
+        background: rgba(25, 25, 37, 0.3);
+      }
+    }
 
     pre,
     p {
@@ -140,7 +165,8 @@ function onMouseUp() {
     outline-offset: 5px;
   }
 
-  >* {
+  .os-window-content,
+  .title-bar {
     transition:
       0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background,
   }
@@ -149,7 +175,8 @@ function onMouseUp() {
     background: rgba(25, 25, 37, 0.2);
     z-index: 1;
 
-    >* {
+    .os-window-content,
+    .title-bar {
       background: rgba(25, 25, 37, 0.3);
     }
   }
@@ -227,15 +254,5 @@ function onMouseUp() {
       background: firebrick;
     }
   }
-}
-
-.content {
-  flex: 1;
-  font-family: "Source Code Pro", monospace;
-  line-height: 100%;
-  padding: 40px 30px;
-  background: rgba(25, 25, 37, 0.5);
-  border-radius: 0 0 5px 5px;
-  overflow: scroll;
 }
 </style>
