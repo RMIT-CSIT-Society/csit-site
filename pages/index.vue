@@ -16,9 +16,8 @@
           <TresAmbientLight :intensity="1" />
         </TresCanvas>
       </div>
+      <Navigation></Navigation>
       <Grid>
-        <Navigation></Navigation>
-
         <div class="extra-negative-space hoz top">
           <div v-for="n in 9 * 9" :class="'null'"></div>
         </div>

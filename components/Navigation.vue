@@ -222,7 +222,8 @@ nav {
   display: flex;
   align-items: center;
   position: absolute;
-  top: calc(100dvh - 6.8em);
+  top: calc(100dvh - 87px - 1em);
+  padding: 0 2em;
   left: 0;
   z-index: 999;
   transform: translateX(0);

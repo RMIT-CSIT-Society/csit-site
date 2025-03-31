@@ -2,68 +2,86 @@
   <div id="CSIT-OS">
     <OSActionBar />
     <OSWindowArea v-model:draggingCoords="draggingCoords">
-      <OSWindow title="The Team" :tabs="theTeamTabs" v-model:current-tab="theTeamCurrentTab" id="team-terminal"
-        v-model:activeWindow="activeWindow" :initial-coords="{
+      <OSWindow
+        title="The Team"
+        :tabs="theTeamTabs"
+        v-model:current-tab="theTeamCurrentTab"
+        id="team-terminal"
+        v-model:activeWindow="activeWindow"
+        :initial-coords="{
           x: '4vw',
-          y: '10vh'
-        }" style="
-          min-width: 900px;
-          min-height: 600px;
-          width: 55vw;
-          height: 60vh;
-        ">
+          y: '10vh',
+        }"
+        style="min-width: 900px; min-height: 600px; width: 55vw; height: 60vh"
+      >
         <template v-if="theTeamCurrentTab === '2025'">
           <pre>
             {{ theTeamHeading }}
           </pre>
-          <p>
-            (Use your arrow keys or mouse)
-          </p>
+          <p>(Use your arrow keys or mouse)</p>
         </template>
 
-        <template v-if="yearToMembersMap[theTeamCurrentTab]">
+        <div
+          class="catergorised-members"
+          v-if="yearToMembersMap[theTeamCurrentTab]"
+        >
           <div>
-            <p>EXECS</p>
+            <p>
+              EXECS<br />
+              -----
+            </p>
             <template v-for="exec in yearToMembersMap[theTeamCurrentTab].execs">
-              <div @click="selectedMember = exec">
-                {{ members[exec].years[theTeamCurrentTab] }}: {{ exec }}
-              </div>
+              <OSTeamMemberButton
+                @click="selectedMember = exec"
+                :name="exec"
+                :roles="members[exec].years[theTeamCurrentTab]"
+              />
             </template>
           </div>
 
           <div>
-            <p>COMMITTEE</p>
-            <template v-for="committeeMember in yearToMembersMap[theTeamCurrentTab].committee">
-              <div @click="selectedMember = committeeMember">
-                {{ members[committeeMember].years[theTeamCurrentTab] }}: {{ committeeMember }}
-              </div>
+            <p>
+              COMMITTEE<br />
+              ---------
+            </p>
+            <template
+              v-for="committeeMember in yearToMembersMap[theTeamCurrentTab]
+                .committee"
+            >
+              <OSTeamMemberButton
+                @click="selectedMember = committeeMember"
+                :name="committeeMember"
+                :roles="members[committeeMember].years[theTeamCurrentTab]"
+              />
             </template>
           </div>
-        </template>
-
+        </div>
       </OSWindow>
 
-      <OSWindow v-show="showTeamMemberWindow" title="Team member:" v-model:current-tab="theTeamCurrentTab"
-        id="team-terminal" v-model:activeWindow="activeWindow" :initial-coords="{
+      <OSWindow
+        v-show="showTeamMemberWindow"
+        title="Team member:"
+        v-model:current-tab="theTeamCurrentTab"
+        id="team-terminal"
+        v-model:activeWindow="activeWindow"
+        :initial-coords="{
           x: '52vw',
-          y: '25vh'
-        }" style="
-          min-width: 600px;
-          min-height: 600px;
-          width: 44vw;
-          height: 70vh;
-        " customContentWrapper>
+          y: '25vh',
+        }"
+        style="min-width: 600px; min-height: 600px; width: 44vw; height: 70vh"
+        customContentWrapper
+      >
         <div id="team-member-content-wrapper">
           <template v-if="selectedMember != ''">
             <div class="os-window-content">
               <p>
                 {{ selectedMember }}
                 ###############
-                <br>
-                <br>
+                <br />
+                <br />
                 {{ members[selectedMember].years }}
-                <br>
-                <br>
+                <br />
+                <br />
               </p>
               <p>Bio:</p>
               <p>---------------------</p>
@@ -72,7 +90,7 @@
               </p>
             </div>
             <div class="os-window-content sidebar">
-              <img :src="members[selectedMember].imageURL" alt="">
+              <img :src="members[selectedMember].imageURL" alt="" />
             </div>
           </template>
         </div>
@@ -99,25 +117,27 @@ const theTeamHeading = `
    ██║   ██╔══██║██╔══╝         ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║
    ██║   ██║  ██║███████╗       ██║   ███████╗██║  ██║██║ ╚═╝ ██║
    ╚═╝   ╚═╝  ╚═╝╚══════╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
-`
-const activeWindow = ref("The Team")
+`;
+const activeWindow = ref("The Team");
 const draggingCoords = ref({
   x: 0,
-  y: 0
-})
-const theTeamCurrentTab = ref("2025")
-const theTeamTabs = computed(() => {
-  return Object.keys(yearToMembersMap.value).reverse()
-})
-const selectedMember = ref("")
+  y: 0,
+});
+const theTeamCurrentTab = ref("2025");
 
-const showTeamMemberWindow = ref(false)
+const theTeamTabs = computed(() => {
+  return Object.keys(yearToMembersMap.value).reverse();
+});
+
+const selectedMember = ref("");
+
+const showTeamMemberWindow = ref(false);
 
 onMounted(() => {
   setTimeout(() => {
-    showTeamMemberWindow.value = true
+    showTeamMemberWindow.value = true;
   }, 300);
-})
+});
 
 interface Member {
   years: Record<string, string[]>;
@@ -131,7 +151,13 @@ interface YearToMembers {
   committee: string[];
 }
 
-const execRoles = ["President", "VP (Administration)", "VP (Operations)", "Treasurer", "Events Manager"]
+const execRoles = [
+  "President",
+  "VP (Administration)",
+  "VP (Operations)",
+  "Treasurer",
+  "Events Manager",
+];
 
 const members: Record<string, Member> = {
   "Some random cat": {
@@ -140,51 +166,50 @@ const members: Record<string, Member> = {
       "2025": ["Super Senior Emotional Support"],
       "2024": ["Senior Emotional Support"],
       "2023": ["Junior Emotional Support"],
-      "2020": ["Junior Emotional Support"]
+      "2020": ["Junior Emotional Support"],
     },
     bio: "Oiiai, oiiai, oiiai, oii—, oii— Oiiai, oiiai, oiiai, oii—, oii— Oiiai, oiiai, oiiai, oii—, oii—",
     links: [
       {
         label: "LinkedIn",
-        url: "#"
+        url: "#",
       },
       {
         label: "Instagram",
-        url: "#"
+        url: "#",
       },
       {
         label: "X",
-        url: "#"
+        url: "#",
       },
     ],
-    imageURL: ""
+    imageURL: "",
   },
   "Some unknown guy": {
     years: {
-      "1825":
-        ["President", "Alledged Founder"]
+      "1825": ["President", "Alledged Founder"],
     },
     bio: "Oiiai, oiiai, oiiai, oii—, oii— Oiiai, oiiai, oiiai, oii—, oii— Oiiai, oiiai, oiiai, oii—, oii—",
     links: [
       {
         label: "LinkedIn",
-        url: "#"
+        url: "#",
       },
       {
         label: "Instagram",
-        url: "#"
+        url: "#",
       },
       {
         label: "X",
-        url: "#"
+        url: "#",
       },
     ],
-    imageURL: ""
-  }
-}
+    imageURL: "",
+  },
+};
 
 const containsAny = (arr: string[], values: string[]): boolean => {
-  return arr.some(item => values.includes(item));
+  return arr.some((item) => values.includes(item));
 };
 
 const getYearToMembersMap = (): Record<string, YearToMembers> => {
@@ -196,7 +221,7 @@ const getYearToMembersMap = (): Record<string, YearToMembers> => {
       if (!yearMap[year]) {
         yearMap[year] = {
           execs: [],
-          committee: []
+          committee: [],
         };
       }
 
@@ -212,12 +237,11 @@ const getYearToMembersMap = (): Record<string, YearToMembers> => {
   return yearMap;
 };
 
-const yearToMembersMap = ref<Record<string, YearToMembers>>({})
+const yearToMembersMap = ref<Record<string, YearToMembers>>({});
 
 onMounted(() => {
-  yearToMembersMap.value = getYearToMembersMap()
-})
-
+  yearToMembersMap.value = getYearToMembersMap();
+});
 </script>
 
 <style scoped>
@@ -232,6 +256,51 @@ onMounted(() => {
 
   @starting-style {
     filter: blur(50px);
+  }
+}
+
+.catergorised-members {
+  margin-top: 1em;
+  gap: 3em;
+  display: flex;
+
+  > div {
+    flex: 1;
+
+    > p {
+      font-weight: 700;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  small {
+    opacity: 0.6;
+  }
+}
+
+.member-button {
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(25, 25, 37, 0.389);
+    scale: 0.8;
+    opacity: 0;
+    /* transform-origin: bottom; */
+    transition: cubic-bezier(0.61, 0.01, 0.03, 0.99) all 0.3s;
+    z-index: -1;
+  }
+
+  &.selected::after,
+  &:hover::after {
+    scale: 1.05 1.5;
+    opacity: 1;
   }
 }
 

@@ -1,14 +1,25 @@
 <template>
-  <div class="os-window" ref="windowRef" :style="{
-    translate: `${finalCoords.x} ${finalCoords.y}`
-  }" :class="{ dragging: isDragging, 'active-window': activeWindow == title }" @click="activeWindow = title">
+  <div
+    class="os-window"
+    ref="windowRef"
+    :style="{
+      translate: `${finalCoords.x} ${finalCoords.y}`,
+    }"
+    :class="{ dragging: isDragging, 'active-window': activeWindow == title }"
+    @click="activeWindow = title"
+  >
     <div class="title-bar" @mousedown="mouseDown">
       <p>
         {{ title }}
       </p>
       <div v-if="tabs" class="window-tabs">
-        <template v-for="(tab) in tabs" :key="tab">
-          <div @click="currentTab = tab" class="tab" :class="{ 'active-tab': currentTab == tab }" @mousedown.stop>
+        <template v-for="tab in tabs" :key="tab">
+          <div
+            @click="currentTab = tab"
+            class="tab"
+            :class="{ 'active-tab': currentTab == tab }"
+            @mousedown.stop
+          >
             {{ tab }}
           </div>
         </template>
@@ -35,37 +46,36 @@ const props = defineProps<{
   title: string;
   tabs?: string[];
   initialCoords: {
-    x: string,
-    y: string
-  }
+    x: string;
+    y: string;
+  };
   customContentWrapper?: boolean;
 }>();
 
-const currentTab = defineModel<string>('currentTab', { required: true })
-const activeWindow = defineModel<string>('activeWindow', { required: true })
+const currentTab = defineModel<string>("currentTab", { required: true });
+const activeWindow = defineModel<string>("activeWindow", { required: true });
 
 // Window offsets
 const offsetX = ref(0);
 const offsetY = ref(0);
-const windowRef = ref<HTMLDivElement | null>(null)
+const windowRef = ref<HTMLDivElement | null>(null);
 
-const isDragging = ref(false)
+const isDragging = ref(false);
 
-const finalCoords = ref(
-  {
-    x: props.initialCoords.x,
-    y: props.initialCoords.y
-  }
-)
+const finalCoords = ref({
+  x: props.initialCoords.x,
+  y: props.initialCoords.y,
+});
 
 const mouseDown = (event: MouseEvent) => {
   isDragging.value = true;
   activeWindow.value = props.title;
 
   if (windowRef.value != null) {
-    console.log()
+    console.log();
 
-    offsetX.value = event.clientX - windowRef.value.getBoundingClientRect().left;
+    offsetX.value =
+      event.clientX - windowRef.value.getBoundingClientRect().left;
     offsetY.value = event.clientY - windowRef.value.getBoundingClientRect().top;
   }
 
@@ -77,8 +87,8 @@ function onMouseMove(event: MouseEvent) {
   if (isDragging.value) {
     finalCoords.value = {
       x: `${event.clientX - offsetX.value}px`,
-      y: `${event.clientY - offsetY.value}px`
-    }
+      y: `${event.clientY - offsetY.value}px`,
+    };
   }
 }
 
@@ -87,8 +97,6 @@ function onMouseUp() {
   document.removeEventListener("mousemove", onMouseMove);
   document.removeEventListener("mouseup", onMouseUp);
 }
-
-
 </script>
 
 <style>
@@ -100,7 +108,7 @@ function onMouseUp() {
     padding: 40px 30px;
     background: rgba(25, 25, 37, 0.5);
     border-radius: 0 0 5px 5px;
-    overflow: scroll;
+    overflow-y: auto;
 
     &:not(.active-window) {
       background: rgba(25, 25, 37, 0.2);
@@ -140,12 +148,11 @@ function onMouseUp() {
   translate: 80px 70px;
   backdrop-filter: blur(36px);
   border-radius: 10px;
-  overflow: scroll;
+  overflow: auto;
   resize: both;
   outline: 0px rgba(25, 25, 37, 0.5) solid;
   outline-offset: 0;
-  transition:
-    0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background,
+  transition: 0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background,
     0.6s cubic-bezier(0, 0.66, 0.03, 0.99) outline-offset,
     0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) filter 1.2s,
     0.6s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale 1.2s,
@@ -167,8 +174,7 @@ function onMouseUp() {
 
   .os-window-content,
   .title-bar {
-    transition:
-      0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background,
+    transition: 0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background;
   }
 
   &:not(.active-window) {
@@ -189,7 +195,7 @@ function onMouseUp() {
   height: 100%;
   align-self: center;
 
-  >div {
+  > div {
     display: flex;
     align-items: center;
     padding: 0 0.8em;
@@ -234,7 +240,8 @@ function onMouseUp() {
   height: 100%;
   padding-top: 10px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow: auto;
+  overflow-y: hidden;
 
   .tab {
     border-color: rgba(255, 255, 255, 0.07);
