@@ -32,7 +32,7 @@
             </p>
             <template v-for="exec in yearToMembersMap[theTeamCurrentTab].execs">
               <OSTeamMemberButton
-                @click="selectedMember = exec"
+                @click="focusOnMember(exec)"
                 :name="exec"
                 :roles="members[exec].years[theTeamCurrentTab]"
               />
@@ -49,7 +49,7 @@
                 .committee"
             >
               <OSTeamMemberButton
-                @click="selectedMember = committeeMember"
+                @click="focusOnMember(committeeMember)"
                 :name="committeeMember"
                 :roles="members[committeeMember].years[theTeamCurrentTab]"
               />
@@ -158,6 +158,11 @@ const execRoles = [
   "Treasurer",
   "Events Manager",
 ];
+
+const focusOnMember = (member: string) => {
+  selectedMember.value = member;
+  activeWindow.value = "Team member:";
+};
 
 const members: Record<string, Member> = {
   "Some random cat": {
