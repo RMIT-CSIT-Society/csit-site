@@ -109,6 +109,7 @@ function onMouseUp() {
     background: rgba(25, 25, 37, 0.5);
     border-radius: 0 0 5px 5px;
     overflow-y: auto;
+    padding-bottom: 10em;
 
     &:not(.active-window) {
       background: rgba(25, 25, 37, 0.2);

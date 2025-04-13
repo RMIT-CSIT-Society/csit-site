@@ -79,10 +79,20 @@
                 ###############
                 <br />
                 <br />
-                {{ members[selectedMember].years }}
-                <br />
-                <br />
               </p>
+
+              <div class="roles-wrapper">
+                <p class="roles" v-for="(roles, year) in members[selectedMember].years">
+                  <p>{{ year }}</p>
+                  <small>
+                    <template v-for="role in roles">{{`  ||-- ${role}\n`}} </template>
+                  </small>
+                  <small v-if="!theTeamTabs.includes((parseInt(year) + 1).toString())">
+                    {{`  []\n\n`}}
+                  </small>
+                </p>
+              </div>
+
               <p>Bio:</p>
               <p>---------------------</p>
               <p>
@@ -167,7 +177,7 @@ const focusOnMember = (member: string) => {
 const members: Record<string, Member> = {
   "Some random cat": {
     years: {
-      "1825": ["Emotional Support Intern"],
+      "1825": ["Emotional Support Intern", "Founding mother"],
       "2025": ["Super Senior Emotional Support"],
       "2024": ["Senior Emotional Support"],
       "2023": ["Junior Emotional Support"],
@@ -188,13 +198,13 @@ const members: Record<string, Member> = {
         url: "#",
       },
     ],
-    imageURL: "",
+    imageURL: "/img/cat.jpg",
   },
-  "Some unknown guy": {
+  "Cornelius Stratton Inglethorpe-Turner": {
     years: {
       "1825": ["President", "Alledged Founder"],
     },
-    bio: "Oiiai, oiiai, oiiai, oii—, oii— Oiiai, oiiai, oiiai, oii—, oii— Oiiai, oiiai, oiiai, oii—, oii—",
+    bio: "Our great alleged founding father Cornelius was an inspiring figure. From inventing the now defuct Greentooth and  ",
     links: [
       {
         label: "LinkedIn",
@@ -209,7 +219,7 @@ const members: Record<string, Member> = {
         url: "#",
       },
     ],
-    imageURL: "",
+    imageURL: "/img/founding-father.png",
   },
 };
 
@@ -332,11 +342,27 @@ onMounted(() => {
   display: flex;
   flex: 1;
   gap: 10px;
+  max-height: calc(100% - 56px - 10px);
 
   .sidebar {
     min-width: 42.5%;
     flex: 0;
     display: flex;
+    
+    img {
+      height: 70%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .roles {
+    margin-bottom: 0.5em;
+  }
+  
+  .roles-wrapper {
+    margin-bottom: 1em;
+    white-space: pre;
   }
 }
 </style>

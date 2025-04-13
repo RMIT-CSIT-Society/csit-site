@@ -2,9 +2,7 @@
   <div class="member-button">
     <p>{{ name }}</p>
     <small>
-      <template v-for="role in roles">
-        {{ role }}
-      </template>
+      <template v-for="role in roles"> {{ role }}, </template>
     </small>
   </div>
 </template>
