@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   components: [
     //global: true,
@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     { path: "~/components/layout/structure", extensions: ["vue"] },
   ],
 
-  modules: ["@vueuse/nuxt", "@nuxt/image", "@tresjs/nuxt"],
+  modules: ["@vueuse/nuxt", "@nuxt/image", "@tresjs/nuxt", "@pinia/nuxt"],
 
   vite: {
     css: {

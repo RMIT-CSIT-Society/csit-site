@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxt/image": "rc",
+    "@pinia/nuxt": "^0.11.0",
     "@tresjs/cientos": "v4.0.0-next.1",
     "@tresjs/nuxt": "^3.0.2",
     "@vueuse/components": "^13.0.0",
@@ -18,6 +19,7 @@
     "csit-website": "file:",
     "dayjs": "^1.11.13",
     "nuxt": "^3.12.4",
+    "pinia": "^3.0.2",
     "sharp": "0.33.0-alpha.6",
     "three": "^0.166.1",
     "vue": "latest",

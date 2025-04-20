@@ -52,7 +52,7 @@ const props = defineProps<{
   customContentWrapper?: boolean;
 }>();
 
-const currentTab = defineModel<string>("currentTab", { required: true });
+const currentTab = defineModel<string>("currentTab", { required: false });
 const activeWindow = defineModel<string>("activeWindow", { required: true });
 
 // Window offsets
@@ -103,7 +103,7 @@ function onMouseUp() {
 .os-window {
   .os-window-content {
     flex: 1;
-    font-family: "Source Code Pro", monospace;
+    font-family: "Space Mono", monospace;
     line-height: 100%;
     padding: 40px 30px;
     background: rgba(25, 25, 37, 0.5);
