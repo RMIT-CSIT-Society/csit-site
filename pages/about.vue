@@ -43,6 +43,8 @@
         </Row>
       </Container>
     </section>
+
+    <SectionAboutFinalStatement />
   </div>
 </template>
 
