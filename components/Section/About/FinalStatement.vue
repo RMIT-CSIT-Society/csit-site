@@ -61,9 +61,25 @@
       animation-timeline: --scrollTimeline;
       animation-range: cover 0% contain 100%;
     }
+
+    &::before {
+      animation-name: null-left-in;
+      /* animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99); */
+      animation-duration: 1ms;
+      animation-timeline: --scrollTimeline;
+      animation-range: cover 0% contain 100%;
+    }
   }
   .null-2 {
     grid-area: d;
+
+    &::after {
+      animation-name: null-right-in;
+      /* animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99); */
+      animation-duration: 1ms;
+      animation-timeline: --scrollTimeline;
+      animation-range: cover 0% contain 100%;
+    }
   }
 
   .null-1,
@@ -174,7 +190,26 @@
 @keyframes some-writing-in {
   0%,
   30% {
-    translate: -15em -40em;
+    translate: -70em -30em;
+  }
+  100% {
+    translate: 0;
+  }
+}
+
+@keyframes null-left-in {
+  0%,
+  30% {
+    translate: -30em 0;
+  }
+  100% {
+    translate: 0;
+  }
+}
+@keyframes null-right-in {
+  0%,
+  30% {
+    translate: 30em 0;
   }
   100% {
     translate: 0;
@@ -193,6 +228,7 @@ section {
   animation-timeline: --scrollTimeline;
   animation-range: cover 0% contain 100%;
   position: relative;
+  z-index: 0;
 
   &::after {
     content: "";
