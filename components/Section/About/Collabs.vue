@@ -8,6 +8,11 @@
             We collaborate with leading student organizations to create
             inclusive and diverse opportunities:
           </p>
+
+          <div class="collabs-row">
+            <NuxtImg src="/img/white-logo.svg" id="footer-logo" />
+            <p></p>
+          </div>
         </Cell>
         <Cell class="large-7" id="collabs-images">
           <div id="collabs-first-image"></div>
@@ -125,7 +130,7 @@
 }
 @keyframes image-parallax-collabs-2 {
   0% {
-    background-position: 50% 0%;
+    background-position: 50% -100%;
     background-size: 110%;
     outline-offset: 0;
   }
