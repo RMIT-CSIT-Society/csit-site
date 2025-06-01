@@ -70,7 +70,7 @@
               </div>
             </div>
 
-            <NuxtLink class="button" to="#">More about us</NuxtLink>
+            <NuxtLink class="button" to="/about">More about us</NuxtLink>
           </Cell>
           <Cell class="large-12" id="bottom-sprites">
             <div id="lights"></div>

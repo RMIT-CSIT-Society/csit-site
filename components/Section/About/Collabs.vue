@@ -6,12 +6,16 @@
           <h2 class="h1">Collabs</h2>
           <p>
             We collaborate with leading student organizations to create
-            inclusive and diverse opportunities:
+            inclusive and diverse opportunities.
           </p>
 
-          <div class="collabs-row">
-            <NuxtImg src="/img/white-logo.svg" id="footer-logo" />
-            <p></p>
+          <div class="card-collabs-wrapper">
+            <CardCollabs
+              v-for="collaborator in collaborators"
+              :name="collaborator.name"
+              :details="collaborator.details"
+              :imgSrc="collaborator.imgSrc"
+            />
           </div>
         </Cell>
         <Cell class="large-7" id="collabs-images">
@@ -23,7 +27,25 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const collaborators = ref([
+  {
+    name: "SWITCH",
+    details: "Society of Women in Information Technology",
+    imgSrc: "/img/switch-logo.svg",
+  },
+  {
+    name: "RISC",
+    details: "RMIT Information Security Collective",
+    imgSrc: "/img/risc-logo.webp",
+  },
+  {
+    name: "FIRE+",
+    details: "Females+ in RMIT Engineering",
+    imgSrc: "/img/fire-logo.png",
+  },
+]);
+</script>
 
 <style scoped>
 #collabs {
@@ -36,6 +58,15 @@
 
   #collabs-statement {
     margin-top: 5em;
+
+    > p,
+    > h2 {
+      /* animation-name: text-parallax;
+    
+      animation-timeline: --text-parallax;
+      animation-range: cover 0% contain 10%; */
+    }
+
     p {
       max-width: 420px;
     }
@@ -84,6 +115,18 @@
       outline-style: solid;
       outline-color: firebrick;
       outline-offset: 0em;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 5em;
+        height: 15em;
+        top: 5em;
+        left: 5em;
+        background: firebrick;
+        transform-origin: bottom right;
+        scale: 1.5;
+      }
     }
   }
 
@@ -118,6 +161,13 @@
   }
 }
 
+.card-collabs-wrapper {
+  gap: 3em;
+  margin: 8em 3em;
+  display: flex;
+  flex-direction: column;
+}
+
 @keyframes image-parallax-collabs-1 {
   from {
     background-position: 100% 100%;
@@ -138,6 +188,14 @@
     background-position: 50% 100%;
     background-size: 100%;
     outline-offset: -5em;
+  }
+}
+@keyframes text-parallax {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
   }
 }
 </style>

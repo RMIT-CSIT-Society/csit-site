@@ -2,24 +2,30 @@
   <div id="about-page" :class="{ 'loaded-home': loaded }">
     <header id="about-header">
       <div id="bit">
-        <TresCanvas window-size v-bind="gl">
+        <TresCanvas window-size :output-encoding="SRGBColorSpace" v-bind="gl">
           <TresPerspectiveCamera :position="[0, 0, 2]" />
-          <MouseParallax :factor="0.5" :ease="3" />
+          <MouseParallax :factor="0.5" :ease="9" />
           <!-- <TresGridHelper :args="[100, 100]" /> -->
-          <ScrollControls :distance="2" htmlScroll />
+          <ScrollControls :distance="10" htmlScroll />
           <Shit
             :url="URLS[0]"
-            :transparent="true"
+            :transparent="false"
             :position="[-1.5, 0, -1]"
-            toneMapped="false"
+            :toneMapped="1"
+            :texture="new THREE.VideoTexture(videoElement)"
           />
           <Shit
             :url="URLS[1]"
             :transparent="true"
-            toneMapped="false"
             :scale="[1, 1.23463687151]"
+            :toneMapped="1"
           />
-          <Shit :url="URLS[2]" :transparent="true" :position="[1.5, 0, -1]" />
+          <Shit
+            :url="URLS[2]"
+            :transparent="true"
+            :position="[1.5, 0, -1]"
+            :toneMapped="1"
+          />
           <!-- <TresAmbientLight :intensity="1" /> -->
         </TresCanvas>
       </div>
@@ -67,10 +73,13 @@ import { Image as Shit, OrbitControls } from "@tresjs/cientos";
 
 const gl = {
   /*  clearColor: "#82DBC5",*/
-  outputColorSpace: SRGBColorSpace,
+  /* outputColorSpace: SRGBColorSpace,
   toneMapping: NoToneMapping,
   toneMappingExposure: 1,
-  useLegacyLights: false,
+  premultipliedAlpha: true,
+  useLegacyLights: true, */
+  colorSpace: SRGBColorSpace,
+  toneMapping: NoToneMapping,
 };
 
 const URL_STUB = "img/about/";
@@ -99,6 +108,8 @@ const URLS = [
       justify-content: flex-end;
       padding: 0em 5em;
       padding-bottom: 20vh;
+      z-index: 99;
+      position: relative;
     }
 
     h1 {

@@ -31,7 +31,7 @@
   position: relative;
   color: #fff;
   padding: 7em 5em;
-  /*  margin-top: 2em; */
+  margin-top: 5vh;
   z-index: 2;
 
   .grid-container {
