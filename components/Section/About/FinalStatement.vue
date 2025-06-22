@@ -24,7 +24,9 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+
 /* TODO: Move this over to another component */
 .image-caption {
   background: rgba(25, 25, 37, 1);
@@ -50,6 +52,10 @@
   position: absolute;
   bottom: 0;
   color: #fff;
+
+  @media screen and (max-width: map.get($breakpoint, "large")) {
+    aspect-ratio: auto;
+  }
 
   .null-1 {
     grid-area: c;

@@ -47,14 +47,24 @@ const collaborators = ref([
 ]);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+
 #collabs {
   position: relative;
+  min-height: 120vh;
   height: 120vh;
-  margin-bottom: 10em;
+  //margin-bottom: 10em;
   padding: 0 5em;
   background: #191925;
   z-index: 1;
+  margin-top: 20vh;
+
+  @media screen and (max-width: map.get($breakpoint, "large")) {
+    padding: 0;
+    min-height: 120vh;
+    height: 100%;
+  }
 
   #collabs-statement {
     margin-top: 5em;
@@ -147,6 +157,10 @@ const collaborators = ref([
       width: 100%;
       position: absolute;
       z-index: 1;
+
+      @media screen and (max-width: map.get($breakpoint, "large")) {
+        opacity: 0;
+      }
     }
     &::before {
       content: "";
@@ -163,7 +177,7 @@ const collaborators = ref([
 
 .card-collabs-wrapper {
   gap: 3em;
-  margin: 8em 3em;
+  margin: 8em 0;
   display: flex;
   flex-direction: column;
 }

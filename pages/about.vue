@@ -1,35 +1,10 @@
 <template>
   <div id="about-page" :class="{ 'loaded-home': loaded }">
+    <Navigation></Navigation>
     <header id="about-header">
       <div id="bit">
-        <TresCanvas window-size :output-encoding="SRGBColorSpace" v-bind="gl">
-          <TresPerspectiveCamera :position="[0, 0, 2]" />
-          <MouseParallax :factor="0.5" :ease="9" />
-          <!-- <TresGridHelper :args="[100, 100]" /> -->
-          <ScrollControls :distance="10" htmlScroll />
-          <Shit
-            :url="URLS[0]"
-            :transparent="false"
-            :position="[-1.5, 0, -1]"
-            :toneMapped="1"
-            :texture="new THREE.VideoTexture(videoElement)"
-          />
-          <Shit
-            :url="URLS[1]"
-            :transparent="true"
-            :scale="[1, 1.23463687151]"
-            :toneMapped="1"
-          />
-          <Shit
-            :url="URLS[2]"
-            :transparent="true"
-            :position="[1.5, 0, -1]"
-            :toneMapped="1"
-          />
-          <!-- <TresAmbientLight :intensity="1" /> -->
-        </TresCanvas>
+        <SectionAboutHeader />
       </div>
-      <Navigation></Navigation>
       <div id="header-title">
         <h1>What are <br />we?</h1>
       </div>
@@ -58,70 +33,33 @@ const loaded = ref(false);
 onMounted(() => {
   loaded.value = true;
 });
-
-import {
-  NoToneMapping,
-  LinearToneMapping,
-  SRGBColorSpace,
-  ReinhardToneMapping,
-  AgXToneMapping,
-  NoColorSpace,
-  SrcColorFactor,
-} from "three";
-import { TresCanvas } from "@tresjs/core";
-import { Image as Shit, OrbitControls } from "@tresjs/cientos";
-
-const gl = {
-  /*  clearColor: "#82DBC5",*/
-  /* outputColorSpace: SRGBColorSpace,
-  toneMapping: NoToneMapping,
-  toneMappingExposure: 1,
-  premultipliedAlpha: true,
-  useLegacyLights: true, */
-  colorSpace: SRGBColorSpace,
-  toneMapping: NoToneMapping,
-};
-
-const URL_STUB = "img/about/";
-
-const URLS = [
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
-].map((url) => URL_STUB + url);
 </script>
 
 <style scoped>
 #about-page {
-  background: #191925;
-
   header {
     background: #fff;
     position: relative;
-
-    #header-title {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0em 5em;
-      padding-bottom: 20vh;
-      z-index: 99;
-      position: relative;
-    }
-
-    h1 {
-      font-size: 10rem;
-      line-height: 100%;
-    }
+    z-index: -1;
+    height: 130vh;
   }
 }
 </style>
 
 <style lang="scss" scoped>
 @use "sass:map";
+
+@keyframes about-bg {
+  from {
+    //translate: 0 100vh;
+    background: transparent;
+  }
+  to {
+    //translate: 0 0;
+    background: #191925;
+    backdrop-filter: blur(50px);
+  }
+}
 
 #index-page {
   position: relative;
@@ -141,11 +79,43 @@ header {
     min-height: 100dvh;
   }
 
+  &::before {
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    content: "";
+    background: #191925;
+    position: fixed;
+
+    animation-name: about-bg;
+    /* animation-timing-function: cubic-bezier(0.65, 0.44, 0, 0.98); */
+    animation-duration: 1ms;
+    animation-timeline: --scrollTimeline;
+    animation-range: cover 0% contain 40%;
+  }
+
+  #header-title {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0em 5em;
+    padding-bottom: 25vh;
+    z-index: 99;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 10rem;
+    line-height: 100%;
+  }
+
   #bit {
     position: fixed !important;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: -1;
     pointer-events: none;
     width: 100%;
     height: 100dvh;
