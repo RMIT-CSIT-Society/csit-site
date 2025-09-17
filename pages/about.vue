@@ -42,6 +42,8 @@ onMounted(() => {
     position: relative;
     z-index: -1;
     height: 130vh;
+    width: 100vw;
+    overflow-x: clip;
   }
 }
 </style>
@@ -81,7 +83,7 @@ header {
 
   &::before {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     top: 0;
     left: 0;
     content: "";
@@ -104,11 +106,19 @@ header {
     padding-bottom: 25vh;
     z-index: 99;
     position: relative;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      padding: 4em 2em;
+    }
   }
 
   h1 {
     font-size: 10rem;
     line-height: 100%;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      font-size: 25vw;
+    }
   }
 
   #bit {

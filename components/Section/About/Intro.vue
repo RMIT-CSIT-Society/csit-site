@@ -16,7 +16,7 @@
           </p>
         </Cell>
       </Row>
-      <Row>
+      <Row id="about-intro-image-wrapper">
         <Cell class="large-3" id="intro-sub-info"></Cell>
         <Cell class="large-9" id="about-intro-image"> </Cell>
       </Row>
@@ -26,16 +26,26 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+
 #about-intro {
   position: relative;
   color: #fff;
   padding: 7em 5em;
   margin-top: 5vh;
   z-index: 2;
+  width: 100vw;
+  overflow-x: clip;
 
   .grid-container {
     position: relative;
+  }
+}
+
+#about-intro-image-wrapper {
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    padding-top: 30em;
   }
 }
 
