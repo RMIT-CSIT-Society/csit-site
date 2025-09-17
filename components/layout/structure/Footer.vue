@@ -43,8 +43,6 @@
         </Row>
       </Container>
     </div>
-
-    <div class="footer-bg-grid"></div>
   </footer>
 </template>
 
@@ -73,7 +71,7 @@ const socials = ref([
 @use "sass:map";
 
 #footer-logo {
-  height: 66px;
+  max-width: 118px;
 }
 
 #copyright-shit {
