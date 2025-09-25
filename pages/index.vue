@@ -299,6 +299,13 @@ const { data: clubEvents } = await useFetch("/api/events");
   animation-timeline: --join-discord;
   animation-range: cover 0% contain 50%;
 
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    flex-direction: column;
+    text-align: center;
+    margin: 10vh 1.5em 10vh;
+    padding-bottom: 4.5em;
+  }
+
   .fa-discord {
     margin-right: 0.5em;
   }
