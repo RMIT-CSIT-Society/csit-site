@@ -59,7 +59,18 @@ const { theTeamTabs } = useYearToMembersMap(members);
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+#team-terminal {
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    bottom: 26px;
+    top: initial;
+    max-height: 65vh;
+    min-height: inherit !important;
+    height: 65vh !important;
+  }
+}
+
 #team-member-content-wrapper {
   display: flex;
   flex: 1;

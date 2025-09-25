@@ -16,7 +16,7 @@
         v-if="members"
       >
         <template v-if="theTeamCurrentTab === '2025'">
-          <pre>
+          <pre id="the-team-heading">
             {{ theTeamHeading }}
           </pre>
           <p>(Use your arrow keys or mouse)</p>
@@ -118,7 +118,9 @@ const focusOnMember = (member: string) => {
 const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+
 #CSIT-OS {
   height: 100vh;
   width: 100%;
@@ -137,6 +139,10 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
   margin-top: 1em;
   gap: 3em;
   display: flex;
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    gap: 1em;
+  }
 
   > div {
     flex: 1;
@@ -168,6 +174,13 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
   @starting-style {
     background-size: 200% 200%;
     filter: blur(50px);
+  }
+}
+
+#the-team-heading {
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    font-size: 0.35em;
+    line-height: 100%;
   }
 }
 </style>
