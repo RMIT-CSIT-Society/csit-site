@@ -179,10 +179,11 @@ $window-borders-mobile: 8px;
     gap: $window-borders-mobile;
     transition: 0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background,
       0.6s cubic-bezier(0, 0.66, 0.03, 0.99) outline-offset,
-      0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) filter 1.2s,
-      0.6s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale 0s,
-      0.45s cubic-bezier(0.61, 0.01, 0.03, 0.99) translate 0s,
-      0.45s cubic-bezier(0.61, 0.01, 0.03, 0.99) transform-origin 0s;
+      0.4s cubic-bezier(0.61, 0.01, 0.03, 0.99) filter 1.2s,
+      0.45s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale 0s,
+      0.35s cubic-bezier(0.61, 0.01, 0.03, 0.99) translate 0s,
+      0.35s cubic-bezier(0.61, 0.01, 0.03, 0.99) transform-origin 0s,
+      0.1s cubic-bezier(0, 0.68, 0.03, 0.99) opacity 0s;
   }
 
   @starting-style {
@@ -209,6 +210,10 @@ $window-borders-mobile: 8px;
       translate: 0 2em !important;
       scale: 0.9 !important;
       transform-origin: 50% 50% !important;
+
+      &:active {
+        opacity: 0.5;
+      }
     }
 
     .os-window-content,

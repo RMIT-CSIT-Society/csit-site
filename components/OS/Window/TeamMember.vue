@@ -68,6 +68,7 @@ const { theTeamTabs } = useYearToMembersMap(members);
     max-height: 65vh;
     min-height: inherit !important;
     height: 65vh !important;
+    user-select: none;
   }
 }
 

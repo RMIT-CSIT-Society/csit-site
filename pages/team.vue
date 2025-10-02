@@ -12,7 +12,7 @@
           x: '4vw',
           y: '10vh',
         }"
-        style="min-width: 900px; min-height: 600px; width: 55vw; height: 60vh"
+        style="min-width: 900px; min-height: 500px; width: 55vw; height: 65vh"
         v-if="members"
       >
         <template v-if="theTeamCurrentTab === '2025'">
@@ -103,7 +103,7 @@ const showTeamMemberWindow = ref(false);
 onMounted(() => {
   setTimeout(() => {
     showTeamMemberWindow.value = true;
-  }, 300);
+  }, 100);
 });
 
 const focusOnMember = (member: string) => {
@@ -122,7 +122,7 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
 @use "sass:map";
 
 #CSIT-OS {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   transition: 0.7s cubic-bezier(0.61, 0.01, 0.03, 0.99) all;
   filter: blur(0);
