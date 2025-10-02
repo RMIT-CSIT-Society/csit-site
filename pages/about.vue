@@ -77,8 +77,8 @@ header {
 
   @media (max-aspect-ratio: 2040/1342) {
     display: flex;
-    max-height: calc(100dvh);
-    min-height: 100dvh;
+    max-height: 100vmin;
+    min-height: 100vmin;
   }
 
   &::before {
