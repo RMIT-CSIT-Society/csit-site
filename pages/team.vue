@@ -103,7 +103,7 @@ const showTeamMemberWindow = ref(false);
 onMounted(() => {
   setTimeout(() => {
     showTeamMemberWindow.value = true;
-  }, 100);
+  }, 250);
 });
 
 const focusOnMember = (member: string) => {
