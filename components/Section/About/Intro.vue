@@ -38,6 +38,10 @@
   width: 100vw;
   overflow-x: clip;
 
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    padding: 7em 3.5em;
+  }
+
   .grid-container {
     position: relative;
   }

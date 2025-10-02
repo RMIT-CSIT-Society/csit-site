@@ -77,8 +77,7 @@ header {
 
   @media (max-aspect-ratio: 2040/1342) {
     display: flex;
-    max-height: 100vmin;
-    min-height: 100vmin;
+    max-height: 120vmin;
   }
 
   &::before {
@@ -109,6 +108,8 @@ header {
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       padding: 4em 2em;
+
+      padding-bottom: 12vh;
     }
   }
 
