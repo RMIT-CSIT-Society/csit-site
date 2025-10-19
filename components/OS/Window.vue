@@ -286,6 +286,11 @@ $window-borders-mobile: 8px;
   overflow: auto;
   overflow-y: hidden;
 
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    padding: $window-borders-mobile $window-borders-mobile 0;
+    gap: $window-borders-mobile;
+  }
+
   .tab {
     border-color: rgba(255, 255, 255, 0.07);
     border-width: 3px 3px 0px 3px;
