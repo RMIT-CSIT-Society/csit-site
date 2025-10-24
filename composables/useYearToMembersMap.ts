@@ -6,6 +6,7 @@ export const execRoles = [
   "Vice President",
   "Operations Manager",
   "Treasurer",
+  "Secretary",
   "Events Manager",
 ];
 
