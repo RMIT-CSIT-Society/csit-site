@@ -100,7 +100,21 @@
       <Container id="events">
         <Grid>
           <CardEvent
-            v-for="clubEvent in clubEvents"
+            v-for="clubEvent in eventsUpcoming"
+            :clubEvent="clubEvent"
+          ></CardEvent>
+        </Grid>
+
+        <Grid>
+          <Cell class="large-3" id="past-events-header">
+            <h3 class="h4">Past featured events</h3>
+            <p>
+              A snapshot of our best moments — panels, workshops, and socials
+              that kept the energy high.
+            </p>
+          </Cell>
+          <CardEvent
+            v-for="clubEvent in eventsInactive"
             :clubEvent="clubEvent"
           ></CardEvent>
         </Grid>
@@ -166,7 +180,13 @@ onMounted(() => {
 
 const progress = ref(0);
 
-const { data: clubEvents } = await useFetch("/api/events");
+const { data: eventsInactive } = await useFetch("/api/events", {
+  params: { inactive: "true" },
+});
+
+const { data: eventsUpcoming } = await useFetch("/api/events", {
+  params: { active: "true" },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -470,6 +490,10 @@ section {
   h2 {
     line-height: 100%;
   }
+}
+
+#past-events-header {
+  padding: 2em;
 }
 
 #events-section-heading-bit {
