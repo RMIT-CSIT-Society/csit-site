@@ -1,7 +1,9 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig(event);
+
   try {
     let data = await $fetch<MemberRecords>(
-      "https://csit.mache.mechetle.com/api/configs/values/team-members",
+      `${config.apiEndpoint}/configs/values/team-members`,
       {
         method: "GET",
 
