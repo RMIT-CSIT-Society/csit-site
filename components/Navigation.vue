@@ -54,8 +54,8 @@
           <NavigationLink
             :activeSection="activeSection"
             sectionName="sponsor-us"
-            to="/sponsor-us"
-            >Sponsor us</NavigationLink
+            to="https://csitsociety.notion.site/Sponsors-882be093dae74746860460639ba2b4a4"
+            >Sponsors</NavigationLink
           >
         </nav>
       </div>
