@@ -35,7 +35,9 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@use "sass:map";
+
 #about-page {
   header {
     background: #fff;
@@ -46,11 +48,6 @@ onMounted(() => {
     overflow-x: clip;
   }
 }
-</style>
-
-<style lang="scss" scoped>
-@use "sass:map";
-
 @keyframes about-bg {
   from {
     //translate: 0 100vh;
@@ -61,11 +58,6 @@ onMounted(() => {
     background: #191925;
     backdrop-filter: blur(50px);
   }
-}
-
-#index-page {
-  position: relative;
-  width: 100%;
 }
 
 header {
