@@ -99,7 +99,9 @@ function onMouseUp() {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@use "sass:map";
+
 .os-window {
   .os-window-content {
     flex: 1;
@@ -110,6 +112,10 @@ function onMouseUp() {
     border-radius: 0 0 5px 5px;
     overflow-y: auto;
     padding-bottom: 10em;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      padding: 1em;
+    }
 
     &:not(.active-window) {
       background: rgba(25, 25, 37, 0.2);
@@ -127,14 +133,16 @@ function onMouseUp() {
     }
   }
 }
-</style>
-<style scoped>
+
+$window-borders: 10px;
+$window-borders-mobile: 8px;
+
 .os-window {
-  padding: 10px;
+  padding: $window-borders;
+  gap: $window-borders;
   background: rgba(25, 25, 37, 0.5);
   display: flex;
   flex-direction: column;
-  gap: 10px;
   color: #fff;
   min-width: 690px;
   min-height: 600px;
@@ -162,6 +170,22 @@ function onMouseUp() {
   transform-origin: 0 0;
   z-index: 2;
 
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    min-width: auto !important;
+    width: 100% !important;
+    translate: 0 !important;
+    position: absolute;
+    padding: $window-borders-mobile;
+    gap: $window-borders-mobile;
+    transition: 0.7s cubic-bezier(0, 0.66, 0.03, 0.99) background,
+      0.6s cubic-bezier(0, 0.66, 0.03, 0.99) outline-offset,
+      0.4s cubic-bezier(0.61, 0.01, 0.03, 0.99) filter 1.2s,
+      0.45s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale 0s,
+      0.35s cubic-bezier(0.61, 0.01, 0.03, 0.99) translate 0s,
+      0.35s cubic-bezier(0.61, 0.01, 0.03, 0.99) transform-origin 0s,
+      0.1s cubic-bezier(0, 0.68, 0.03, 0.99) opacity 0s;
+  }
+
   @starting-style {
     filter: blur(50px);
     scale: 0.8;
@@ -182,6 +206,16 @@ function onMouseUp() {
     background: rgba(25, 25, 37, 0.2);
     z-index: 1;
 
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      translate: 0 2em !important;
+      scale: 0.9 !important;
+      transform-origin: 50% 50% !important;
+
+      &:active {
+        opacity: 0.5;
+      }
+    }
+
     .os-window-content,
     .title-bar {
       background: rgba(25, 25, 37, 0.3);
@@ -195,6 +229,10 @@ function onMouseUp() {
   flex: 1;
   height: 100%;
   align-self: center;
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    display: none;
+  }
 
   > div {
     display: flex;
@@ -232,6 +270,10 @@ function onMouseUp() {
     &:not(:has(+ .window-tabs)) {
       align-self: center;
     }
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      display: none;
+    }
   }
 }
 
@@ -239,10 +281,15 @@ function onMouseUp() {
   display: flex;
   gap: 12px;
   height: 100%;
-  padding-top: 10px;
+  padding-top: $window-borders;
   box-sizing: border-box;
   overflow: auto;
   overflow-y: hidden;
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    padding: $window-borders-mobile $window-borders-mobile 0;
+    gap: $window-borders-mobile;
+  }
 
   .tab {
     border-color: rgba(255, 255, 255, 0.07);

@@ -100,7 +100,21 @@
       <Container id="events">
         <Grid>
           <CardEvent
-            v-for="clubEvent in clubEvents"
+            v-for="clubEvent in eventsUpcoming"
+            :clubEvent="clubEvent"
+          ></CardEvent>
+        </Grid>
+
+        <Grid>
+          <Cell class="large-3" id="past-events-header">
+            <h3 class="h4">Past featured events</h3>
+            <p>
+              A snapshot of our best moments — panels, workshops, and socials
+              that kept the energy high.
+            </p>
+          </Cell>
+          <CardEvent
+            v-for="clubEvent in eventsInactive"
             :clubEvent="clubEvent"
           ></CardEvent>
         </Grid>
@@ -166,96 +180,14 @@ onMounted(() => {
 
 const progress = ref(0);
 
-const { data: clubEvents } = await useFetch("/api/events");
+const { data: eventsInactive } = await useFetch("/api/events", {
+  params: { inactive: "true" },
+});
+
+const { data: eventsUpcoming } = await useFetch("/api/events", {
+  params: { active: "true" },
+});
 </script>
-
-<style lang="scss">
-@use "sass:map";
-
-* {
-  box-sizing: border-box;
-}
-
-/* #works {
-  display: flex;
-  padding-bottom: 10em;
-
-  .grid {
-    padding-bottom: 10em;
-    grid-template-columns: 1fr 1fr;
-    transition: filter 0.75s cubic-bezier(0.64, 0.01, 0.16, 0.99);
-
-    @media screen and (max-width: map.get($breakpoint, "medium")) {
-      grid-template-columns: 1fr;
-    }
-
-    &.pending {
-      filter: blur(400px);
-    }
-  }
-} */
-
-.button-row-works-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 4em;
-  top: calc(100dvh - 80px - 1em);
-  position: sticky;
-  z-index: 9999;
-  transition: all 0.15s cubic-bezier(0.64, 0.01, 0.16, 0.99);
-}
-
-.button-row-works {
-  display: flex;
-  gap: 0.45em;
-  background: #de9797;
-  flex-shrink: 1;
-  padding: 0.5em;
-  border-radius: 1.2em;
-}
-
-.button-row {
-  display: flex;
-  gap: 10px;
-}
-
-.button-outline {
-  text-decoration: none;
-  gap: 0.85em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-  color: #d99090;
-  border: solid 2px;
-  padding: 0.75em 1em;
-
-  span {
-    display: flex;
-    align-items: center;
-    gap: 0.85em;
-  }
-
-  &:hover {
-    background: rgba(105, 133, 179, 0.247);
-  }
-}
-
-.button,
-.pill-toggle {
-  padding: 0.75em 1em;
-  border: 0;
-  background: #d99090;
-  color: #b22222;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: bold;
-
-  &:hover {
-    background: #f1b5b5;
-  }
-}
-</style>
 
 <style lang="scss" scoped>
 @use "sass:map";
@@ -298,6 +230,13 @@ const { data: clubEvents } = await useFetch("/api/events");
   view-timeline-name: --join-discord;
   animation-timeline: --join-discord;
   animation-range: cover 0% contain 50%;
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    flex-direction: column;
+    text-align: center;
+    margin: 10vh 1.5em 10vh;
+    padding-bottom: 4.5em;
+  }
 
   .fa-discord {
     margin-right: 0.5em;
@@ -551,6 +490,10 @@ section {
   h2 {
     line-height: 100%;
   }
+}
+
+#past-events-header {
+  padding: 2em;
 }
 
 #events-section-heading-bit {

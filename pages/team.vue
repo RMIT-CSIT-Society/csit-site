@@ -12,11 +12,11 @@
           x: '4vw',
           y: '10vh',
         }"
-        style="min-width: 900px; min-height: 600px; width: 55vw; height: 60vh"
+        style="min-width: 900px; min-height: 500px; width: 55vw; height: 65vh"
         v-if="members"
       >
         <template v-if="theTeamCurrentTab === '2025'">
-          <pre>
+          <pre id="the-team-heading">
             {{ theTeamHeading }}
           </pre>
           <p>(Use your arrow keys or mouse)</p>
@@ -103,7 +103,7 @@ const showTeamMemberWindow = ref(false);
 onMounted(() => {
   setTimeout(() => {
     showTeamMemberWindow.value = true;
-  }, 300);
+  }, 250);
 });
 
 const focusOnMember = (member: string) => {
@@ -118,9 +118,11 @@ const focusOnMember = (member: string) => {
 const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+
 #CSIT-OS {
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   transition: 0.7s cubic-bezier(0.61, 0.01, 0.03, 0.99) all;
   filter: blur(0);
@@ -137,6 +139,10 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
   margin-top: 1em;
   gap: 3em;
   display: flex;
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    gap: 1em;
+  }
 
   > div {
     flex: 1;
@@ -168,6 +174,13 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
   @starting-style {
     background-size: 200% 200%;
     filter: blur(50px);
+  }
+}
+
+#the-team-heading {
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    font-size: 0.35em;
+    line-height: 100%;
   }
 }
 </style>

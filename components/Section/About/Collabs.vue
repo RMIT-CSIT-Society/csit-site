@@ -53,12 +53,14 @@ const collaborators = ref([
 #collabs {
   position: relative;
   min-height: 120vh;
-  height: 120vh;
+  height: 100%;
   //margin-bottom: 10em;
   padding: 0 5em;
   background: #191925;
   z-index: 1;
   margin-top: 20vh;
+  width: 100vw;
+  overflow-x: clip;
 
   @media screen and (max-width: map.get($breakpoint, "large")) {
     padding: 0;
@@ -88,7 +90,7 @@ const collaborators = ref([
 
     #collabs-first-image {
       background: url("/img/about-collabs-1.jpg");
-      background-size: 100%;
+      background-size: 120%;
       aspect-ratio: 1/1;
       z-index: 0;
       translate: 10em 0em;
@@ -100,6 +102,14 @@ const collaborators = ref([
       animation-duration: 1ms;
       animation-timeline: --scrollTimeline;
       animation-range: cover 0% contain 100%;
+
+      @media screen and (max-width: map.get($breakpoint, "medium")) {
+        outline-width: 5em;
+        outline-style: solid;
+        outline-color: firebrick;
+        aspect-ratio: 3/5;
+        translate: -3em -2em;
+      }
     }
 
     #collabs-second-image {
@@ -137,6 +147,10 @@ const collaborators = ref([
         transform-origin: bottom right;
         scale: 1.5;
       }
+
+      @media screen and (max-width: map.get($breakpoint, "medium")) {
+        display: none;
+      }
     }
   }
 
@@ -171,6 +185,10 @@ const collaborators = ref([
       width: 5em;
       position: absolute;
       z-index: -1;
+    }
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      padding: 2em;
     }
   }
 }

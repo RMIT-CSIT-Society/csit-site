@@ -18,6 +18,7 @@ const props = defineProps<{
 .member-button {
   cursor: pointer;
   position: relative;
+  user-select: none;
 
   &::after {
     content: "";

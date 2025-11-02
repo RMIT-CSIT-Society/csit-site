@@ -22,6 +22,10 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    apiEndpoint: "https://csit.mache.mechetle.com/api",
+  },
+
   experimental: {
     viewTransition: true,
   },

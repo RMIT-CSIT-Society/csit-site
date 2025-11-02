@@ -6,32 +6,39 @@
       </div>
 
       <template v-for="(action, index) in actions" :key="action.label">
-        <OSActionBarButton :label="action.label" :index="index" v-model:contextMenuOpened="contextMenuOpened" />
+        <OSActionBarButton
+          :label="action.label"
+          :index="index"
+          v-model:contextMenuOpened="contextMenuOpened"
+        />
       </template>
 
-      <OSActionBarContextMenu v-if="contextMenuOpened != null" :childActions="actions[contextMenuOpened].childActions"
-        v-model:contextMenuOpened="contextMenuOpened" />
+      <OSActionBarContextMenu
+        v-if="contextMenuOpened != null"
+        :childActions="actions[contextMenuOpened].childActions"
+        v-model:contextMenuOpened="contextMenuOpened"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const contextMenuOpened = ref<number | null>(null)
+const contextMenuOpened = ref<number | null>(null);
 const actions = ref([
   {
     label: "Terminal",
     childActions: [
       {
         label: "About Terminal",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Settings",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Quit Terminal",
-        onPress: () => { },
+        onPress: () => {},
       },
     ],
   },
@@ -40,19 +47,19 @@ const actions = ref([
     childActions: [
       {
         label: "New File",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Open File",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Save File",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Exit",
-        onPress: () => { },
+        onPress: () => {},
       },
     ],
   },
@@ -61,23 +68,23 @@ const actions = ref([
     childActions: [
       {
         label: "Undo",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Redo",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Cut",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Copy",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Paste",
-        onPress: () => { },
+        onPress: () => {},
       },
     ],
   },
@@ -86,19 +93,19 @@ const actions = ref([
     childActions: [
       {
         label: "Zoom In",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Zoom Out",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Fullscreen",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Hide Toolbar",
-        onPress: () => { },
+        onPress: () => {},
       },
     ],
   },
@@ -107,15 +114,15 @@ const actions = ref([
     childActions: [
       {
         label: "Documentation",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "Keyboard Shortcuts",
-        onPress: () => { },
+        onPress: () => {},
       },
       {
         label: "About",
-        onPress: () => { },
+        onPress: () => {},
       },
     ],
   },
@@ -132,9 +139,11 @@ const actions = ref([
   flex-direction: row;
   row-gap: -0.4em;
   font-size: 0.8em;
-  transition: 0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) height 1s, 0.6s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale;
+  transition: 0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) height 1s,
+    0.6s cubic-bezier(0.61, 0.01, 0.03, 0.99) scale;
   scale: 1;
   z-index: 9999;
+  border-radius: 10px;
 
   @starting-style {
     height: calc(100vh - 18px * 2);
@@ -160,7 +169,7 @@ const actions = ref([
   color: firebrick;
 
   @starting-style {
-    width: calc(100vw - 18px * 4)
+    width: calc(100vw - 18px * 4);
   }
 }
 
@@ -170,7 +179,7 @@ const actions = ref([
   transition: 0.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) all 0.5s;
 
   @starting-style {
-    scale: 10
+    scale: 10;
   }
 }
 </style>

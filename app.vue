@@ -89,6 +89,52 @@ html {
   interpolate-size: allow-keywords;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+}
+
+.button-outline {
+  text-decoration: none;
+  gap: 0.85em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #d99090;
+  border: solid 2px;
+  padding: 0.75em 1em;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.85em;
+  }
+
+  &:hover {
+    background: rgba(105, 133, 179, 0.247);
+  }
+}
+
+.button,
+.pill-toggle {
+  padding: 0.75em 1em;
+  border: 0;
+  background: #d99090;
+  color: #b22222;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    background: #f1b5b5;
+  }
+}
+
 #index-loader {
   width: 100%;
   height: auto;

@@ -46,7 +46,7 @@
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(9, 1fr);
   aspect-ratio: 9 / 2;
-  width: 100%;
+  width: 100vw;
   display: grid;
   z-index: 4;
   position: absolute;
@@ -55,6 +55,14 @@
 
   @media screen and (max-width: map.get($breakpoint, "large")) {
     aspect-ratio: auto;
+  }
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    grid-template-areas:
+      "b b b b b b b b b"
+      "b b b b b b b b b"
+      "a a a a a a a a a";
+    grid-template-rows: repeat(3, 1fr);
   }
 
   .null-1 {
@@ -92,6 +100,10 @@
   .null-2 {
     position: relative;
 
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      display: none;
+    }
+
     &::after,
     &::before {
       content: "";
@@ -123,6 +135,11 @@
     animation-duration: 1ms;
     animation-timeline: --scrollTimeline;
     animation-range: cover 0% contain 100%;
+    overflow: hidden;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      animation-range: cover 0% contain 97%;
+    }
 
     &::after {
       content: "";

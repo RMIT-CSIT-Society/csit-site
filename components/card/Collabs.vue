@@ -16,7 +16,9 @@ defineProps<{
 }>();
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:map";
+
 @keyframes collabs-row {
   from {
     translate: 0 300%;
@@ -56,6 +58,10 @@ defineProps<{
   img {
     height: 130px;
     border-radius: 1.6em;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      height: 100px;
+    }
   }
 }
 </style>

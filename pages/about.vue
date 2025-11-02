@@ -35,20 +35,19 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@use "sass:map";
+
 #about-page {
   header {
     background: #fff;
     position: relative;
     z-index: -1;
     height: 130vh;
+    width: 100vw;
+    overflow-x: clip;
   }
 }
-</style>
-
-<style lang="scss" scoped>
-@use "sass:map";
-
 @keyframes about-bg {
   from {
     //translate: 0 100vh;
@@ -61,11 +60,6 @@ onMounted(() => {
   }
 }
 
-#index-page {
-  position: relative;
-  width: 100%;
-}
-
 header {
   min-height: 110vh;
   position: relative;
@@ -75,13 +69,12 @@ header {
 
   @media (max-aspect-ratio: 2040/1342) {
     display: flex;
-    max-height: calc(100dvh);
-    min-height: 100dvh;
+    max-height: 120vmin;
   }
 
   &::before {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     top: 0;
     left: 0;
     content: "";
@@ -104,11 +97,21 @@ header {
     padding-bottom: 25vh;
     z-index: 99;
     position: relative;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      padding: 4em 2em;
+
+      padding-bottom: 12vh;
+    }
   }
 
   h1 {
     font-size: 10rem;
     line-height: 100%;
+
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      font-size: 25vw;
+    }
   }
 
   #bit {
