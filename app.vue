@@ -39,7 +39,7 @@ onMounted(() => {
 
 useHead({
   link: [
-    { rel: "icon", type: "image/svg", href: "/favicon.svg" },
+    { rel: "icon", type: "image/svg", href: "/img/red-logo.svg" },
     {
       rel: "preconnect",
       href: "https://fonts.googleapis.com",

@@ -161,14 +161,24 @@
 </template>
 
 <script setup lang="ts">
-const bio = ref("TBD");
+const bio = ref(
+  "A student-run club at RMIT University committed to engaging students with academic and social events that further their professional development."
+);
 
 useHead({
-  title: "RMIT CSIT",
+  title: "RMIT CSIT Society",
   meta: [
     {
       name: "description",
       content: bio,
+    },
+    {
+      name: "og:image",
+      content: "/img/home-thumb.jpg",
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
     },
   ],
 });
