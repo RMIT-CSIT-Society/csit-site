@@ -167,7 +167,7 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
 .os-bg {
   height: 100vh;
   width: 100%;
-  background: url("img/os-bg.jpg");
+  background: url("/img/os-bg.jpg");
   background-size: 100% 100%;
   transition: 1.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) all 0.9s;
   background-position: center;
