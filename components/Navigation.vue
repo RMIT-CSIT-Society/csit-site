@@ -11,7 +11,10 @@
     </div>
   </div>
 
-  <div id="navigation-wrapper" :class="{ opened: opened }">
+  <div
+    id="navigation-wrapper"
+    :class="{ opened: opened, disableTopOffset: disableTopOffset }"
+  >
     <div class="nav-container">
       <div class="nav-container-wrapper">
         <NuxtLink to="/" id="logo-link">
@@ -64,6 +67,10 @@
 </template>
 
 <script setup lang="ts">
+defineProps<{
+  disableTopOffset?: boolean;
+}>();
+
 const activeSection = ref("");
 const hide = ref(false);
 const opened = ref(false);
@@ -230,6 +237,11 @@ nav {
   transition: 0.75s cubic-bezier(0.61, 0.01, 0.03, 0.99) all;
   view-transition-name: navigation;
 
+  &.disableTopOffset {
+    top: 0;
+    position: relative;
+  }
+
   //xlarge screens
   @media screen and (min-width: map.get($breakpoint, "large")) {
     pointer-events: none;
@@ -266,6 +278,10 @@ nav {
     font-size: 2.369rem;
     align-items: center;
     top: 0;
+
+    &.disableTopOffset {
+      position: fixed;
+    }
 
     #logo-link {
       display: none;
