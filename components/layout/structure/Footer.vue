@@ -28,7 +28,10 @@
               <div id="socials">
                 <template v-for="platform in socials">
                   <a :href="platform.url">
-                    <i class="fa-brands" :class="`fa-${platform.name}`"></i>
+                    <i
+                      class="fa-brands"
+                      :class="`fa-${platform.icon_name}`"
+                    ></i>
                   </a>
                 </template>
               </div>
@@ -51,20 +54,7 @@ defineProps<{
   hideCallToAction?: boolean;
 }>();
 
-const socials = ref([
-  {
-    name: "instagram",
-    url: "https://www.instagram.com/rmitcsitsociety/",
-  },
-  {
-    name: "linkedin",
-    url: "https://www.linkedin.com/company/rmit-csit-society/",
-  },
-  {
-    name: "discord",
-    url: "https://discord.csitsociety.club/",
-  },
-]);
+const { data: socials } = await useFetch("/api/socials");
 </script>
 
 <style lang="scss" scoped>
