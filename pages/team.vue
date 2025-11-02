@@ -64,6 +64,12 @@
         :selectedMember="selectedMember"
         v-model:activeWindow="activeWindow"
       />
+
+      <div id="floating-back-button">
+        <NuxtLink to="/" class="button">
+          <i class="material-symbols-outlined"> arrow_back </i> Back to home
+        </NuxtLink>
+      </div>
     </OSWindowArea>
     <div class="os-bg" @click="activeWindow = ''"></div>
   </div>
@@ -161,7 +167,7 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
 .os-bg {
   height: 100vh;
   width: 100%;
-  background: url("img/os-bg.png");
+  background: url("img/os-bg.jpg");
   background-size: 100% 100%;
   transition: 1.5s cubic-bezier(0.61, 0.01, 0.03, 0.99) all 0.9s;
   background-position: center;
@@ -181,6 +187,33 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
   @media screen and (max-width: map.get($breakpoint, "medium")) {
     font-size: 0.35em;
     line-height: 100%;
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    transform: translate(-50%, 100%);
+  }
+  65% {
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+#floating-back-button {
+  position: fixed;
+  z-index: 99999;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: slideInUp 1s ease-out;
+
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
   }
 }
 </style>
