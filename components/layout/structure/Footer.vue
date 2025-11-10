@@ -43,6 +43,12 @@
               >RMIT Computer Science and Information Technology Society</small
             >
             <small>ABN: 62 597 445 914</small>
+            <br />
+            <small
+              >Designed and Built by
+              <a href="https://mechetle.com">Mechetle</a> - 2025</small
+            >
+            <small>Expanded by CSIT Insiders</small>
           </Cell>
         </Row>
       </Container>
