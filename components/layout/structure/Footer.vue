@@ -5,8 +5,9 @@
         <Cell id="cta" class="large-12">
           <h2>Join us</h2>
           <p>
-            It's free to become a member. As a 2024 RMIT CSIT Member, you’ll be
-            invited to attend our events.
+            It's free to become a member. As a
+            {{ new Date().getFullYear() }} RMIT CSIT Member, you’ll be invited
+            to attend our events.
           </p>
 
           <div class="button-row">
