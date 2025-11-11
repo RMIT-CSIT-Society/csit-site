@@ -44,11 +44,12 @@
             >
             <small>ABN: 62 597 445 914</small>
             <br />
-            <small
-              >Designed and Built by
-              <a href="https://mechetle.com">Mechetle</a> - 2025</small
-            >
-            <small>Expanded by CSIT Insiders</small>
+            <p class="credits">
+              /* Designed and Built by
+              <a href="https://mechetle.com">Mechetle</a>
+              <br />
+              Expanded by CSIT Web Team */
+            </p>
           </Cell>
         </Row>
       </Container>
@@ -76,6 +77,11 @@ const { data: socials } = await useFetch("/api/socials");
   display: flex;
   flex-direction: column;
   color: rgba(255, 255, 255, 0.4);
+
+  p {
+    font-size: 0.5em;
+    font-family: "Space Mono", monospace;
+  }
 }
 
 footer {
