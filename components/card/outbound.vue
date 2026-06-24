@@ -2,14 +2,16 @@
   <div>
     <div class="outbound-card">
       <a :href="link"></a>
-      <div class="blur-overlay">
 
-      </div>
+      <div class="blur-overlay"></div>
+
       <div class="card-content">
-        <h3>{{ title }}
-        </h3>
-        <h5><slot></slot></h5>
+        <h3>{{ title }}</h3>
+        <h5>
+          <slot></slot>
+        </h5>
       </div>
+
       <nuxt-img class="card" :src="img"></nuxt-img>
     </div>
   </div>

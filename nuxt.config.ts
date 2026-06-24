@@ -13,9 +13,6 @@ export default defineNuxtConfig({
   modules: ["@vueuse/nuxt", "@nuxt/image", "@tresjs/nuxt", "@pinia/nuxt"],
 
   vite: {
-    optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit', 'three', '@tresjs/cientos', 'dayjs'],
-    },
     css: {
       preprocessorOptions: {
         scss: {
