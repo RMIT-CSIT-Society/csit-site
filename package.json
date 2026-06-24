@@ -10,30 +10,28 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/image": "^2.0.0",
-    "@pinia/nuxt": "^0.11.3",
-    "@tresjs/cientos": "^4.3.1",
-    "@tresjs/core": "^4.3.6",
+    "@nuxt/image": "rc",
+    "@pinia/nuxt": "^0.11.0",
+    "@tresjs/cientos": "^4.3.0",
+    "@tresjs/core": "^4.3.3",
     "@tresjs/nuxt": "^3.0.8",
-    "@vueuse/components": "^13.9.0",
-    "@vueuse/core": "^10.11.1",
-    "baseline-browser-mapping": "^2.10.38",
-    "caniuse-lite": "^1.0.30001799",
+    "@vueuse/components": "^13.0.0",
+    "@vueuse/core": "^10.4.1",
     "csit-website": "file:",
-    "dayjs": "^1.11.21",
-    "marked": "^16.4.2",
-    "pinia": "^3.0.4",
+    "dayjs": "^1.11.13",
+    "marked": "^16.4.1",
+    "nuxt": "^3.12.4",
+    "pinia": "^3.0.2",
     "sharp": "0.33.0-alpha.6",
     "three": "^0.176.0",
     "vue": "latest",
     "vue-notion": "3.0.0-beta.1",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@types/three": "^0.176.0",
-    "@vueuse/nuxt": "^14.3.0",
-    "nuxt": "^4.4.8",
-    "sass": "^1.101.0"
+    "@vueuse/nuxt": "^10.5.0",
+    "sass": "^1.69.0"
   },
   "trustedDependencies": [
     "sharp"
