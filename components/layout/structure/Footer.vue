@@ -11,10 +11,20 @@
           </p>
 
           <div class="button-row">
-            <NuxtLink class="button" to="https://join.csitsociety.club/"
-              >Become a member</NuxtLink
-            >
-            <NuxtLink class="button" to="/contact">Join our committee</NuxtLink>
+            <NuxtLink 
+              class="button" 
+              to="https://join.csitsociety.club/" 
+              target="_blank"
+              external>
+              Become a member
+            </NuxtLink>
+            <NuxtLink 
+              class="button" 
+              to="https://forms.office.com/r/ZPee0vb05p"
+              target="_blank"
+              external>
+              Join our committee
+            </NuxtLink>
           </div>
         </Cell>
       </Row>
@@ -42,7 +52,7 @@
             <small
               >RMIT Computer Science and Information Technology Society</small
             >
-            <small>ABN: 62 597 445 914</small>
+            <!-- <small>ABN: 62 597 445 914</small> -->
           </Cell>
         </Row>
       </Container>
