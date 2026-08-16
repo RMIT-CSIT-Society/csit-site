@@ -52,7 +52,14 @@
             <small
               >RMIT Computer Science and Information Technology Society</small
             >
-            <!-- <small>ABN: 62 597 445 914</small> -->
+            <small>ABN: 62 597 445 914</small>
+            <br />
+            <p class="credits">
+              /* Designed and Built by
+              <a href="https://mechetle.com">Mechetle</a>
+              <br />
+              Expanded by CSIT Web Team */
+            </p>
           </Cell>
         </Row>
       </Container>
@@ -80,6 +87,11 @@ const { data: socials } = await useFetch("/api/socials");
   display: flex;
   flex-direction: column;
   color: rgba(255, 255, 255, 0.4);
+
+  p {
+    font-size: 0.5em;
+    font-family: "Space Mono", monospace;
+  }
 }
 
 footer {
