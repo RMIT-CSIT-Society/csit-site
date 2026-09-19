@@ -8,6 +8,8 @@ export const execRoles = [
   "Treasurer",
   "Secretary",
   "Events Manager",
+  "Sponsorship Officer",
+  "Social Media Manager"
 ];
 
 const containsAny = (arr: string[], values: string[]): boolean => {

@@ -100,7 +100,7 @@ const draggingCoords = ref({
   x: 0,
   y: 0,
 });
-const theTeamCurrentTab = ref("2025");
+const theTeamCurrentTab = ref("2026");
 
 const selectedMember = ref("");
 
