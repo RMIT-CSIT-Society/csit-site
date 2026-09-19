@@ -15,7 +15,7 @@
         style="min-width: 900px; min-height: 500px; width: 55vw; height: 65vh"
         v-if="members"
       >
-        <template v-if="theTeamCurrentTab === '2025'">
+        <template v-if="theTeamCurrentTab === '2026'">
           <pre id="the-team-heading">
             {{ theTeamHeading }}
           </pre>
