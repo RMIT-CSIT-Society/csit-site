@@ -31,10 +31,13 @@
       <img :src="data.img || ''" />
     </div>
 
-    <Container id="header-video-wrapper" v-if="data?.headerMedia.url">
+    <Container
+      id="header-video-wrapper"
+      v-if="data?.headerMedia.url && data?.headerMedia.type !== 'thumbnail'"
+    >
       <div
         id="header-video"
-        :class="{ video: data?.headerMedia.type != 'thumbnail' }"
+        class="video"
       >
         <template v-if="data?.headerMedia.type == 'vimeo'">
           <iframe
@@ -56,7 +59,15 @@
             :src="data.headerMedia.url"
             title="YouTube video player"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
@@ -142,34 +153,38 @@ const descriptionBody = computed(() => {
   // Process any markdown in the description
   console.log(
     "Processing markdown for description",
-    marked.parse(data.value.desc)
+    marked.parse(data.value.desc),
   );
   return marked.parse(data.value.desc);
 });
 
 const styles = computed(() => {
+  if (!data.value?.style) return "";
+
   let generatedStyles = "";
 
-  for (let key in data.value?.style) {
-    let props = "";
+  for (const key in data.value.style) {
+    const selectorStyle = data.value.style[key];
+    if (!selectorStyle) continue;
 
-    let selectorStyle = data.value?.style[key];
-    for (let prop in selectorStyle) {
-      props =
-        props +
-        `${prop.replace(
-          /[A-Z]+(?![a-z])|[A-Z]/g,
-          ($, ofs) => (ofs ? "-" : "") + $.toLowerCase()
-        )}: ${
-          typeof selectorStyle[prop] == "string" &&
-          selectorStyle[prop].length > 0
-            ? selectorStyle[prop]
-            : selectorStyle[prop].length > 0 // else if it's an array
-            ? //@ts-ignore
-              selectorStyle[prop].join(" ")
-            : "initial"
-        }`;
-      props = props + ";";
+    let props = "";
+    for (const prop in selectorStyle) {
+      const val = selectorStyle[prop];
+      const formattedProp = prop.replace(
+        /[A-Z]+(?![a-z])|[A-Z]/g,
+        ($, ofs) => (ofs ? "-" : "") + $.toLowerCase(),
+      );
+
+      const isString = typeof val === "string" && val.length > 0;
+      const isArray = Array.isArray(val) && (val as unknown[]).length > 0;
+
+      const formattedVal = isString
+        ? val
+        : isArray
+          ? (val as unknown[]).join(" ")
+          : "initial";
+
+      props = props + `${formattedProp}: ${formattedVal};`;
     }
 
     generatedStyles = generatedStyles + ` #${key} {${props}}`;
