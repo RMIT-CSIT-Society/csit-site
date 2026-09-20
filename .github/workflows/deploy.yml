@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - api-migration-2026
   pull_request:
     branches:
       - master
@@ -39,4 +38,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=csit-site --branch="${{ github.head_ref || github.ref_name }}" --commit-dirty=true
+          command: pages deploy dist --project-name=csit-site --commit-dirty=true
