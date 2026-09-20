@@ -12,8 +12,9 @@ export const execRoles = [
   "Social Media Manager"
 ];
 
-const containsAny = (arr: string[], values: string[]): boolean => {
-  return arr.some((item) => values.includes(item));
+const containsAny = (arr: string[] | string, values: string[]): boolean => {
+  const list = Array.isArray(arr) ? arr : typeof arr === "string" ? [arr] : [];
+  return list.some((item) => values.includes(item));
 };
 
 export default function (members: Ref<MemberRecords | null>) {
@@ -49,7 +50,12 @@ export default function (members: Ref<MemberRecords | null>) {
           // is not found, we want to push them to the end of the list.
           if (!memberData) return Number.MAX_SAFE_INTEGER;
 
-          const roles = memberData.years[year] || [];
+          const rawRoles = memberData.years[year] || [];
+          const roles = Array.isArray(rawRoles)
+            ? rawRoles
+            : typeof rawRoles === "string"
+            ? (rawRoles as string).split(",").map((s) => s.trim())
+            : [];
           const execRole = roles.find((role) => execRoles.includes(role));
 
           return execRole

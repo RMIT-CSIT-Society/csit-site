@@ -18,7 +18,13 @@ export default defineNuxtConfig({
 
   vite: {
     optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit', 'three', '@tresjs/cientos', 'dayjs'],
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "three",
+        "@tresjs/cientos",
+        "dayjs",
+      ],
     },
     css: {
       preprocessorOptions: {
@@ -30,7 +36,10 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    apiEndpoint: "https://csit.mache.mechetle.com/api",
+    apiEndpoint: process.env.NUXT_API_ENDPOINT || "https://admin.csitsociety.club/api",
+    public: {
+      apiEndpoint: process.env.NUXT_PUBLIC_API_ENDPOINT || "https://admin.csitsociety.club/api",
+    },
   },
 
   experimental: {
