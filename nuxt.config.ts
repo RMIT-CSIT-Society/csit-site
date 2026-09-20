@@ -36,9 +36,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    apiEndpoint: process.env.NUXT_API_ENDPOINT || "https://admin.csitsociety.club/api",
+    apiEndpoint: "http://localhost:3001/api",
     public: {
-      apiEndpoint: process.env.NUXT_PUBLIC_API_ENDPOINT || "https://admin.csitsociety.club/api",
+      apiEndpoint: "http://localhost:3001/api",
     },
   },
 
