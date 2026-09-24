@@ -10,16 +10,6 @@
 import "~/assets/scss/grids.scss";
 import "~/assets/scss/type.scss";
 
-const mounted = ref(false);
-const completedLoaded = ref(false);
-
-onMounted(() => {
-  mounted.value = true;
-  indexLoader.addEventListener("complete", () => {
-    completedLoaded.value = true;
-  });
-});
-
 useHead({
   link: [
     { rel: "icon", type: "image/svg", href: "/img/red-logo.svg" },
