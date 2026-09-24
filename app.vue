@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div
-      id="index-loader"
-      ref="indexIntroContainer"
-      v-if="!completedLoaded"
-    ></div>
-
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -15,27 +9,6 @@
 <script setup>
 import "~/assets/scss/grids.scss";
 import "~/assets/scss/type.scss";
-
-const mounted = ref(false);
-const completedLoaded = ref(false);
-
-onMounted(() => {
-  mounted.value = true;
-
-  //@ts-ignore
-  const indexLoader = lottie.loadAnimation({
-    container: document.querySelector("#index-loader"),
-    renderer: "svg",
-    loop: false,
-    autoplay: true,
-    path: "lottie/index-intro.json",
-    initialSegment: [0, 131],
-  });
-
-  indexLoader.addEventListener("complete", () => {
-    completedLoaded.value = true;
-  });
-});
 
 useHead({
   link: [
@@ -63,9 +36,6 @@ useHead({
     },
   ],
   script: [
-    {
-      src: "/js/lottie.min.js",
-    },
     {
       src: "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js",
     },
@@ -132,25 +102,6 @@ html {
 
   &:hover {
     background: #f1b5b5;
-  }
-}
-
-#index-loader {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1920/1602;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  pointer-events: none;
-
-  @media screen and (max-width: map.get($breakpoint, "medium")) {
-    aspect-ratio: inherit;
-    height: 100%;
-    scale: 2.2;
-    rotate: 270deg;
-    z-index: -1;
   }
 }
 
