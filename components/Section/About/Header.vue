@@ -58,12 +58,14 @@ onMounted(() => {
 
   // Scene & Camera
   scene = new THREE.Scene();
+  const FIELD_OF_VIEW = 75;
+  const NEAR_LIMIT = 0.1;
+  const FAR_LIMIT = 140;
   camera = new THREE.PerspectiveCamera(
-    75,
+    FIELD_OF_VIEW,
     window.innerWidth / window.innerHeight,
-    0.1,
-    100
-  );
+    NEAR_LIMIT,
+    FAR_LIMIT);
   camera.position.z = 40;
 
   // Renderer
