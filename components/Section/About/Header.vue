@@ -14,29 +14,27 @@ const canvas = ref<HTMLCanvasElement | null>(null);
 const URL_STUB = "img/about/";
 
 const imageUrls = [
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+
+  //
+  "img1.png",
+  "img2.png",
+  "img3.png",
+  "img4.png",
+  "img5.png",
   ///
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+  "img6.png",
+  "img7.png",
+  "img8.png",
+  "img9.png",
+  "img10.png",
   ///
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+  "img11.png",
+  "img12.png",
+  "img13.png",
+  "img14.png",
+  "img16.png",
   ///
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+  
   ///
 ].map((url) => URL_STUB + url);
 
