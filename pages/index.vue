@@ -4,7 +4,7 @@
       <div id="bit">
         <TresCanvas preset="realistic" window-size>
           <!-- [0, 20, 100] -->
-          <TresPerspectiveCamera :position="[0, 10, 100]" />
+          <TresPerspectiveCamera :position="[0, 10, 110]" />
           <!-- <OrbitControls :enable-pan="false" :enableZoom="false" /> -->
           <MouseParallax :factor="5" :ease="3" />
           <!-- <TresGridHelper :args="[100, 100]" /> -->

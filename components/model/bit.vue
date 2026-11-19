@@ -5,7 +5,24 @@
 </template>
 
 <script setup lang="ts">
-const { scene: model, animations } = await useGLTF("/models/bit-model.glb");
+const { scene: model, animations } = await useGLTF("/models/bit-model-wireframe.glb");
+import * as THREE from "three";
+
+model.traverse((child) => {
+  const colorWireFrame = 0xffffff  ;
+  if (child instanceof THREE.Mesh) {
+    const edges = new THREE.EdgesGeometry(child.geometry, 15);
+    const lines = new THREE.LineSegments(edges,
+      new THREE.LineBasicMaterial({ color: colorWireFrame,transparent: true,opacity: 0.3}));
+    child.add(lines);
+    child.material.visible = false;
+  }
+});
+
+// Model Angle Controls
+model.rotation.x = 0.5;
+model.rotation.y = 6;
+model.rotation.z = 0;
 
 const { actions } = useAnimations(animations, model);
 console.log(actions);
