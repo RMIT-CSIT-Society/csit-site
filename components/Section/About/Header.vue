@@ -16,25 +16,27 @@ const URL_STUB = "img/about/";
 const imageUrls = [
 
   //
-  "img1.png",
-  "img2.png",
-  "img3.png",
-  "img4.png",
-  "img5.png",
+  "img1.webp",
+  "img3.webp",
+  "img4.webp",
+  "img5.webp",
   ///
-  "img6.png",
+  "img6.webp",
   "img7.png",
-  "img8.png",
-  "img9.png",
-  "img10.png",
+  "img8.webp",
+  "img9.webp",
+  "img10.webp",
   ///
-  "img11.png",
-  "img12.png",
-  "img13.png",
-  "img14.png",
-  "img16.png",
+  "img11.webp",
+  "img12.webp",
+  "img13.webp",
+  "img14.webp",
+  "img16.webp",
   ///
-  
+  "IMG_0813.webp",
+  "IMG_9340.webp",
+  "IMG_9351.webp",
+  "IMG_9362.webp",
   ///
 ].map((url) => URL_STUB + url);
 
