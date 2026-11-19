@@ -14,29 +14,29 @@ const canvas = ref<HTMLCanvasElement | null>(null);
 const URL_STUB = "img/about/";
 
 const imageUrls = [
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+
+  //
+  "img1.webp",
+  "img3.webp",
+  "img4.webp",
+  "img5.webp",
   ///
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+  "img6.webp",
+  "img7.png",
+  "img8.webp",
+  "img9.webp",
+  "img10.webp",
   ///
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+  "img11.webp",
+  "img12.webp",
+  "img13.webp",
+  "img14.webp",
+  "img16.webp",
   ///
-  "IMG_0813.png",
-  "IMG_9340.png",
-  "IMG_9351.png",
-  "IMG_9362.png",
-  "IMG_9391.png",
+  "IMG_0813.webp",
+  "IMG_9340.webp",
+  "IMG_9351.webp",
+  "IMG_9362.webp",
   ///
 ].map((url) => URL_STUB + url);
 
@@ -60,12 +60,14 @@ onMounted(() => {
 
   // Scene & Camera
   scene = new THREE.Scene();
+  const FIELD_OF_VIEW = 75;
+  const NEAR_LIMIT = 0.1;
+  const FAR_LIMIT = 140;
   camera = new THREE.PerspectiveCamera(
-    75,
+    FIELD_OF_VIEW,
     window.innerWidth / window.innerHeight,
-    0.1,
-    100
-  );
+    NEAR_LIMIT,
+    FAR_LIMIT);
   camera.position.z = 40;
 
   // Renderer
