@@ -40,10 +40,10 @@
         <Grid>
           <Cell class="large-3" id="top-left"> </Cell>
           <Cell class="large-6" id="intro-text">
-            <h2 class="h5">
-              A student-run club at RMIT University committed to engaging
+            <h2 class="h6">
+              <span class="h5">RMIT CSIT Society </span> is student-run club at RMIT University committed to engaging
               students with academic and social events that further their
-              professional development.
+              professional devselopment.
             </h2>
 
             <div id="key-notes">
@@ -378,14 +378,19 @@ section {
   }
 
   #intro-text {
-    padding: 3.5em;
+    padding: 4.5em 3.5em 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
+
+    h1 {
+      margin-bottom: 0;
+    }
 
     h2 {
       margin-top: 0;
+      margin-bottom: 2em;
       max-width: 960px;
       margin-right: 2em;
     }
@@ -403,7 +408,7 @@ section {
   #key-notes {
     display: flex;
     gap: 2.5em;
-    margin-bottom: 2rem;
+    margin-bottom: 2.3rem;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       flex-direction: column;
