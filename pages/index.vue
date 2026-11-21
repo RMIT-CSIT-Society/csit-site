@@ -99,7 +99,7 @@
         <Grid>
           <Cell class="large-4" id="events-section-heading">
             <h2 class="h1">
-              What's <br />going on <span class="text-cursor">.</span>
+              <br />Events <span class="text-cursor">.</span>
             </h2>
 
             <p class="h6">Check out what events we have coming up!</p>
@@ -211,12 +211,12 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
   params: { active: "true" },
 });
 
-// Carousel
+// Controls the images in carousel
 const carouselUrls = [
-  "/img/about/img12.webp",
+  "/img/about/img7.webp",
   "/img/about/img9.webp",
   "/img/about/img6.webp",
-  "/img/about/img7.webp",
+  "/img/about/img12.webp",
   "/img/about/img6.webp"
 ]
 
