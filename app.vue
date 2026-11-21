@@ -141,7 +141,7 @@ html {
   }
 
   &:hover {
-    background: rgba(255, 254, 254, 0.826); // hover bg    
+    background: rgba(255, 254, 254, 0.977); // hover bg    
     .shift{
       transform: translateX(-3px);
       color: #c92121; // hover text color

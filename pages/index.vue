@@ -212,12 +212,11 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
 });
 
 // Carousel
-
 const carouselUrls = [
   "/img/about/img12.webp",
   "/img/about/img9.webp",
   "/img/about/img6.webp",
-  "/img/about/img5.webp",
+  "/img/about/img7.webp",
   "/img/about/img6.webp"
 ]
 
