@@ -41,7 +41,8 @@
           <Cell class="large-3" id="top-left"> </Cell>
           <Cell class="large-6" id="intro-text">
             <h2 class="h6">
-              <span class="h5">RMIT CSIT Society </span> is student-run club at RMIT University committed to engaging
+              <span class="h5 text-special"> RMIT CSIT Society </span>
+              is student-run club at RMIT University committed to engaging
               students with academic and social events that further their
               professional devselopment.
             </h2>
