@@ -70,7 +70,16 @@
               </div>
             </div>
 
-            <NuxtLink class="button" to="/about">More about us</NuxtLink>
+            <div id="intro-buttons">
+              <NuxtLink class="button-special" to="https://campus.hellorubric.com/?tab=memberships&s=2960">
+                <span class="shift">Become a member</span>
+                <div class="highlight"></div> 
+              </NuxtLink>
+              <NuxtLink class="button-special" to="/about">
+                <span class="shift">More about us</span>
+                <div class="highlight"></div> 
+              </NuxtLink>
+            </div>
           </Cell>
           <Cell class="large-12" id="bottom-sprites">
             <div id="lights"></div>
@@ -405,7 +414,13 @@ section {
       font-size: 0.9em;
     }
   }
+
+  #intro-buttons {
+    display : flex;
+    gap: 3em;
+  }
 }
+
 
 #index-page {
   position: relative;
@@ -545,7 +560,7 @@ header {
 
   .grid {
     gap: 0;
-    // CSIT LOGO - every c cell is part of the logo
+    /* CSIT LOGO - every c cell is part of the logo */
     grid-template-areas:
       "c1 c1 c1 c1 c1 c5 c7 c7 c7"
       "c2 n0 n1 c4 n8 n9 n10 c8 n14"
