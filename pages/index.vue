@@ -48,21 +48,21 @@
 
             <div id="key-notes">
               <div id="key-note">
-                <h6>🤵‍♀️ Industry Panels</h6>
+                <h6>Industry Panels</h6>
                 <p>
                   Expert panel discussions that delve into the realities of
                   working in the tech industry.
                 </p>
               </div>
               <div id="key-note">
-                <h6>🎓 Network</h6>
+                <h6>Network</h6>
                 <p>
                   Networking and celebratory social events to make new friends
                   and meet future employers.
                 </p>
               </div>
               <div id="key-note">
-                <h6>🤖 Workshops</h6>
+                <h6>Workshops</h6>
                 <p>
                   Hands-on workshops with emerging software and hardware such as
                   VR and robotics.
@@ -402,7 +402,7 @@ section {
 
   #key-notes {
     display: flex;
-    gap: 3em;
+    gap: 2.5em;
     margin-bottom: 2rem;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
