@@ -469,7 +469,7 @@ section {
   #key-notes {
     display: flex;
     gap: 2.5em;
-    margin-bottom: 2.3rem;
+    margin-bottom: 2.5rem;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       flex-direction: column;
