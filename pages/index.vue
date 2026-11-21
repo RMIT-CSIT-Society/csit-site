@@ -38,7 +38,10 @@
     <section id="intro">
       <Container>
         <Grid>
-          <Cell class="large-3" id="top-left"> </Cell>
+          <Cell class="large-3" id="top-left"> 
+            <div id="top-left-next"></div>
+          </Cell>
+            
           <Cell class="large-6" id="intro-text">
             <h2 class="h6">
               <span class="h5 text-special"> RMIT CSIT Society </span>
@@ -207,6 +210,50 @@ const { data: eventsInactive } = await useFetch("/api/events", {
 const { data: eventsUpcoming } = await useFetch("/api/events", {
   params: { active: "true" },
 });
+
+// Carousel
+
+const carouselUrls = [
+  "/img/about/img12.webp",
+  "/img/about/img9.webp",
+  "/img/about/img6.webp",
+  "/img/about/img5.webp",
+  "/img/about/img6.webp"
+]
+
+let slideIndex = 0;
+let timer: ReturnType<typeof setInterval>;
+
+function carousel() {
+  const segment = document.querySelector<HTMLElement>("#top-left");
+  const next = document.querySelector<HTMLElement>("#top-left-next");
+  if (!segment || !next) {return;}
+
+  const nextUrl = `url(${carouselUrls[slideIndex]})`;
+
+  next.style.backgroundImage = nextUrl;
+  next.classList.add("show");
+
+  setTimeout(() => {
+    segment.style.backgroundImage = nextUrl;
+    next.classList.remove("show");
+  }, 1000);
+
+  slideIndex++;
+  if (slideIndex >= carouselUrls.length) {slideIndex = 0;}
+}
+
+onMounted(() => {
+  const segment = document.querySelector<HTMLElement>("#top-left");
+  if (segment) {segment.style.backgroundImage = `url(${carouselUrls[0]})`;}
+  slideIndex = 1;
+  timer = setInterval(carousel, 4000);
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -361,17 +408,31 @@ section {
   z-index: 13;
 
   #top-left {
-    background: url("~/assets/img/about-us-top-left.jpg");
     min-height: 80lvh;
     background-repeat: no-repeat;
     background-size: auto calc(100% + 20vh);
     background-position: center;
+    position: relative;
 
     animation-name: image-parallax;
     animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
     animation-duration: 1ms;
     animation-timeline: --scrollTimeline;
     animation-range: contain 0% contain 100%;
+
+    #top-left-next {
+      position: absolute;
+      inset: 0;
+      background-repeat: inherit;
+      background-size: inherit;
+      background-position: inherit;
+      opacity: 0;
+      transition: opacity 1s ease;
+
+      &.show {
+        opacity: 1;
+      }
+    }
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       min-height: 50lvh;
