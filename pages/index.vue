@@ -120,16 +120,18 @@
 
         <Grid>
           <Cell class="large-3" id="past-events-header">
-            <h3 class="h4">Past featured events</h3>
+            <!-- <h3 class="h4">Past featured events</h3>
             <p>
               A snapshot of our best moments — panels, workshops, and socials
               that kept the energy high.
-            </p>
+            </p> -->
           </Cell>
-          <CardEvent
+          <img src="/img/cat-construction.png"></img>
+          <p> Area under construction</p>
+          <!-- <CardEvent
             v-for="clubEvent in eventsInactive"
             :clubEvent="clubEvent"
-          ></CardEvent>
+          ></CardEvent> -->
         </Grid>
       </Container>
 
