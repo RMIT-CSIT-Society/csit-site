@@ -25,7 +25,7 @@ defineProps<{
 
 a {
   text-decoration: none;
-  color: #858585;
+  color: #474747;
   font-weight: 700;
   line-height: 1.2;
   position: relative;
@@ -61,11 +61,11 @@ a {
   }
 
   &:hover {
-    color: #48546a;
+    color: #2a363f;
 
     .highlight::after {
       transform: scaleX(1);
-      background: rgba(130, 162, 214, 0.368);
+      background: rgba(214, 130, 130, 0.368);
     }
   }
 

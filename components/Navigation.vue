@@ -202,8 +202,9 @@ onMounted(() =>
 
 nav {
   display: flex;
-  gap: 1.5em;
+  gap: 1.10em;
   z-index: 1;
+  font-size: 1.15em;
 }
 
 @keyframes headerScrollAnimation {
