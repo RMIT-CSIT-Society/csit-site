@@ -102,12 +102,19 @@
               <br />Events <span class="text-cursor">.</span>
             </h2>
 
-            <p class="h6">Check out what events we have coming up!</p>
+            <p class="h6">Check out we've been up to!</p>
           </Cell>
           <Cell class="large-5" id="events-section-heading-bit">
             <NuxtImg src="/img/pixelated-bit.png" />
           </Cell>
         </Grid>
+
+          <!-- REMOVE LATER ONCE EVENTS SEGMENT IMPLEMENTED -->
+          <NuxtLink id="events-button" class="button-special" to="https://www.instagram.com/rmitcsitsociety/">
+            <span class="shift"> Check out our events here <</span>
+            <div class="highlight"></div> 
+          </NuxtLink>
+
       </Container>
 
       <Container id="events">
@@ -259,6 +266,13 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @use "sass:map";
+
+#events-button {
+  pointer-events: auto;
+  margin-left: 1em;
+  width:15em;
+  font-size: 1.2em;
+}
 
 #bit {
   position: fixed !important;
