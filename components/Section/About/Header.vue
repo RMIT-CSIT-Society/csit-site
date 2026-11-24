@@ -87,7 +87,7 @@ onMounted(() => {
 
   const gridMaterial = grid.material as THREE.Material;
   gridMaterial.transparent = true;
-  gridMaterial.opacity = 0.2;
+  gridMaterial.opacity = 0.3;
 
   scene.add(grid);
 
