@@ -76,11 +76,19 @@ onMounted(() => {
     backdrop-filter: blur(50px);
   }
 }
-
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 #csit-logo {
   width: 1.99em;
   height: fit-content;
   display: block;
+  animation: fade-in 1s ease-out 0.3s both;
 }
 
 #csit-highlight {
