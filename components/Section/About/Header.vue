@@ -84,6 +84,11 @@ onMounted(() => {
   grid.position.x = -80;
   grid.rotation.x = Math.PI / 2;
   grid.position.z = -101; 
+
+  const gridMaterial = grid.material as THREE.Material;
+  gridMaterial.transparent = true;
+  gridMaterial.opacity = 0.2;
+
   scene.add(grid);
 
   // Renderer
@@ -220,7 +225,7 @@ onMounted(() => {
 
   // Animate
   function animate() {
-    const SCROLL_INTENSITY = 0.05;
+    const SCROLL_INTENSITY = 0.03;
     requestAnimationFrame(animate);
     camera.position.y = -scrollY * SCROLL_INTENSITY;
     camera.rotation.x = mouseY * 0.05;
