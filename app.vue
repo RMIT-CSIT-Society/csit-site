@@ -94,7 +94,7 @@ html {
 .pill-toggle {
   padding: 0.75em 1em;
   border: 0;
-  background: #d99090;
+  background: #e6e6e6dc;
   color: #b22222;
   cursor: pointer;
   text-decoration: none;
@@ -104,6 +104,55 @@ html {
     background: #f1b5b5;
   }
 }
+
+.button-special {
+  padding: 0.75em 1em;
+  background: #e9e7e7;
+  color: #121212d4; // text color
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  isolation: isolate;
+
+  .shift {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 8%;
+    width: 100%;
+    z-index: -1;
+
+    &::after {
+      content: "";
+      display: block;
+      background: rgb(237, 60, 60); // bar color
+      width: 100%;
+      height: 100%;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) all;
+    }
+  }
+
+  &:hover {
+    background: rgba(255, 254, 254, 0.977); // hover bg    
+    .shift{
+      transform: translateX(-3px);
+      color: #c92121; // hover text color
+    }
+    .highlight::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+
 
 .os-enter-from {
   .action-bar {

@@ -12,14 +12,14 @@
           x: '4vw',
           y: '10vh',
         }"
-        style="min-width: 900px; min-height: 500px; width: 55vw; height: 65vh"
+        style="min-width: 900px; min-height: 600px; width: 52vw; height: 79vh"
         v-if="members"
       >
         <template v-if="theTeamCurrentTab === '2026'">
           <pre id="the-team-heading">
             {{ theTeamHeading }}
           </pre>
-          <p>(Use your arrow keys or mouse)</p>
+          <p>(Use your mouse)</p>
         </template>
 
         <div
@@ -29,7 +29,7 @@
           <div>
             <p>
               EXECS<br />
-              -----
+              ------
             </p>
             <template v-for="exec in yearToMembersMap[theTeamCurrentTab].execs">
               <OSTeamMemberButton
@@ -43,7 +43,7 @@
           <div>
             <p>
               COMMITTEE<br />
-              ---------
+              ----------
             </p>
             <template
               v-for="committeeMember in yearToMembersMap[theTeamCurrentTab]
@@ -184,10 +184,18 @@ const { yearToMembersMap, theTeamTabs } = useYearToMembersMap(members);
 }
 
 #the-team-heading {
+  font-size: 0.8em;
+  margin-top: 0;
+  margin-bottom: 0;
   @media screen and (max-width: map.get($breakpoint, "medium")) {
     font-size: 0.35em;
     line-height: 100%;
   }
+}
+
+#the-team-heading + p {
+  margin-top: 0;
+  margin-bottom: 0.0em;
 }
 
 @keyframes slideInUp {

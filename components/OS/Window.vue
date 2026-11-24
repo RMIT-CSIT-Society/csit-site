@@ -117,16 +117,6 @@ function onMouseUp() {
       padding: 1em;
     }
 
-    &:not(.active-window) {
-      background: rgba(25, 25, 37, 0.2);
-      z-index: 1;
-
-      .os-window-content,
-      .title-bar {
-        background: rgba(25, 25, 37, 0.3);
-      }
-    }
-
     pre,
     p {
       margin: 0;
@@ -140,7 +130,7 @@ $window-borders-mobile: 8px;
 .os-window {
   padding: $window-borders;
   gap: $window-borders;
-  background: rgba(25, 25, 37, 0.5);
+  background: rgba(25, 25, 37, 0.567);
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -203,7 +193,7 @@ $window-borders-mobile: 8px;
   }
 
   &:not(.active-window) {
-    background: rgba(25, 25, 37, 0.2);
+    background: rgba(25, 25, 37, 0.464);
     z-index: 1;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
@@ -218,7 +208,7 @@ $window-borders-mobile: 8px;
 
     .os-window-content,
     .title-bar {
-      background: rgba(25, 25, 37, 0.3);
+      background: rgba(25, 25, 37, 0.653);
     }
   }
 }
@@ -255,7 +245,7 @@ $window-borders-mobile: 8px;
   height: 56px;
   align-items: baseline;
   gap: 24px;
-  background: rgba(25, 25, 37);
+  background: rgb(32, 29, 48);
   user-select: none;
   border-radius: 5px 5px 0 0;
 

@@ -2,7 +2,7 @@
   <div class="member-button">
     <p>{{ name }}</p>
     <small>
-      <template v-for="role in roles"> {{ role }}, </template>
+      <template v-for="role in roles"> {{ role }} </template>
     </small>
   </div>
 </template>
@@ -19,6 +19,16 @@ const props = defineProps<{
   cursor: pointer;
   position: relative;
   user-select: none;
+
+  p {
+    margin-top: 0.6em;
+    margin-bottom: 0.3em;
+  }
+
+  small {
+    display: block;
+    margin-bottom: 1.3em;
+  }
 
   &::after {
     content: "";

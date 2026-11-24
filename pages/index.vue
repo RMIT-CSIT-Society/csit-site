@@ -38,31 +38,35 @@
     <section id="intro">
       <Container>
         <Grid>
-          <Cell class="large-3" id="top-left"> </Cell>
+          <Cell class="large-3" id="top-left"> 
+            <div id="top-left-next"></div>
+          </Cell>
+            
           <Cell class="large-6" id="intro-text">
-            <h2 class="h5">
-              A student-run club at RMIT University committed to engaging
+            <h2 class="h6">
+              <span class="h5 text-special"> RMIT CSIT Society </span>
+              is student-run club at RMIT University committed to engaging
               students with academic and social events that further their
-              professional development.
+              professional devselopment.
             </h2>
 
             <div id="key-notes">
               <div id="key-note">
-                <h6>🤵‍♀️ Industry Panels</h6>
+                <h6>Industry Panels</h6>
                 <p>
                   Expert panel discussions that delve into the realities of
                   working in the tech industry.
                 </p>
               </div>
               <div id="key-note">
-                <h6>🎓 Network</h6>
+                <h6>Network</h6>
                 <p>
                   Networking and celebratory social events to make new friends
                   and meet future employers.
                 </p>
               </div>
               <div id="key-note">
-                <h6>🤖 Workshops</h6>
+                <h6>Workshops</h6>
                 <p>
                   Hands-on workshops with emerging software and hardware such as
                   VR and robotics.
@@ -70,7 +74,16 @@
               </div>
             </div>
 
-            <NuxtLink class="button" to="/about">More about us</NuxtLink>
+            <div id="intro-buttons">
+              <NuxtLink class="button-special" to="https://campus.hellorubric.com/?tab=memberships&s=2960">
+                <span class="shift">Become a member</span>
+                <div class="highlight"></div> 
+              </NuxtLink>
+              <NuxtLink class="button-special" to="/about">
+                <span class="shift">More about us</span>
+                <div class="highlight"></div> 
+              </NuxtLink>
+            </div>
           </Cell>
           <Cell class="large-12" id="bottom-sprites">
             <div id="lights"></div>
@@ -86,7 +99,7 @@
         <Grid>
           <Cell class="large-4" id="events-section-heading">
             <h2 class="h1">
-              What's <br />going on <span class="text-cursor">.</span>
+              <br />Events <span class="text-cursor">.</span>
             </h2>
 
             <p class="h6">Check out what events we have coming up!</p>
@@ -197,6 +210,49 @@ const { data: eventsInactive } = await useFetch("/api/events", {
 const { data: eventsUpcoming } = await useFetch("/api/events", {
   params: { active: "true" },
 });
+
+// Controls the images in carousel
+const carouselUrls = [
+  "/img/about/img7.webp",
+  "/img/about/img9.webp",
+  "/img/about/img6.webp",
+  "/img/about/img12.webp",
+  "/img/about/img6.webp"
+]
+
+let slideIndex = 0;
+let timer: ReturnType<typeof setInterval>;
+
+function carousel() {
+  const segment = document.querySelector<HTMLElement>("#top-left");
+  const next = document.querySelector<HTMLElement>("#top-left-next");
+  if (!segment || !next) {return;}
+
+  const nextUrl = `url(${carouselUrls[slideIndex]})`;
+
+  next.style.backgroundImage = nextUrl;
+  next.classList.add("show");
+
+  setTimeout(() => {
+    segment.style.backgroundImage = nextUrl;
+    next.classList.remove("show");
+  }, 1000);
+
+  slideIndex++;
+  if (slideIndex >= carouselUrls.length) {slideIndex = 0;}
+}
+
+onMounted(() => {
+  const segment = document.querySelector<HTMLElement>("#top-left");
+  if (segment) {segment.style.backgroundImage = `url(${carouselUrls[0]})`;}
+  slideIndex = 1;
+  timer = setInterval(carousel, 4000);
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -351,11 +407,11 @@ section {
   z-index: 13;
 
   #top-left {
-    background: url("~/assets/img/about-us-top-left.jpg");
     min-height: 80lvh;
     background-repeat: no-repeat;
     background-size: auto calc(100% + 20vh);
     background-position: center;
+    position: relative;
 
     animation-name: image-parallax;
     animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
@@ -363,20 +419,39 @@ section {
     animation-timeline: --scrollTimeline;
     animation-range: contain 0% contain 100%;
 
+    #top-left-next {
+      position: absolute;
+      inset: 0;
+      background-repeat: inherit;
+      background-size: inherit;
+      background-position: inherit;
+      opacity: 0;
+      transition: opacity 1s ease;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       min-height: 50lvh;
     }
   }
 
   #intro-text {
-    padding: 3.5em;
+    padding: 4.5em 3.5em 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
+
+    h1 {
+      margin-bottom: 0;
+    }
 
     h2 {
       margin-top: 0;
+      margin-bottom: 2em;
       max-width: 960px;
       margin-right: 2em;
     }
@@ -393,8 +468,8 @@ section {
 
   #key-notes {
     display: flex;
-    gap: 3em;
-    margin-bottom: 2rem;
+    gap: 2.5em;
+    margin-bottom: 2.5rem;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       flex-direction: column;
@@ -405,7 +480,13 @@ section {
       font-size: 0.9em;
     }
   }
+
+  #intro-buttons {
+    display : flex;
+    gap: 3em;
+  }
 }
+
 
 #index-page {
   position: relative;
@@ -545,7 +626,7 @@ header {
 
   .grid {
     gap: 0;
-    // CSIT LOGO - every c cell is part of the logo
+    /* CSIT LOGO - every c cell is part of the logo */
     grid-template-areas:
       "c1 c1 c1 c1 c1 c5 c7 c7 c7"
       "c2 n0 n1 c4 n8 n9 n10 c8 n14"
