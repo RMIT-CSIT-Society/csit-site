@@ -63,6 +63,7 @@
 #intro-sub-info {
   padding-right: 3em;
   text-wrap: balance;
+  font-size: 1.3em;
 }
 
 #about-intro-image {
