@@ -6,7 +6,11 @@
         <SectionAboutHeader />
       </div>
       <div id="header-title">
-        <h1>What are <br />we?</h1>
+        <h1>About</h1>
+        <h1 id="csit-highlight">
+          <img src="/public/img/csit-logo.png" id="csit-logo"></img>
+          <div class="highlight"></div>
+        </h1>
       </div>
     </header>
 
@@ -33,19 +37,32 @@ const loaded = ref(false);
 onMounted(() => {
   loaded.value = true;
 });
+
 </script>
 
 <style lang="scss" scoped>
 @use "sass:map";
 
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+
 #about-page {
   header {
-    background: #fff;
+    background: #ffffff;
     position: relative;
     z-index: -1;
     height: 130vh;
     width: 100vw;
     overflow-x: clip;
+    z-index: -1;
   }
 }
 @keyframes about-bg {
@@ -57,6 +74,37 @@ onMounted(() => {
     //translate: 0 0;
     background: #191925;
     backdrop-filter: blur(50px);
+  }
+}
+
+#csit-logo {
+  width: 1.99em;
+  height: fit-content;
+  display: block;
+}
+
+#csit-highlight {
+  position: relative;
+  isolation: isolate;
+  width: fit-content;
+
+  .highlight { //empty div
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+    &::after {
+      content: "";
+      display: block;
+      background: rgb(202, 38, 38);
+      width: 100%;
+      height: 100%;
+      transform-origin: left;
+      animation: bar-grow 1.2s cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s both;
+    }
   }
 }
 
@@ -94,7 +142,7 @@ header {
     flex-direction: column;
     justify-content: flex-end;
     padding: 0em 5em;
-    padding-bottom: 25vh;
+    padding-bottom: 20vh;
     z-index: 99;
     position: relative;
 
@@ -108,6 +156,7 @@ header {
   h1 {
     font-size: 10rem;
     line-height: 100%;
+    margin: 0;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
       font-size: 25vw;
