@@ -220,7 +220,7 @@ onMounted(() => {
 
   // Animate
   function animate() {
-    const SCROLL_INTENSITY = 0.03;
+    const SCROLL_INTENSITY = 0.05;
     requestAnimationFrame(animate);
     camera.position.y = -scrollY * SCROLL_INTENSITY;
     camera.rotation.x = mouseY * 0.05;

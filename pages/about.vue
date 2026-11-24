@@ -59,7 +59,7 @@ onMounted(() => {
     background: #ffffff;
     position: relative;
     z-index: -1;
-    height: 130vh;
+    height: 75vh;
     width: 100vw;
     overflow-x: clip;
     z-index: -1;
