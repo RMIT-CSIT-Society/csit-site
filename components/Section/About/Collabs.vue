@@ -44,6 +44,11 @@ const collaborators = ref([
     details: "Females+ in RMIT Engineering",
     imgSrc: "/img/fire-logo.png",
   },
+  {
+    name: "MATRIX",
+    details: "RMIT Competitive Programming & Algorithms Club",
+    imgSrc: "/img/matrix-logo.png",
+  }
 ]);
 </script>
 
