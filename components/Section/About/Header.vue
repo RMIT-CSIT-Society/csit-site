@@ -51,7 +51,7 @@ let mouseY = 0;
 
 const MAX_TRIES = 30;
 const overlapThresholdFactor = 1.2;
-const inFrameRatio = 0.75;
+const inFrameRatio = 0.85;
 const minZ = -10;
 const maxZ = -100; // increased depth range
 
@@ -62,13 +62,29 @@ onMounted(() => {
   scene = new THREE.Scene();
   const FIELD_OF_VIEW = 75;
   const NEAR_LIMIT = 0.1;
-  const FAR_LIMIT = 140;
+  const FAR_LIMIT = 410;
   camera = new THREE.PerspectiveCamera(
     FIELD_OF_VIEW,
     window.innerWidth / window.innerHeight,
     NEAR_LIMIT,
     FAR_LIMIT);
   camera.position.z = 40;
+
+  // Grid
+  const GRID_SIZE = 1000;
+  const AMT_SQUARES_IN_GRID = 20;
+  const GRID_COLOR_1 = 0xdddddd;
+  const GRID_COLOR_2 = 0xdddddd;
+  const grid = new THREE.GridHelper(
+    GRID_SIZE,
+    AMT_SQUARES_IN_GRID,
+    GRID_COLOR_1,
+    GRID_COLOR_2);
+  grid.position.y = -100;
+  grid.position.x = -80;
+  grid.rotation.x = Math.PI / 2;
+  grid.position.z = -101; 
+  scene.add(grid);
 
   // Renderer
   renderer = new THREE.WebGLRenderer({
@@ -98,6 +114,7 @@ onMounted(() => {
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         transparent: true,
+        opacity: 0,
       });
       const mesh = new THREE.Mesh(geometry, material);
 
@@ -202,10 +219,20 @@ onMounted(() => {
 
   // Animate
   function animate() {
+    const SCROLL_INTENSITY = 0.03;
     requestAnimationFrame(animate);
-    camera.position.y = -scrollY * 0.01;
+    camera.position.y = -scrollY * SCROLL_INTENSITY;
     camera.rotation.x = mouseY * 0.05;
     camera.rotation.y = mouseX * 0.2 + 0.5;
+
+    const IMG_FADE_IN_RATE = 0.08; // larger = faster
+    for (const plane of imagePlanes) {
+      const material = plane.material as THREE.MeshBasicMaterial;
+      if (material.opacity < 1) {
+        material.opacity += IMG_FADE_IN_RATE; 
+      }
+    }
+
     renderer.render(scene, camera);
   }
 
