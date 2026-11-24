@@ -1,7 +1,7 @@
 <template>
   <div class="action-menu" v-on-click-outside="hideMenu">
     <template v-for="childAction in childActions" :key="childAction.label">
-      <div class="child-action-button">
+      <div class="child-action-button" @click="childAction.onPress(); hideMenu()">
         {{ childAction.label }}
       </div>
     </template>
