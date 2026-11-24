@@ -99,6 +99,7 @@ onMounted(() => {
   const loader = new THREE.TextureLoader();
   imageUrls.forEach((url) => {
     loader.load(url, (texture) => {
+      // texture.colorSpace = THREE.SRGBColorSpace; // Uncomment this to remove img brightening
       const img = texture.image as HTMLImageElement;
 
       const cameraZ = camera.position.z;
