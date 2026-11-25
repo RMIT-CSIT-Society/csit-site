@@ -68,23 +68,25 @@
               <div id="key-note">
                 <h6>Workshops</h6>
                 <p>
-                  Hands-on workshops with emerging software and hardware such as
-                  VR and robotics.
+                  Hands-on workshops aimed at getting members industry-ready.
                 </p>
               </div>
             </div>
-
-            <div id="intro-buttons">
-              <NuxtLink class="button-special" to="https://campus.hellorubric.com/?tab=memberships&s=2960">
-                <span class="shift">Become a member</span>
-                <div class="highlight"></div> 
-              </NuxtLink>
-              <NuxtLink class="button-special" to="/about">
-                <span class="shift">More about us</span>
-                <div class="highlight"></div> 
-              </NuxtLink>
+            
+            <div id="key-notes">
+            <NuxtLink class="button-special" to="https://campus.hellorubric.com/?tab=memberships&s=2960">
+              <span class="shift">Become a member</span>
+              <div class="highlight"></div> 
+            </NuxtLink>
+            
+            <NuxtLink class="button-special" to="/about">
+              <span class="shift">More about us</span>
+              <div class="highlight"></div> 
+            </NuxtLink>
             </div>
+
           </Cell>
+
           <Cell class="large-12" id="bottom-sprites">
             <div id="lights"></div>
             <div id="shapes"></div>
@@ -111,7 +113,7 @@
 
           <!-- REMOVE LATER ONCE EVENTS SEGMENT IMPLEMENTED -->
           <NuxtLink id="events-button" class="button-special" to="https://www.instagram.com/rmitcsitsociety/">
-            <span class="shift"> Check out our events here <</span>
+            <span class="shift"> Check out our events here</span>
             <div class="highlight"></div> 
           </NuxtLink>
 
@@ -133,8 +135,10 @@
               that kept the energy high.
             </p> -->
           </Cell>
-          <img src="/img/cat-construction.png"></img>
-          <p> Area under construction</p>
+          <div id="construction">
+            <img id="cat" src="/img/cat-construction.png"></img>
+            <p> Area under construction</p>
+          </div>
           <!-- <CardEvent
             v-for="clubEvent in eventsInactive"
             :clubEvent="clubEvent"
@@ -267,11 +271,19 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 @use "sass:map";
 
+#cat {
+  grid-column: 1 / -1;
+  width: 25dvh;
+  max-width: 100%;
+  height: auto;
+  justify-self: center;
+}
+
 #events-button {
   pointer-events: auto;
   margin-left: 1em;
-  width:15em;
-  font-size: 1.2em;
+  width:fit-content;
+  font-size: 1.1em;
 }
 
 #bit {

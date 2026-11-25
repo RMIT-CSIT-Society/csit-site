@@ -106,8 +106,10 @@ html {
 }
 
 .button-special {
-  padding: 0.75em 1em;
+  padding: 0.975em;
   background: #e9e7e7;
+  width : 12em;
+  text-align: center;
   color: #121212d4; // text color
   cursor: pointer;
   text-decoration: none;
