@@ -133,6 +133,9 @@
             </div>
           </Cell>
         </Grid>
+        <div style="position: absolute; bottom: 0vh; right: 0vw; z-index: 0; pointer-events: none;">
+          <NuxtImg src="/img/pixelated-bit.png" style="height: 17em;" />
+        </div>
       </Container>
 
       <div id="grid-bg">
