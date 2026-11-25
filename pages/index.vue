@@ -135,10 +135,6 @@
               that kept the energy high.
             </p> -->
           </Cell>
-          <div id="construction">
-            <img id="cat" src="/img/cat-construction.png"></img>
-            <p> Area under construction</p>
-          </div>
           <!-- <CardEvent
             v-for="clubEvent in eventsInactive"
             :clubEvent="clubEvent"
