@@ -19,14 +19,14 @@
         </div>
         
         <div v-for="n in 9 * 3" class="null"></div>
-        <div id="header-title" style="position: absolute; z-index: 4;  inset: 0 0 calc(100% / 4) 0; display: flex; padding-left: 5em; align-items: flex-end; pointer-events: none;">
+        <div id="header-title" style="position: absolute; z-index: 4;  inset: 0 0 calc(100% / 4) 0; display: flex; align-items: flex-end; pointer-events: none;">
           <h1>Sponsors</h1>
         </div>
         
       </Grid>
       <div>
         <div style=" position: absolute; display: flex; inset: calc(100% / 1.45) 0 0 0">
-          <Navigation disableTopOffset id="header-title";> </Navigation>
+          <Navigation disableTopOffset></Navigation>
         </div>
       </div>
     </header>
@@ -50,7 +50,7 @@
                 <h3 class="h5" style="margin: 0;">
                   Diamond Sponsors
                 </h3>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
                   <img class="sponsor-logo" v-for="sponsor in diamondSponsors" :src="sponsor.logo" :alt="sponsor.name" />
                 </div>
               </div>
@@ -63,7 +63,7 @@
                 <h3 class="h5" style="margin: 0;">
                   Gold Sponsors
                 </h3>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
                   <img class="sponsor-logo" v-for="sponsor in goldSponsors" :src="sponsor.logo" :alt="sponsor.name" />
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 <h3 class="h5" style="margin: 0;">
                   Silver Sponsors
                 </h3>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
                   <img class="sponsor-logo" v-for="sponsor in silverSponsors" :src="sponsor.logo" :alt="sponsor.name" />
                 </div>
               </div>
@@ -89,7 +89,7 @@
                 <h3 class="h5" style="margin: 0;">
                   Bronze Sponsors
                 </h3>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
                   <img class="sponsor-logo" v-for="sponsor in bronzeSponsors" :src="sponsor.logo" :alt="sponsor.name" />
                 </div>
               </div>
@@ -102,7 +102,7 @@
                 <h3 class="h5" style="margin: 0;">
                   Opal & Discounts Sponsors
                 </h3>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
                   <img class="sponsor-logo" v-for="sponsor in opalPlusSponsors" :src="sponsor.logo" :alt="sponsor.name" />
                 </div>
               </div>
@@ -133,7 +133,7 @@
             </div>
           </Cell>
         </Grid>
-        <div style="position: absolute; bottom: 0vh; right: 0vw; z-index: 0; pointer-events: none;">
+        <div id="bit-guy" style="position: absolute; bottom: 0vh; right: 0vw; z-index: 0; pointer-events: none;">
           <NuxtImg src="/img/pixelated-bit.png" style="height: 17em;" />
         </div>
       </Container>
@@ -164,9 +164,6 @@
 
 // UPDATE HERE FOR CMS
 const sponsors = [
-  // { name: "diamondTest", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"diamond" },
-  // { name: "goldTest", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"gold" },
-
   { name: "auDA", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"silver" },
   { name: "RecordPoint", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZMW54lSnGi7_KJptxWWFv_sJkVVSCTQ6fE82oTw05Q&s=10", tier:"silver" },
   { name: "Protiviti", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirc1p9Mu532TrBZ_1xe77EaMMGBelmq6A98L5yraM2g&s=10", tier:"bronze" },
@@ -210,14 +207,6 @@ onMounted(() => {
 });
 
 const progress = ref(0);
-
-const { data: eventsInactive } = await useFetch("/api/events", {
-  params: { inactive: "true" },
-});
-
-const { data: eventsUpcoming } = await useFetch("/api/events", {
-  params: { active: "true" },
-});
 
 // Copies email
 const copied = ref(false);
@@ -314,6 +303,7 @@ function copyEmail() {
 #header-title h1{
   font-size : 7em;
   color : rgb(39, 38, 38);
+  padding-left: 0.7em;
 }
 
 .sponsor-logo {
@@ -595,7 +585,51 @@ header {
       }
     }
   }
+}
 
-
+@media screen and (max-width: map.get($breakpoint, "medium")) {
+  .sponsor-group {
+    min-width: 0;
+    width: 100%;
+    margin: 2vh 0 0;
+    padding: 3vh 1em;
+  }
+  #sponsor-list > div:nth-child(odd),
+  #sponsor-list > div:nth-child(even) {
+    align-self: stretch;
+  }
+  #header-title {
+    inset: 0 0 0 0 !important;
+  }
+  #header-title h1 {
+    font-size: 3em;
+    padding-left: 0.9em;
+  }
+  #events-section {
+    padding: 0 1em;
+  }
+  #bit-guy {
+    display: none;
+  }
+  header {
+    padding-top: 0vw;
+    padding-bottom: 0vw;
+  }
+  header .grid {
+    width: 180%;
+  }
+  .sponsor-group > div {
+    width: 100%;
+  }
+  .sponsor-group > div > div {
+    justify-content: center;
+    row-gap: 0.8em;
+  }
+  #become-sponsor h3 + p {
+    margin-top: 1.2em !important;
+  }
+  #become-sponsor {
+    padding-bottom: 1.5em;
+  }
 }
 </style>
