@@ -37,24 +37,33 @@
       <Container>
         <Grid>
           <Cell class="large-4" id="events-section-heading">
-            <h2 class="h2" id="sponsor-heading"> Our Sponsors </h2>
+            <h4 class="h2" id="sponsor-heading"></h4>
           </Cell>
         </Grid>
       </Container>
 
       <Container id="events">
         <Grid>
-          <Cell class="large-4"></Cell>
-          <Cell class="large-5" id="join-discord">
-            <h3 class="h5">
-              Contact us here
-            </h3>
-            <NuxtLink
-              class="button-outline"
-              to="https://discord.csitsociety.club/"
-              >Contact
-              <span class="material-symbols-outlined">arrow_outward</span>
-            </NuxtLink>
+          <Cell class="large-4" id="join-discord" style="align-self: center;">
+            <div>
+              <h3 class="h5" style="margin: 30px 0 0 0;">
+                Become a sponsor
+              </h3>
+              <p style="margin: 0px 0px;">
+                Support CSIT by becoming a sponsor by emailing us at
+              </p>
+              <div style="display: flex; flex-direction: row;">
+                <p style="margin: 0px 0px;">
+                
+                </p>
+                <p style="text-decoration: underline; margin: 0px 0px 30px 0px;">
+                  csit.society@rmit.edu.au 
+                </p>
+                <p @click="copyEmail" id="email-copy" style="cursor: pointer; margin: 0px 0px 30px 8px; ">
+                  ❐
+                </p>
+              </div>
+            </div>
           </Cell>
         </Grid>
       </Container>
@@ -119,6 +128,16 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
   params: { active: "true" },
 });
 
+// Copies email
+const copied = ref(false);
+function copyEmail() {
+  navigator.clipboard.writeText("csit.society@rmit.edu.au");
+  copied.value = true;
+  setTimeout(() => {
+    copied.value = false;
+  }, 2000);
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -153,6 +172,29 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
   }
 }
 
+#email-copy {
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  font-size: 0.9em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.3em;
+  position: relative;
+  vertical-align: middle;
+  top: 6px;
+  padding: 0.19em;
+  background-color: #303030;
+
+  transition: background-color 0.1s ease 0.01s;
+  cursor: pointer;
+
+  &:active {
+    background-color: grey;
+    transition: none;
+  }
+}
+
 #header-title h1{
   font-size : 7em;
   color : rgb(39, 38, 38);
@@ -167,7 +209,7 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
   transform: translateZ(0);
   backface-visibility: hidden;
   pointer-events: auto;
-  padding: 20px 60px;
+  padding: 0px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -266,10 +308,6 @@ section {
 
 #past-events-header {
   padding: 2em;
-}
-
-#events-section-heading {
-
 }
 
 header {
