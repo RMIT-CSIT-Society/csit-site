@@ -6,7 +6,7 @@
           <TresPerspectiveCamera :position="[0, 10, 110]" />
           <MouseParallax :factor="5" :ease="3" />
           <ScrollControls v-model="progress" :distance="45" htmlScroll />
-          <Stars :radius="30" />
+          <Stars :radius="50" />
           <TresAmbientLight :intensity="1" />
         </TresCanvas>
       </div>
@@ -464,7 +464,7 @@ section {
 }
 
 header {
-  background: #b98a8a36;
+  background: #ffffff36;
   position: relative;
   width: 100%;
   padding: 2em;
