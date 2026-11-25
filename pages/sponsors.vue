@@ -45,7 +45,7 @@
       <Container id="sponsors-segment">
         <Grid id="sponsor-list" style="display:flex; flex-direction:column">
           <div v-if="diamondSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center; background-color: #6a8fa0;">
+            <Cell class="large-5 sponsor-group" style="align-self: center; background-color: #6a8fa0; --tier-color: #1a2a32;">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Diamond Sponsors
@@ -58,7 +58,7 @@
           </div>
 
           <div v-if="goldSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #9e8752;">
+            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #9e8752; --tier-color: #2e2716;">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Gold Sponsors
@@ -71,7 +71,7 @@
           </div>
 
           <div v-if="silverSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center; background-color: #787c89">
+            <Cell class="large-5 sponsor-group" style="align-self: center; background-color: #787c89; --tier-color: #22242a; " >
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Silver Sponsors
@@ -84,7 +84,7 @@
           </div>
 
           <div v-if="bronzeSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #8d6852">
+            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #8d6852; --tier-color: #2a1e17;">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Bronze Sponsors
@@ -97,7 +97,7 @@
           </div>
 
           <div v-if="opalPlusSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #856f98">
+            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #856f98; --tier-color: #261f2d;">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Opal & Discounts Sponsors
@@ -111,7 +111,7 @@
         </Grid>
 
         <Grid>
-          <Cell class="large-4" id="join-discord" style="align-self: center;">
+          <Cell class="large-4" id="become-sponsor" style="align-self: center;">
             <div>
               <h3 class="h5" style="margin: 0;">
                 Become a sponsor
@@ -240,7 +240,7 @@ function copyEmail() {
   }
 }
 
-@keyframes join-discord {
+@keyframes become-sponsor {
   from {
     translate: 0 100%;
   }
@@ -268,18 +268,21 @@ function copyEmail() {
   }
 }
 
+@keyframes slide-up {
+  from {
+    translate: 0 60px;   // starts 60px lower
+  }
+  to {
+    translate: 0 0;      // ends in place
+  }
+}
+
 #sponsor-list > div:nth-child(odd) {
   align-self: flex-start;
 }
 
 #sponsor-list > div:nth-child(even) {
   align-self: flex-end;
-}
-
-.sponsor-group{
-  min-width: 130vh;
-  max-width: 200vh;
-  padding: 5vh 40px;
 }
 
 #email-copy {
@@ -322,6 +325,11 @@ function copyEmail() {
 }
 
 .sponsor-group{
+  min-width: 130vh;
+  max-width: 200vh;
+  padding: 5vh 40px;
+  box-shadow: 6px 6px 0 var(--tier-color);
+
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: invert(0) blur(12px);
    margin: 2vh 1.5em 0;
@@ -335,9 +343,7 @@ function copyEmail() {
   align-items: center;
   justify-content: space-between;
 
-  animation: fade-in linear both;
-  animation-timeline: view();
-  animation-range: entry 0% entry 60%;
+  animation: slide-up 0.6s ease-out both;
 
   @media screen and (max-width: map.get($breakpoint, "medium")) {
     flex-direction: column;
@@ -347,27 +353,27 @@ function copyEmail() {
   }
 }
 
-#join-discord {
+#become-sponsor {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: invert(0) blur(12px);
-  margin: 10vh 1.5em 0;
+  margin: 10vh 1.5em 10vh;
   transition: 0.25s cubic-bezier(0.93, 0.02, 0.69, 0.99) all;
   scale: 1;
   transform: translateZ(0);
   backface-visibility: hidden;
   pointer-events: auto;
-  padding: 0px 40px;
+  padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   translate: 0 100%;
 
-  animation-name: join-discord;
+  animation-name: become-sponsor;
   animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
   animation-fill-mode: both;
   animation-duration: 1ms;
-  view-timeline-name: --join-discord;
-  animation-timeline: --join-discord;
+  view-timeline-name: --become-sponsor;
+  animation-timeline: --become-sponsor;
   animation-range: entry 0% entry 30%;
 
   @media screen and (max-width: map.get($breakpoint, "medium")) {
