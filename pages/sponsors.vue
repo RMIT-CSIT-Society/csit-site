@@ -36,17 +36,84 @@
     <section id="events-section">
       <Container>
         <Grid>
-          <Cell class="large-4" id="events-section-heading">
+          <Cell class="large-5" id="events-section-heading">
             <h4 class="h2" id="sponsor-heading"></h4>
           </Cell>
         </Grid>
       </Container>
 
-      <Container id="events">
+      <Container id="sponsors-segment">
+        <Grid style="display:flex; flex-direction:column">
+          <div v-if="diamondSponsors.length > 0">
+            <Cell class="large-5 sponsor-group" style="align-self: center;">
+              <div>
+                <h3 class="h5" style="margin: 0;">
+                  Diamond Sponsors
+                </h3>
+                <div style="display: flex; flex-direction: row;">
+                  <img class="sponsor-logo" v-for="sponsor in diamondSponsors" :src="sponsor.logo" :alt="sponsor.name" />
+                </div>
+              </div>
+            </Cell>
+          </div>
+
+          <div v-if="goldSponsors.length > 0">
+            <Cell class="large-5 sponsor-group" style="align-self: center;">
+              <div>
+                <h3 class="h5" style="margin: 0;">
+                  Gold Sponsors
+                </h3>
+                <div style="display: flex; flex-direction: row;">
+                  <img class="sponsor-logo" v-for="sponsor in goldSponsors" :src="sponsor.logo" :alt="sponsor.name" />
+                </div>
+              </div>
+            </Cell>
+          </div>
+
+          <div v-if="silverSponsors.length > 0">
+            <Cell class="large-5 sponsor-group" style="align-self: center;">
+              <div>
+                <h3 class="h5" style="margin: 0;">
+                  Silver Sponsors
+                </h3>
+                <div style="display: flex; flex-direction: row;">
+                  <img class="sponsor-logo" v-for="sponsor in silverSponsors" :src="sponsor.logo" :alt="sponsor.name" />
+                </div>
+              </div>
+            </Cell>
+          </div>
+
+          <div v-if="bronzeSponsors.length > 0">
+            <Cell class="large-5 sponsor-group" style="align-self: center;">
+              <div>
+                <h3 class="h5" style="margin: 0;">
+                  Bronze Sponsors
+                </h3>
+                <div style="display: flex; flex-direction: row;">
+                  <img class="sponsor-logo" v-for="sponsor in bronzeSponsors" :src="sponsor.logo" :alt="sponsor.name" />
+                </div>
+              </div>
+            </Cell>
+          </div>
+
+          <div v-if="opalPlusSponsors.length > 0">
+            <Cell class="large-5 sponsor-group" style="align-self: center;">
+              <div>
+                <h3 class="h5" style="margin: 0;">
+                  Opal & Discounts Sponsors
+                </h3>
+                <div style="display: flex; flex-direction: row;">
+                  <img class="sponsor-logo" v-for="sponsor in opalPlusSponsors" :src="sponsor.logo" :alt="sponsor.name" />
+                </div>
+              </div>
+            </Cell>
+          </div>
+        </Grid>
+
         <Grid>
           <Cell class="large-4" id="join-discord" style="align-self: center;">
             <div>
-              <h3 class="h5" style="margin: 30px 0 0 0;">
+              <h3 class="h5" style="margin: 0;">
                 Become a sponsor
               </h3>
               <p style="margin: 0px 0px;">
@@ -91,6 +158,24 @@
 </template>
 
 <script setup lang="ts">
+
+// UPDATE HERE FOR CMS
+const sponsors = [
+  { name: "auDA", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"silver" },
+  { name: "RecordPoint", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZMW54lSnGi7_KJptxWWFv_sJkVVSCTQ6fE82oTw05Q&s=10", tier:"silver" },
+  { name: "Protiviti", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirc1p9Mu532TrBZ_1xe77EaMMGBelmq6A98L5yraM2g&s=10", tier:"bronze" },
+  { name: "Jane Street", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQag5fqQjZAYJ6gIHOujcwuvwgvOXv8EvwzRLk-61_lKQ&s", tier:"bronze" },
+  { name: "Sulbing", logo: "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/restaurant/cover/92e47e61-f0fb-40de-9c7d-343ac15262a9.jpg", tier:"opal+" },
+];
+
+// filters into seperate list by tier
+const diamondSponsors = sponsors.filter((s) => s.tier === "diamond");
+const goldSponsors = sponsors.filter((s) => s.tier === "gold");
+const silverSponsors = sponsors.filter((s) => s.tier === "silver");
+const bronzeSponsors = sponsors.filter((s) => s.tier === "bronze");
+const opalPlusSponsors = sponsors.filter((s) => s.tier === "opal+");
+// ^ END OF SPONSORS SEGMENT
+
 const bio = ref(
   "A student-run club at RMIT University committed to engaging students with academic and social events that further their professional development."
 );
@@ -171,6 +256,19 @@ function copyEmail() {
     translate: 0 0;
   }
 }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sponsor-group{
+  width: 150vh;
+  padding: 5vh 40px;
+}
 
 #email-copy {
   border: 1px solid #ffffff;
@@ -198,6 +296,38 @@ function copyEmail() {
 #header-title h1{
   font-size : 7em;
   color : rgb(39, 38, 38);
+}
+
+.sponsor-logo {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.sponsor-group{
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: invert(0) blur(12px);
+   margin: 2vh 1.5em 0;
+  transition: 0.25s cubic-bezier(0.93, 0.02, 0.69, 0.99) all;
+  scale: 1;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: auto;
+  padding: 5vh 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  animation: fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 60%;
+
+  @media screen and (max-width: map.get($breakpoint, "medium")) {
+    flex-direction: column;
+    text-align: center;
+    margin: 10vh 1.5em 10vh;
+    padding-bottom: 4.5em;
+  }
 }
 
 #join-discord {
