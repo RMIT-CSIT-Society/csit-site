@@ -73,7 +73,7 @@
               </div>
             </div>
             
-            <div id="key-notes">
+            <div id="intro-buttons">
             <NuxtLink class="button-special" to="https://campus.hellorubric.com/?tab=memberships&s=2960">
               <span class="shift">Become a member</span>
               <div class="highlight"></div> 
@@ -512,6 +512,12 @@ section {
   #intro-buttons {
     display : flex;
     gap: 3em;
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
   }
 }
 
@@ -632,8 +638,8 @@ section {
     translate: -75% 0;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
-      translate: 30% 40%;
-      scale: 1.8;
+      translate: 30% 00%;
+      scale: 1.1;
     }
   }
 }
@@ -929,12 +935,7 @@ header {
     }
   }
 
-  @media screen and (max-width: map.get($breakpoint, "medium")) {
-    ///
-  }
 
-  @media screen and (min-width: map.get($breakpoint, "large")) {
-    //padding-left: 0 2.25em;
-  }
+
 }
 </style>
