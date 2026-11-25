@@ -43,7 +43,7 @@
       </Container>
 
       <Container id="sponsors-segment">
-        <Grid style="display:flex; flex-direction:column">
+        <Grid id="sponsor-list" style="display:flex; flex-direction:column">
           <div v-if="diamondSponsors.length > 0">
             <Cell class="large-5 sponsor-group" style="align-self: center;">
               <div>
@@ -265,8 +265,17 @@ function copyEmail() {
   }
 }
 
+#sponsor-list > div:nth-child(odd) {
+  align-self: flex-start;
+}
+
+#sponsor-list > div:nth-child(even) {
+  align-self: flex-end;
+}
+
 .sponsor-group{
-  width: 150vh;
+  min-width: 130vh;
+  max-width: 200vh;
   padding: 5vh 40px;
 }
 
