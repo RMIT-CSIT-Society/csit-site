@@ -309,8 +309,13 @@ function copyEmail() {
 
 .sponsor-logo {
   width: 200px;
-  height: 100px;
+  height: 120px;
   object-fit: contain;
+  border: 3px solid #181818af;
+  padding: 0.2em 0.5em;
+  margin: 0 0.5em;
+  border-radius: 8px;
+  background-color: white;
 }
 
 .sponsor-group{
