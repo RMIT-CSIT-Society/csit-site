@@ -45,7 +45,7 @@
       <Container id="sponsors-segment">
         <Grid id="sponsor-list" style="display:flex; flex-direction:column">
           <div v-if="diamondSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;">
+            <Cell class="large-5 sponsor-group" style="align-self: center; background-color: #6a8fa0;">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Diamond Sponsors
@@ -58,7 +58,7 @@
           </div>
 
           <div v-if="goldSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;">
+            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #9e8752;">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Gold Sponsors
@@ -71,7 +71,7 @@
           </div>
 
           <div v-if="silverSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;">
+            <Cell class="large-5 sponsor-group" style="align-self: center; background-color: #787c89">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Silver Sponsors
@@ -84,7 +84,7 @@
           </div>
 
           <div v-if="bronzeSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;">
+            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #8d6852">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Bronze Sponsors
@@ -97,7 +97,7 @@
           </div>
 
           <div v-if="opalPlusSponsors.length > 0">
-            <Cell class="large-5 sponsor-group" style="align-self: center;">
+            <Cell class="large-5 sponsor-group" style="align-self: center;  background-color: #856f98">
               <div>
                 <h3 class="h5" style="margin: 0;">
                   Opal & Discounts Sponsors
@@ -161,6 +161,9 @@
 
 // UPDATE HERE FOR CMS
 const sponsors = [
+  // { name: "diamondTest", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"diamond" },
+  // { name: "goldTest", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"gold" },
+
   { name: "auDA", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"silver" },
   { name: "RecordPoint", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZMW54lSnGi7_KJptxWWFv_sJkVVSCTQ6fE82oTw05Q&s=10", tier:"silver" },
   { name: "Protiviti", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirc1p9Mu532TrBZ_1xe77EaMMGBelmq6A98L5yraM2g&s=10", tier:"bronze" },
@@ -365,7 +368,7 @@ function copyEmail() {
   animation-duration: 1ms;
   view-timeline-name: --join-discord;
   animation-timeline: --join-discord;
-  animation-range: cover 0% contain 50%;
+  animation-range: entry 0% entry 30%;
 
   @media screen and (max-width: map.get($breakpoint, "medium")) {
     flex-direction: column;
