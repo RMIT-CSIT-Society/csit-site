@@ -267,14 +267,6 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 @use "sass:map";
 
-#cat {
-  grid-column: 1 / -1;
-  width: 25dvh;
-  max-width: 100%;
-  height: auto;
-  justify-self: center;
-}
-
 #events-button {
   pointer-events: auto;
   margin-left: 1em;
