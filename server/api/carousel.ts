@@ -11,8 +11,12 @@ export default defineEventHandler(async (event) => {
 
   const images = [];
   for (const item of response.data.items) {
-    images.push(`${config.emdashUrl}/_emdash/api/media/file/${item.data.image.meta.storageKey}`);
+    images.push({
+      img : `${config.emdashUrl}/_emdash/api/media/file/${item.data.image.meta.storageKey}`,
+      order : item.data.order
+    });
   }
-  
-  return images;
+  const sortedImageObject = images.toSorted((a,b)=>(a.order - b.order));
+  const sortedImages = sortedImageObject.map((image) => image.img)
+  return sortedImages;
 });
