@@ -28,102 +28,102 @@ const actions = ref([
   {
     label: "Terminal",
     childActions: [
-      {
-        label: "About Terminal",
-        onPress: () => {},
-      },
-      {
-        label: "Settings",
-        onPress: () => {},
-      },
+      // {
+      //   label: "About Terminal",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Settings",
+      //   onPress: () => {},
+      // },
       {
         label: "Quit Terminal",
-        onPress: () => {},
+        onPress: () => {navigateTo("/");},
       },
     ],
   },
   {
     label: "File",
     childActions: [
-      {
-        label: "New File",
-        onPress: () => {},
-      },
-      {
-        label: "Open File",
-        onPress: () => {},
-      },
-      {
-        label: "Save File",
-        onPress: () => {},
-      },
-      {
-        label: "Exit",
-        onPress: () => {},
-      },
+      // {
+      //   label: "New File",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Open File",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Save File",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Exit",
+      //   onPress: () => {},
+      // },
     ],
   },
   {
     label: "Edit",
     childActions: [
-      {
-        label: "Undo",
-        onPress: () => {},
-      },
-      {
-        label: "Redo",
-        onPress: () => {},
-      },
-      {
-        label: "Cut",
-        onPress: () => {},
-      },
-      {
-        label: "Copy",
-        onPress: () => {},
-      },
-      {
-        label: "Paste",
-        onPress: () => {},
-      },
+      // {
+      //   label: "Undo",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Redo",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Cut",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Copy",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Paste",
+      //   onPress: () => {},
+      // },
     ],
   },
   {
     label: "View",
     childActions: [
-      {
-        label: "Zoom In",
-        onPress: () => {},
-      },
-      {
-        label: "Zoom Out",
-        onPress: () => {},
-      },
-      {
-        label: "Fullscreen",
-        onPress: () => {},
-      },
-      {
-        label: "Hide Toolbar",
-        onPress: () => {},
-      },
+      // {
+      //   label: "Zoom In",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Zoom Out",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Fullscreen",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Hide Toolbar",
+      //   onPress: () => {},
+      // },
     ],
   },
   {
     label: "Help",
     childActions: [
-      {
-        label: "Documentation",
-        onPress: () => {},
-      },
-      {
-        label: "Keyboard Shortcuts",
-        onPress: () => {},
-      },
-      {
-        label: "About",
-        onPress: () => {},
-      },
+      // {
+      //   label: "Documentation",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "Keyboard Shortcuts",
+      //   onPress: () => {},
+      // },
+      // {
+      //   label: "About",
+      //   onPress: () => {},
+      // },
     ],
   },
 ]);
