@@ -88,10 +88,10 @@
           </Cell>
 
           <Cell class="large-12" id="bottom-sprites">
-            <div id="lights"></div>
+            <div id="left-square"></div>
             <div id="shapes"></div>
-            <div id="games-night"></div>
-            <div id="blur"></div>
+            <div id="hack25"></div>
+            <div id="landscape"></div>
           </Cell>
         </Grid>
       </Container>
@@ -222,11 +222,11 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
 
 // Controls the images in carousel
 const carouselUrls = [
-  "/img/about/img7.webp",
-  "/img/about/img9.webp",
-  "/img/about/img6.webp",
-  "/img/about/img12.webp",
-  "/img/about/img6.webp"
+  "/img/carousel/hackathon-26.avif",
+  "/img/carousel/hackathon-26-2.avif",
+  "/img/carousel/nicole-tarini.avif",
+  "/img/carousel/hackathon-26-3.avif",
+  "/img/carousel/ed-resume26-2.avif"
 ]
 
 let slideIndex = 0;
@@ -425,7 +425,7 @@ section {
   #top-left {
     min-height: 80lvh;
     background-repeat: no-repeat;
-    background-size: auto calc(100% + 20vh);
+    background-size: cover;
     background-position: center;
     position: relative;
 
@@ -443,7 +443,6 @@ section {
       background-position: inherit;
       opacity: 0;
       transition: opacity 1s ease;
-
       &.show {
         opacity: 1;
       }
@@ -531,9 +530,9 @@ section {
     background-size: cover !important;
   }
 
-  #lights {
+  #left-square {
     grid-area: c1;
-    background: url("~/assets/img/lights.png");
+    background: url("~/assets/img/ctf-26.avif");
   }
 
   #shapes {
@@ -541,7 +540,7 @@ section {
     background: url("~/assets/img/intro-geo.svg");
   }
 
-  #games-night {
+  #hack25 {
     grid-area: c3;
     background: url("~/assets/img/csit-switch-hackathon.jpg");
     background-position: center;
@@ -552,12 +551,14 @@ section {
     animation-range: contain 0% contain 100%;
   }
 
-  #blur {
+  #landscape {
     grid-area: c4;
-    background: url("~/assets/img/blur_lol.jpg");
+    background: url("~/assets/img/recordpoint-26.avif");
     background-position: center;
   }
 }
+
+
 
 .null {
   z-index: 2;
