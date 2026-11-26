@@ -84,7 +84,7 @@ const { data: socials } = await useFetch("/api/socials");
   inset: 0;
   z-index: 0;
   pointer-events: none;
-}
+} 
 
 footer > .grid-container,
 footer > .footer-bottom {
