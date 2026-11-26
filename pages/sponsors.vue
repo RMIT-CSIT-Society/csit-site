@@ -162,22 +162,24 @@
 
 <script setup lang="ts">
 
-// UPDATE HERE FOR CMS
-const sponsors = [
-  { name: "auDA", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_POszTG9MWPpRsWBgZ-PaNqA1jYLtsa8GO3U4wHbOpPy3d0UUPQ9eeUYz&s=10", tier:"silver" },
-  { name: "RecordPoint", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZMW54lSnGi7_KJptxWWFv_sJkVVSCTQ6fE82oTw05Q&s=10", tier:"silver" },
-  { name: "Protiviti", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirc1p9Mu532TrBZ_1xe77EaMMGBelmq6A98L5yraM2g&s=10", tier:"bronze" },
-  { name: "Jane Street", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQag5fqQjZAYJ6gIHOujcwuvwgvOXv8EvwzRLk-61_lKQ&s", tier:"bronze" },
-  { name: "Sulbing", logo: "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1200,height=672,format=auto/https://doordash-static.s3.amazonaws.com/media/restaurant/cover/92e47e61-f0fb-40de-9c7d-343ac15262a9.jpg", tier:"opal+" },
-];
 
-// filters into seperate list by tier
-const diamondSponsors = sponsors.filter((s) => s.tier === "diamond");
-const goldSponsors = sponsors.filter((s) => s.tier === "gold");
-const silverSponsors = sponsors.filter((s) => s.tier === "silver");
-const bronzeSponsors = sponsors.filter((s) => s.tier === "bronze");
-const opalPlusSponsors = sponsors.filter((s) => s.tier === "opal+");
-// ^ END OF SPONSORS SEGMENT
+async function handleFormSubmit () {
+  const res = await $fetch('/api/submit', {
+    method: 'POST',
+    body: {
+      // My form data
+    },
+  })
+}
+
+
+// CMS GET REQ FOR SPONSORS
+const { data: sponsors } = await useFetch("/api/sponsors");
+const diamondSponsors  = (sponsors.value || []).filter((hi) => hi.tier === "diamond");
+const goldSponsors     = (sponsors.value || []).filter((hi) => hi.tier === "gold");
+const silverSponsors   = (sponsors.value || []).filter((hi) => hi.tier === "silver");
+const bronzeSponsors   = (sponsors.value || []).filter((hi) => hi.tier === "bronze");
+const opalPlusSponsors = (sponsors.value || []).filter((hi) => hi.tier === "opal+");
 
 const bio = ref(
   "A student-run club at RMIT University committed to engaging students with academic and social events that further their professional development."
