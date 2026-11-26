@@ -172,7 +172,7 @@ async function handleFormSubmit () {
   })
 }
 
-
+ 
 // CMS GET REQ FOR SPONSORS
 const { data: sponsors } = await useFetch("/api/sponsors");
 const diamondSponsors  = (sponsors.value || []).filter((hi) => hi.tier === "diamond");
