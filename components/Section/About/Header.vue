@@ -11,34 +11,7 @@ import * as THREE from "three";
 const container = ref<HTMLElement | null>(null);
 const canvas = ref<HTMLCanvasElement | null>(null);
 
-const URL_STUB = "img/about/";
-
-const imageUrls = [
-
-  //
-  "img1.webp",
-  "img3.webp",
-  "img4.webp",
-  "img5.webp",
-  ///
-  "img6.webp",
-  "img7.png",
-  "img8.webp",
-  "img9.webp",
-  "img10.webp",
-  ///
-  "img11.webp",
-  "img12.webp",
-  "img13.webp",
-  "img14.webp",
-  "img16.webp",
-  ///
-  "IMG_0813.webp",
-  "IMG_9340.webp",
-  "IMG_9351.webp",
-  "IMG_9362.webp",
-  ///
-].map((url) => URL_STUB + url);
+const { data: imageUrls } = await useFetch("/api/about_images");
 
 let renderer: THREE.WebGLRenderer;
 let camera: THREE.PerspectiveCamera;
@@ -102,7 +75,7 @@ onMounted(() => {
 
   // Load Textures
   const loader = new THREE.TextureLoader();
-  imageUrls.forEach((url) => {
+  imageUrls.value.forEach((url) => {
     loader.load(url, (texture) => {
       // texture.colorSpace = THREE.SRGBColorSpace; // Uncomment this to remove img brightening
       const img = texture.image as HTMLImageElement;

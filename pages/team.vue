@@ -15,7 +15,7 @@
         style="min-width: 900px; min-height: 600px; width: 52vw; height: 79vh"
         v-if="members"
       >
-        <template v-if="theTeamCurrentTab === '2026'">
+        <template v-if="theTeamCurrentTab === DISPLAY_YEAR">
           <pre id="the-team-heading">
             {{ theTeamHeading }}
           </pre>
@@ -76,6 +76,8 @@
 </template>
 
 <script setup lang="ts">
+
+const DISPLAY_YEAR = "2027";
 const { data: members } = await useFetch("/api/members");
 
 definePageMeta({
@@ -100,7 +102,7 @@ const draggingCoords = ref({
   x: 0,
   y: 0,
 });
-const theTeamCurrentTab = ref("2026");
+const theTeamCurrentTab = ref(DISPLAY_YEAR);
 
 const selectedMember = ref("");
 

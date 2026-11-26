@@ -1,5 +1,6 @@
 <template>
   <footer>
+    <div id="footer-extra"></div>
     <Container class="fluid" v-show="hideCallToAction == false">
       <Row>
         <Cell id="cta" class="large-12">
@@ -77,6 +78,19 @@ const { data: socials } = await useFetch("/api/socials");
 
 <style lang="scss" scoped>
 @use "sass:map";
+
+#footer-extra {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+} 
+
+footer > .grid-container,
+footer > .footer-bottom {
+  position: relative;
+  z-index: 1;
+}
 
 #footer-logo {
   max-width: 118px;

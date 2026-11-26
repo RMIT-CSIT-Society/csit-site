@@ -73,7 +73,7 @@
               </div>
             </div>
             
-            <div id="key-notes">
+            <div id="intro-buttons">
             <NuxtLink class="button-special" to="https://campus.hellorubric.com/?tab=memberships&s=2960">
               <span class="shift">Become a member</span>
               <div class="highlight"></div> 
@@ -88,10 +88,10 @@
           </Cell>
 
           <Cell class="large-12" id="bottom-sprites">
-            <div id="lights"></div>
+            <div id="left-square"></div>
             <div id="shapes"></div>
-            <div id="games-night"></div>
-            <div id="blur"></div>
+            <div id="hack25"></div>
+            <div id="landscape"></div>
           </Cell>
         </Grid>
       </Container>
@@ -129,20 +129,16 @@
 
         <Grid>
           <Cell class="large-3" id="past-events-header">
-            <!-- <h3 class="h4">Past featured events</h3>
+            <h3 class="h4">Past featured events</h3>
             <p>
               A snapshot of our best moments — panels, workshops, and socials
               that kept the energy high.
-            </p> -->
+            </p>
           </Cell>
-          <div id="construction">
-            <img id="cat" src="/img/cat-construction.png"></img>
-            <p> Area under construction</p>
-          </div>
-          <!-- <CardEvent
+          <CardEvent
             v-for="clubEvent in eventsInactive"
             :clubEvent="clubEvent"
-          ></CardEvent> -->
+          ></CardEvent>
         </Grid>
       </Container>
 
@@ -184,6 +180,8 @@
       </div>
     </section>
   </div>
+
+  <Teleport to="#footer-extra" defer><div class="footer-bg-img"></div></Teleport>
 </template>
 
 <script setup lang="ts">
@@ -193,6 +191,9 @@ const bio = ref(
 
 useHead({
   title: "RMIT CSIT Society",
+  bodyAttrs: {
+    class: "home-page",
+  },
   meta: [
     {
       name: "description",
@@ -225,13 +226,7 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
 });
 
 // Controls the images in carousel
-const carouselUrls = [
-  "/img/about/img7.webp",
-  "/img/about/img9.webp",
-  "/img/about/img6.webp",
-  "/img/about/img12.webp",
-  "/img/about/img6.webp"
-]
+const { data: carouselImages } = await useFetch("/api/carousel");
 
 let slideIndex = 0;
 let timer: ReturnType<typeof setInterval>;
@@ -241,7 +236,7 @@ function carousel() {
   const next = document.querySelector<HTMLElement>("#top-left-next");
   if (!segment || !next) {return;}
 
-  const nextUrl = `url(${carouselUrls[slideIndex]})`;
+  const nextUrl = `url(${carouselImages.value[slideIndex]})`;
 
   next.style.backgroundImage = nextUrl;
   next.classList.add("show");
@@ -252,12 +247,12 @@ function carousel() {
   }, 1000);
 
   slideIndex++;
-  if (slideIndex >= carouselUrls.length) {slideIndex = 0;}
+  if (slideIndex >= carouselImages.value.length) {slideIndex = 0;}
 }
 
 onMounted(() => {
   const segment = document.querySelector<HTMLElement>("#top-left");
-  if (segment) {segment.style.backgroundImage = `url(${carouselUrls[0]})`;}
+  if (segment) {segment.style.backgroundImage = `url(${carouselImages.value[0]})`;}
   slideIndex = 1;
   timer = setInterval(carousel, 4000);
 });
@@ -271,12 +266,18 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 @use "sass:map";
 
-#cat {
-  grid-column: 1 / -1;
-  width: 25dvh;
-  max-width: 100%;
-  height: auto;
-  justify-self: center;
+.footer-bg-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, transparent 10%, rgb(134, 3, 3) 100%),
+      rgba(178, 34, 34, 0.904);
+  }
 }
 
 #events-button {
@@ -437,15 +438,9 @@ section {
   #top-left {
     min-height: 80lvh;
     background-repeat: no-repeat;
-    background-size: auto calc(100% + 20vh);
+    background-size: cover;
     background-position: center;
     position: relative;
-
-    animation-name: image-parallax;
-    animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
-    animation-duration: 1ms;
-    animation-timeline: --scrollTimeline;
-    animation-range: contain 0% contain 100%;
 
     #top-left-next {
       position: absolute;
@@ -455,7 +450,6 @@ section {
       background-position: inherit;
       opacity: 0;
       transition: opacity 1s ease;
-
       &.show {
         opacity: 1;
       }
@@ -512,6 +506,12 @@ section {
   #intro-buttons {
     display : flex;
     gap: 3em;
+    @media screen and (max-width: map.get($breakpoint, "medium")) {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
   }
 }
 
@@ -537,9 +537,9 @@ section {
     background-size: cover !important;
   }
 
-  #lights {
+  #left-square {
     grid-area: c1;
-    background: url("~/assets/img/lights.png");
+    background: url("~/assets/img/ctf-26.avif");
   }
 
   #shapes {
@@ -547,7 +547,7 @@ section {
     background: url("~/assets/img/intro-geo.svg");
   }
 
-  #games-night {
+  #hack25 {
     grid-area: c3;
     background: url("~/assets/img/csit-switch-hackathon.jpg");
     background-position: center;
@@ -558,12 +558,14 @@ section {
     animation-range: contain 0% contain 100%;
   }
 
-  #blur {
+  #landscape {
     grid-area: c4;
-    background: url("~/assets/img/blur_lol.jpg");
+    background: url("~/assets/img/recordpoint-26.avif");
     background-position: center;
   }
 }
+
+
 
 .null {
   z-index: 2;
@@ -632,8 +634,8 @@ section {
     translate: -75% 0;
 
     @media screen and (max-width: map.get($breakpoint, "medium")) {
-      translate: 30% 40%;
-      scale: 1.8;
+      translate: 30% 00%;
+      scale: 1.1;
     }
   }
 }
@@ -928,13 +930,13 @@ header {
       opacity: 0.5;
     }
   }
-
-  @media screen and (max-width: map.get($breakpoint, "medium")) {
-    ///
-  }
-
-  @media screen and (min-width: map.get($breakpoint, "large")) {
-    //padding-left: 0 2.25em;
-  }
 }
+</style>
+
+<style lang="scss">
+body.home-page footer {
+  background: url("/img/ed-resume26.avif");
+  background-size: cover;
+  background-position: center 83%;
+  }
 </style>

@@ -8,6 +8,7 @@ export const execRoles = [
   "Treasurer",
   "Secretary",
   "Events Manager",
+  "Events Officer",
   "Sponsorship Officer",
   "Social Media Manager"
 ];
