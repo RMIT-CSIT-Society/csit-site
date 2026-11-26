@@ -180,6 +180,8 @@
       </div>
     </section>
   </div>
+
+  <Teleport to="#footer-extra" defer><div class="footer-bg-img"></div></Teleport>
 </template>
 
 <script setup lang="ts">
@@ -263,6 +265,20 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @use "sass:map";
+
+.footer-bg-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, transparent 10%, rgb(134, 3, 3) 100%),
+      rgba(178, 34, 34, 0.904);
+  }
+}
 
 #events-button {
   pointer-events: auto;
@@ -914,16 +930,13 @@ header {
       opacity: 0.5;
     }
   }
-
-
-
 }
 </style>
 
-<!-- <style lang="scss">
+<style lang="scss">
 body.home-page footer {
   background: url("/img/ed-resume26.avif");
   background-size: cover;
   background-position: center 83%;
   }
-</style> -->
+</style>
