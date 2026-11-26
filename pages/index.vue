@@ -189,6 +189,9 @@ const bio = ref(
 
 useHead({
   title: "RMIT CSIT Society",
+  bodyAttrs: {
+    class: "home-page",
+  },
   meta: [
     {
       name: "description",
@@ -221,13 +224,7 @@ const { data: eventsUpcoming } = await useFetch("/api/events", {
 });
 
 // Controls the images in carousel
-const carouselUrls = [
-  "/img/carousel/hackathon-26.avif",
-  "/img/carousel/hackathon-26-2.avif",
-  "/img/carousel/nicole-tarini.avif",
-  "/img/carousel/hackathon-26-3.avif",
-  "/img/carousel/ed-resume26-2.avif"
-]
+const { data: carouselImages } = await useFetch("/api/carousel");
 
 let slideIndex = 0;
 let timer: ReturnType<typeof setInterval>;
@@ -237,7 +234,7 @@ function carousel() {
   const next = document.querySelector<HTMLElement>("#top-left-next");
   if (!segment || !next) {return;}
 
-  const nextUrl = `url(${carouselUrls[slideIndex]})`;
+  const nextUrl = `url(${carouselImages.value[slideIndex]})`;
 
   next.style.backgroundImage = nextUrl;
   next.classList.add("show");
@@ -248,12 +245,12 @@ function carousel() {
   }, 1000);
 
   slideIndex++;
-  if (slideIndex >= carouselUrls.length) {slideIndex = 0;}
+  if (slideIndex >= carouselImages.value.length) {slideIndex = 0;}
 }
 
 onMounted(() => {
   const segment = document.querySelector<HTMLElement>("#top-left");
-  if (segment) {segment.style.backgroundImage = `url(${carouselUrls[0]})`;}
+  if (segment) {segment.style.backgroundImage = `url(${carouselImages.value[0]})`;}
   slideIndex = 1;
   timer = setInterval(carousel, 4000);
 });
@@ -428,12 +425,6 @@ section {
     background-size: cover;
     background-position: center;
     position: relative;
-
-    animation-name: image-parallax;
-    animation-timing-function: cubic-bezier(0.64, 0.01, 0.16, 0.99);
-    animation-duration: 1ms;
-    animation-timeline: --scrollTimeline;
-    animation-range: contain 0% contain 100%;
 
     #top-left-next {
       position: absolute;
@@ -928,3 +919,11 @@ header {
 
 }
 </style>
+
+<!-- <style lang="scss">
+body.home-page footer {
+  background: url("/img/ed-resume26.avif");
+  background-size: cover;
+  background-position: center 83%;
+  }
+</style> -->
